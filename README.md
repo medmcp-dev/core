@@ -3,7 +3,7 @@
 Medical reasoning API for AI agents. Converts clinical input into structured risk signals.
 
 ```bash
-npm install @medmcp/core
+npm install @medmcp/sdk
 ```
 
 ---
@@ -19,6 +19,24 @@ Think of it as the medical data layer your agent stack is missing.
 ---
 
 ## Quickstart
+
+### JavaScript / TypeScript
+
+```bash
+npm install @medmcp/sdk
+```
+
+```ts
+import { MedMCP } from '@medmcp/sdk';
+
+const client = new MedMCP({ apiKey: 'mk_your_key_here' });
+const result = await client.analyze('chest pain for 2 hours');
+
+console.log(result.risk_level);      // "high"
+console.log(result.interpretation);  // "1 symptom(s) identified: chest pain. Top differential: pulmonary embolism..."
+```
+
+### curl
 
 ```bash
 curl -X POST https://core-production-389e.up.railway.app/v1/analyze \
@@ -177,7 +195,8 @@ Add to your MCP client config:
 | Lab result interpretation | Planned |
 | Vitals processing | Planned |
 | Medication context | Planned |
-| JS + Python SDK | Planned |
+| JS SDK (`@medmcp/sdk`) | ✅ v1 |
+| Python SDK | Planned |
 
 ---
 
