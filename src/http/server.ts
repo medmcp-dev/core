@@ -31,10 +31,11 @@ console.log(`MedMCP HTTP server running on http://localhost:${PORT}`);
 function seedFirstApiKey(): void {
   if (hasApiKeys()) return;
 
-  const key = `mk_${randomUUID().replace(/-/g, "")}`;
+  const key = process.env.MEDDATA_API_KEY ?? `mk_${randomUUID().replace(/-/g, "")}`;
   createApiKey("default", key);
 
-  console.log(`
+  if (!process.env.MEDDATA_API_KEY) {
+    console.log(`
 ┌─────────────────────────────────────────────────┐
 │  No API keys found. Generated a development key: │
 │                                                   │
@@ -43,4 +44,5 @@ function seedFirstApiKey(): void {
 │  Set MEDDATA_API_KEY in your env to use your own. │
 └─────────────────────────────────────────────────┘
 `);
+  }
 }
