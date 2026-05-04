@@ -116,6 +116,12 @@ export function initSchema(): void {
       created_at TEXT DEFAULT (datetime('now')),
       last_used_at TEXT
     );
+
+    CREATE TABLE IF NOT EXISTS waitlist (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      email TEXT NOT NULL UNIQUE,
+      created_at TEXT DEFAULT (datetime('now'))
+    );
   `);
 
   // Additive migrations — safe to run on existing databases
@@ -141,6 +147,21 @@ export function hasApiKeys(): boolean {
 export function createApiKey(name: string, key: string): void {
   const db = getDb();
   db.prepare("INSERT INTO api_keys (key, name) VALUES (?, ?)").run(key, name);
+}
+
+export function addToWaitlist(email: string): { ok: boolean; already_exists: boolean } {
+  const db = getDb();
+  const result = db.prepare("INSERT OR IGNORE INTO waitlist (email) VALUES (?)").run(email);
+  return { ok: true, already_exists: result.changes === 0 };
+}
+
+export function getWaitlist(): { id: number; email: string; created_at: string }[] {
+  const db = getDb();
+  return db.prepare("SELECT id, email, created_at FROM waitlist ORDER BY created_at DESC").all() as {
+    id: number;
+    email: string;
+    created_at: string;
+  }[];
 }
 
 function addColumnIfMissing(
