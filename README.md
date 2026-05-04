@@ -134,6 +134,47 @@ No auth required.
 
 ---
 
+### `GET /v1/lab`
+
+Look up reference ranges, critical values, and clinical interpretation for laboratory tests. Auth required.
+
+**Query parameters**
+
+| Parameter | Description |
+|-----------|-------------|
+| `name` | Lab test name or abbreviation (e.g. `sodium`, `Na+`, `Hb`, `troponin`, `CRP`) |
+| `action` | `list` — returns all available tests; `categories` — returns category list |
+| `category` | Filter by category when listing: `electrolytes`, `renal`, `metabolic`, `cardiac`, `inflammatory`, `haematology` |
+
+```bash
+# Look up a specific test
+curl "https://core-production-389e.up.railway.app/v1/lab?name=troponin" \
+  -H "X-API-Key: YOUR_API_KEY"
+
+# List all lab tests in a category
+curl "https://core-production-389e.up.railway.app/v1/lab?action=list&category=electrolytes" \
+  -H "X-API-Key: YOUR_API_KEY"
+```
+
+Response (single test):
+
+```json
+{
+  "lab_value": {
+    "name": "troponin I",
+    "abbreviation": "hs-TnI",
+    "unit": "ng/L",
+    "reference_range": "<14 (99th percentile, hs-TnI)",
+    "critical_high": "52 ng/L",
+    "category": "cardiac",
+    "interpretation": "...",
+    "clinical_notes": "..."
+  }
+}
+```
+
+---
+
 ### `GET /v1/schema`
 
 Returns full input/output JSON schema. Auth required.
@@ -208,7 +249,7 @@ Add to your MCP client config:
 | Phase | Status |
 |-------|--------|
 | Symptom → risk signal (`POST /v1/analyze`) | ✅ v1 |
-| Lab result interpretation | Planned |
+| Lab result interpretation (`GET /v1/lab`) | ✅ v1 |
 | Vitals processing | Planned |
 | Medication context | Planned |
 | JS SDK (`@medmcp/sdk`) | ✅ v1 |
