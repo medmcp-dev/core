@@ -1,0 +1,31 @@
+{
+  "name": "@medmcp/core",
+  "version": "0.1.0",
+  "description": "Medical reasoning API for AI agents — structured risk signals from clinical input",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "start:http": "node dist/http/server.js",
+    "dev": "tsc --watch",
+    "seed": "node dist/db/seed.js",
+    "setup": "npm run build && npm run seed",
+    "sync:drugs": "node dist/sync/sync-drugs.js",
+    "sync:icd11": "node dist/sync/sync-icd11.js",
+    "sync": "npm run sync:drugs && npm run sync:icd11"
+  },
+  "dependencies": {
+    "@hono/node-server": "^2.0.1",
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "better-sqlite3": "^12.9.0",
+    "dotenv": "^17.4.2",
+    "hono": "^4.12.16",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.8",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.5.4"
+  }
+}
