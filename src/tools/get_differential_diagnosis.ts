@@ -32,6 +32,10 @@ export interface DifferentialResult {
   total_candidates: number;
 }
 
+function symptomMatches(queriedSymptom: string, diagnosisSymptom: string): boolean {
+  return diagnosisSymptom.includes(queriedSymptom) || queriedSymptom.includes(diagnosisSymptom);
+}
+
 export function getDifferentialDiagnosis(
   input: GetDifferentialDiagnosisInput
 ): DifferentialResult {
@@ -40,11 +44,21 @@ export function getDifferentialDiagnosis(
 
   const normalisedSymptoms = symptoms.map((s) => s.toLowerCase().trim());
 
-  // Fetch all diagnoses and rank by symptom overlap in application code
-  // (SQLite's FTS would be better at scale, but keeps the dependency minimal)
   const allDiagnoses = db
     .prepare("SELECT * FROM diagnoses")
     .all() as Diagnosis[];
+
+  const total = allDiagnoses.length;
+
+  // IDF: symptoms appearing in fewer diagnoses get higher weight
+  // idf[symptom] = log(total / count of diagnoses containing that symptom)
+  const idf = new Map<string, number>();
+  for (const qs of normalisedSymptoms) {
+    const df = allDiagnoses.filter((dx) =>
+      dx.symptoms.split(",").map((s) => s.toLowerCase().trim()).some((ds) => symptomMatches(qs, ds))
+    ).length;
+    idf.set(qs, Math.log(total / Math.max(df, 1)));
+  }
 
   const ranked = allDiagnoses
     .map((dx) => {
@@ -53,15 +67,15 @@ export function getDifferentialDiagnosis(
         .map((s) => s.toLowerCase().trim());
 
       const matched = normalisedSymptoms.filter((qs) =>
-        dxSymptoms.some(
-          (ds) => ds.includes(qs) || qs.includes(ds)
-        )
+        dxSymptoms.some((ds) => symptomMatches(qs, ds))
       );
+
+      const weightedScore = matched.reduce((sum, qs) => sum + (idf.get(qs) ?? 1), 0);
 
       return {
         name: dx.name,
         matched_symptoms: matched,
-        match_score: matched.length,
+        match_score: Math.round(weightedScore * 100) / 100,
         distinguishing_features: dx.distinguishing_features,
         key_investigations: dx.key_investigations,
         icd11_code: dx.icd11_code,
