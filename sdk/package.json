@@ -1,0 +1,17 @@
+{
+  "name": "@medmcp/sdk",
+  "version": "0.1.0",
+  "description": "JavaScript SDK for the MedMCP medical reasoning API",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist/"],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.5.4"
+  }
+}
