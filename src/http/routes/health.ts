@@ -5,5 +5,6 @@ export function healthHandler(c: Context) {
     status: "ok",
     version: "1.0.0",
     timestamp: new Date().toISOString(),
+    db_path: process.env.DB_PATH ?? "(default)",
   });
 }
