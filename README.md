@@ -36,6 +36,22 @@ console.log(result.risk_level);      // "high"
 console.log(result.interpretation);  // "1 symptom(s) identified: chest pain. Top differential: pulmonary embolism..."
 ```
 
+### Python
+
+```bash
+pip install medmcp
+```
+
+```python
+from medmcp import MedMCP
+
+client = MedMCP(api_key="mk_your_key_here")
+result = client.analyze("chest pain for 2 hours")
+
+print(result.risk_level)      # "high"
+print(result.interpretation)  # "1 symptom(s) identified: chest pain. Top differential: pulmonary embolism..."
+```
+
 ### curl
 
 ```bash
@@ -196,7 +212,7 @@ Add to your MCP client config:
 | Vitals processing | Planned |
 | Medication context | Planned |
 | JS SDK (`@medmcp/sdk`) | ✅ v1 |
-| Python SDK | Planned |
+| Python SDK (`medmcp`) | ✅ v1 |
 
 ---
 
