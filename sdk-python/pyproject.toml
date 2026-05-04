@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=70"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "medmcp"
+version = "0.1.0"
+description = "Python SDK for the MedMCP medical reasoning API"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+keywords = ["medical", "ai", "agents", "mcp", "clinical"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/medmcp-dev/core"
+Repository = "https://github.com/medmcp-dev/core"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["medmcp*"]
