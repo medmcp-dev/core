@@ -2,6 +2,8 @@
 
 Medical reasoning API for AI agents. Converts clinical input into structured risk signals.
 
+**Website:** https://medmcp.vercel.app
+
 ```bash
 npm install @medmcp/sdk
 ```
