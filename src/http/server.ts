@@ -1,4 +1,5 @@
 import { Hono } from "hono";
+import { cors } from "hono/cors";
 import { serve } from "@hono/node-server";
 import { randomUUID } from "crypto";
 import { initSchema, hasApiKeys, createApiKey } from "../db/database.js";
@@ -13,6 +14,8 @@ initSchema();
 seedFirstApiKey();
 
 const app = new Hono();
+
+app.use("*", cors({ origin: "*", allowMethods: ["GET", "POST", "OPTIONS"] }));
 
 app.get("/v1/health", healthHandler);
 
