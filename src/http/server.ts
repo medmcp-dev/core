@@ -4,6 +4,7 @@ import { serve } from "@hono/node-server";
 import { randomUUID } from "crypto";
 import { initSchema, hasApiKeys, createApiKey } from "../db/database.js";
 import { authMiddleware } from "./middleware/auth.js";
+import { rateLimit } from "./middleware/rateLimit.js";
 import { healthHandler } from "./routes/health.js";
 import { schemaHandler } from "./routes/schema.js";
 import { analyzeHandler } from "./routes/analyze.js";
@@ -18,6 +19,10 @@ const app = new Hono();
 app.use("*", cors({ origin: "*", allowMethods: ["GET", "POST", "OPTIONS"] }));
 
 app.get("/v1/health", healthHandler);
+
+app.use("/v1/analyze", rateLimit(60, 60_000));   // 60 req/min per IP
+app.use("/v1/lab",     rateLimit(60, 60_000));   // 60 req/min per IP
+app.use("/v1/waitlist", rateLimit(5, 3_600_000)); // 5 req/hour per IP
 
 app.use("/v1/schema", authMiddleware);
 app.use("/v1/analyze", authMiddleware);
