@@ -337,4 +337,184 @@ export const diagnoses = [
     prevalence:
       "~15% of hospital admissions develop AKI; ~50% of ICU patients. Hospital-acquired AKI: 30-day mortality ~25%. Community-acquired AKI: better prognosis with prompt treatment.",
   },
+  {
+    name: "subarachnoid haemorrhage",
+    symptoms: "headache,vomiting,neck stiffness,photophobia,altered consciousness,seizure,syncope",
+    distinguishing_features:
+      "Classic: sudden-onset 'thunderclap' headache — worst headache of life, peaks within seconds, persists. Caused by ruptured berry aneurysm (85%) — most common at ACoA, PCoA-ICA junction. Non-aneurysmal perimesencephalic SAH (15%): benign, venous origin. Hunt-Hess grade (I-V) and WFNS grade predict prognosis. CT head (non-contrast) within 6h: 98% sensitive. If CT negative: LP at 12h post-onset for xanthochromia (spectrophotometry). CTA/DSA to identify aneurysm. Complications: rebleeding (highest risk 24h), vasospasm (days 3-14 — delayed ischaemic deficit), hydrocephalus, hyponatraemia (SIADH or cerebral salt wasting).",
+    key_investigations:
+      "CT head non-contrast (within 6h — >98% sensitivity), LP at ≥12h post-onset if CT negative (xanthochromia by spectrophotometry), CTA (aneurysm identification), DSA (gold standard for aneurysm), ECG (deep T-wave inversions, QT prolongation — neurogenic), FBC, coagulation, U&E (hyponatraemia), transcranial Doppler (vasospasm monitoring)",
+    icd11_code: "8B00",
+    prevalence: "~9 per 100,000/year. Peak 40-60 years. 30-day mortality ~40-50%; 10-15% die before hospital. Of survivors, ~30% have significant disability.",
+  },
+  {
+    name: "anaphylaxis",
+    symptoms: "rash,dyspnoea,tachycardia,vomiting,dizziness,syncope,wheeze,oedema,tachypnoea",
+    distinguishing_features:
+      "Severe, life-threatening systemic hypersensitivity reaction. Onset: usually within 30 min of trigger (food, drugs, venom, latex, idiopathic). Criteria: involvement of skin/mucosal tissue + either respiratory compromise or haemodynamic compromise. Biphasic reaction: 1-8h after initial resolution (in 1-20%). Differential: vasovagal, panic attack, hereditary angioedema (no urticaria, no response to adrenaline — treat with C1-inhibitor), carcinoid (flush, diarrhoea, wheeze), mastocytosis. Skin: urticaria, angioedema, flushing, pruritus.",
+    key_investigations:
+      "Clinical diagnosis — treat immediately, investigations secondary. Serum mast cell tryptase (within 1-3h of reaction — peak at 60 min; >11.4 µg/L supports anaphylaxis), repeat at 24h baseline, FBC, ECG, oxygen saturation. Subsequent allergy testing: skin prick test, specific IgE (RAST), basophil activation test.",
+    icd11_code: "4A84",
+    prevalence: "Lifetime prevalence ~0.5-2%. Fatality rate ~0.5-1% of cases. Food (peanuts, tree nuts, shellfish) most common in children; drugs (penicillin, NSAIDs, contrast) and venom in adults.",
+  },
+  {
+    name: "hypertensive emergency",
+    symptoms: "headache,visual disturbance,chest pain,dyspnoea,altered consciousness,vomiting,seizure",
+    distinguishing_features:
+      "BP >180/120 mmHg with acute end-organ damage — distinguishes from hypertensive urgency (no end-organ damage). End-organ damage types: hypertensive encephalopathy (headache, confusion, seizure, papilloedema), aortic dissection (tearing chest/back pain), acute LVF (pulmonary oedema), NSTEMI/STEMI, AKI, haemorrhagic/ischaemic stroke, eclampsia, TMA (microangiopathic haemolytic anaemia, thrombocytopaenia). Target: lower MAP by 10-20% in first hour, then to 160/100 over 2-6h (NOT to normal — risk of end-organ ischaemia). Exception: aortic dissection — target SBP <120 within 20 min.",
+    key_investigations:
+      "BP both arms (dissection: difference >20mmHg), ECG (LVH, ischaemia), fundoscopy (papilloedema, haemorrhages, exudates — grades III/IV = hypertensive emergency), U&E (AKI, hypokalaemia), FBC (microangiopathic haemolysis), troponin, CXR (pulmonary oedema, widened mediastinum), urine dipstick (proteinuria), CT head (stroke, ICH), CT aorta if dissection suspected",
+    icd11_code: "BA80",
+    prevalence: "~1-2% of hypertensive patients present as emergency. 1-year mortality if untreated ~90% (historical). With treatment: 5-year survival >70%.",
+  },
+  {
+    name: "cardiac tamponade",
+    symptoms: "dyspnoea,chest pain,syncope,tachycardia,dizziness,fatigue,oedema",
+    distinguishing_features:
+      "Compression of cardiac chambers by pericardial effusion → impaired filling → reduced CO. Beck's triad: hypotension, raised JVP (Kussmaul's sign absent — JVP rises on inspiration), muffled heart sounds. Pulsus paradoxus: SBP drop >10mmHg on inspiration (due to RV filling competing with LV). CXR: 'water bottle' heart (if effusion >250ml). ECG: sinus tachycardia, low-voltage QRS, electrical alternans (pathognomonic). Echo: gold standard — RA/RV diastolic collapse, IVC plethora, respiratory variation in mitral/tricuspid flow. Causes: malignancy (most common), idiopathic, TB, post-MI (Dressler's), post-cardiac surgery, uraemia.",
+    key_investigations:
+      "Echo (gold standard — pericardial effusion + haemodynamic compromise), ECG (sinus tachycardia, low voltage, electrical alternans), CXR (globular heart), pulsus paradoxus (sphygmomanometer), U&E (uraemia), troponin, FBC, pericardial fluid analysis post-drainage (cytology, MC&S, AFB, LDH, protein)",
+    icd11_code: "BC71",
+    prevalence: "Uncommon in general population; seen in 2% of penetrating chest trauma, 14% of malignant pericardial effusions. Mortality very high without pericardiocentesis.",
+  },
+  {
+    name: "infective endocarditis",
+    symptoms: "fever,malaise,rigors,weight loss,fatigue,dyspnoea,tachycardia,diaphoresis",
+    distinguishing_features:
+      "Infection of cardiac valvular endothelium or mural endocardium. Modified Duke Criteria: Major (blood cultures positive for typical organisms — S. aureus, viridans streptococci; evidence of endocardial involvement on echo — vegetation, abscess, dehiscence). Minor (predisposition, fever >38°C, vascular phenomena, immunological phenomena, microbiological evidence). Definite: 2 major, 1 major + 3 minor, or 5 minor. Peripheral stigmata: Osler nodes (painful finger pulp), Janeway lesions (painless palmar/plantar haemorrhages), Roth spots (retinal haemorrhages), splinter haemorrhages, splenomegaly, finger clubbing. Most common organisms: S. aureus (acute, IVDU), viridans streptococci (subacute, dental), Enterococcus, Streptococcus bovis (associated with colon cancer — colonoscopy needed).",
+    key_investigations:
+      "Blood cultures ×3 from different sites before antibiotics (essential — most important investigation), echo (TOE more sensitive than TTE for vegetations — TOE if TTE negative and high suspicion), FBC (anaemia, leukocytosis), CRP/ESR, U&E, LFTs, urinalysis (microscopic haematuria/casts), RF (immunological phenomena), ECHO, dental panoramic radiograph",
+    icd11_code: "BA80.1",
+    prevalence: "3-10 per 100,000/year. Mortality 15-30% despite treatment. S. aureus endocarditis: in-hospital mortality ~25-40%.",
+  },
+  {
+    name: "pulmonary tuberculosis",
+    symptoms: "productive cough,haemoptysis,weight loss,fever,diaphoresis,fatigue,dyspnoea",
+    distinguishing_features:
+      "Caused by Mycobacterium tuberculosis. Primary TB often asymptomatic — Ghon focus + hilar lymphadenopathy = Ghon complex. Post-primary (reactivation): upper lobe cavitation, night sweats, haemoptysis. Risk factors: immunosuppression (HIV — most important globally), malnutrition, diabetes, overcrowding, prior TB. CXR: upper lobe infiltrates/cavities, hilar lymphadenopathy, miliary pattern (haematogenous spread). IGRA (interferon-gamma release assay) or Mantoux: latent TB. Sputum AFB smear (3 samples) + culture (gold standard, 6-8 weeks). GeneXpert (rapid PCR, also detects rifampicin resistance). Notifiable disease — contact tracing mandatory. Standard treatment: 2HRZE + 4HR (rifampicin, isoniazid, pyrazinamide, ethambutol).",
+    key_investigations:
+      "Sputum AFB smear ×3 (early morning — 40-60% sensitivity), GeneXpert MTB/RIF (rapid PCR, 85% sensitivity, detects rifampicin resistance), sputum culture on Lowenstein-Jensen (gold standard — 80-90% sensitivity), CXR PA, IGRA/Mantoux, HIV test, LFTs (baseline before hepatotoxic drugs), FBC, bronchoscopy + BAL if sputum negative",
+    icd11_code: "1B10",
+    prevalence: "~10 million new cases/year globally. UK: ~5,000 cases/year. 90% asymptomatic latent infection; 10% lifetime risk of reactivation. HIV co-infection increases risk 20-30×.",
+  },
+  {
+    name: "ectopic pregnancy",
+    symptoms: "abdominal pain,vomiting,syncope,tachycardia,dizziness,shoulder tip pain,vaginal bleeding",
+    distinguishing_features:
+      "Implantation outside uterine cavity — 95% in fallopian tubes (ampullary most common). Risk factors: previous ectopic, PID, tubal surgery, IUD, assisted conception. Triad: amenorrhoea + lower abdominal pain + vaginal bleeding (60-70% have all three). Rupture: sudden severe pain, haemoperitoneum, peritonism, haemodynamic collapse. Shoulder tip pain: diaphragmatic irritation from haemoperitoneum. β-hCG positive (always check in women of reproductive age with abdominal pain). Discriminatory zone: if β-hCG >1500-2000 IU/L and no intrauterine pregnancy on TVUSS = ectopic until proven otherwise. Cornual/interstitial: ruptures later (12-14 weeks), higher mortality.",
+    key_investigations:
+      "Urine βhCG (immediate), serum βhCG (quantitative + serial every 48h — should double in normal IUP; plateau/fall in ectopic), transvaginal USS (gold standard for location), FBC, group and save (rhesus status), coagulation (if haemodynamically unstable), laparoscopy (definitive diagnosis and treatment)",
+    icd11_code: "JA01",
+    prevalence: "1-2% of pregnancies. Commonest cause of maternal death in first trimester. Incidence rising due to PID and assisted reproduction.",
+  },
+  {
+    name: "pre-eclampsia",
+    symptoms: "headache,visual disturbance,oedema,epigastric pain,vomiting,tachycardia",
+    distinguishing_features:
+      "New-onset hypertension (≥140/90 mmHg on 2 occasions ≥4h apart) after 20 weeks gestation + proteinuria (≥300mg/24h or PCR ≥30mg/mmol) or end-organ dysfunction. Severe features: BP ≥160/110, thrombocytopaenia (<100×10⁹/L), renal impairment (creatinine >97µmol/L), impaired liver function (ALT >2× ULN), pulmonary oedema, new-onset headache, visual disturbance. HELLP syndrome: Haemolysis (microangiopathic), Elevated Liver enzymes, Low Platelets — severe variant, mortality 1-3%. Eclampsia: seizures in context of pre-eclampsia. Only cure: delivery. Pathophysiology: abnormal placentation → ischaemia → systemic inflammatory response → widespread endothelial dysfunction.",
+    key_investigations:
+      "BP monitoring (sphygmomanometer — avoid automated in severe pre-eclampsia), urine PCR or 24h urine protein, FBC (platelets — HELLP), LFTs (AST/ALT — HELLP), U&E (AKI), LDH (haemolysis), blood film (schistocytes), coagulation (DIC), CTG (fetal wellbeing), USS (growth restriction, liquor volume, Doppler), urate (raised in pre-eclampsia)",
+    icd11_code: "JA24",
+    prevalence: "2-8% of pregnancies worldwide. Leading cause of maternal and perinatal morbidity/mortality. Pre-term delivery in 15% of cases.",
+  },
+  {
+    name: "Addison's disease",
+    symptoms: "fatigue,weight loss,nausea,vomiting,dizziness,syncope,anorexia,malaise",
+    distinguishing_features:
+      "Primary adrenal insufficiency — bilateral adrenal cortex destruction. Causes: autoimmune (80% in developed world — anti-21-hydroxylase antibodies), TB (most common worldwide), metastases, haemorrhage (Waterhouse-Friderichsen — meningococcal), drugs (ketoconazole, etomidate). Features: fatigue, postural hypotension, hyponatraemia, hyperkalaemia, hypoglycaemia, hyperpigmentation (buccal mucosa, skin creases, scars, pressure areas — ↑ACTH drives MSH release). Adrenal crisis: life-threatening — precipitated by intercurrent illness, trauma, surgery; presents with severe hypotension, vomiting, abdominal pain, altered consciousness. Treatment: hydrocortisone 100mg IV immediately — do not wait for results. Short Synacthen Test: 250µg tetracosactide IM → cortisol <500 nmol/L at 30/60 min = adrenal insufficiency.",
+    key_investigations:
+      "9am cortisol (<100 nmol/L = almost certain; >500 nmol/L = excluded), Short Synacthen Test (gold standard — 250µg tetracosactide IM, measure cortisol at 0, 30, 60 min), ACTH (↑primary, ↓secondary), anti-21-hydroxylase antibodies, U&E (hyponatraemia, hyperkalaemia, uraemia), glucose (hypoglycaemia), adrenal CT (bilateral adrenal enlargement in TB/malignancy; small in autoimmune), AXR/CXR (adrenal calcification in TB)",
+    icd11_code: "5A70",
+    prevalence: "~120 per million. Female:male 2:1 for autoimmune. Adrenal crisis mortality ~6% per episode without prompt treatment.",
+  },
+  {
+    name: "hyperosmolar hyperglycaemic state",
+    symptoms: "polydipsia,polyuria,altered consciousness,fatigue,vomiting,tachycardia,dyspnoea",
+    distinguishing_features:
+      "Life-threatening complication of type 2 diabetes. Distinguishing from DKA: serum glucose >30 mmol/L, plasma osmolality >320 mOsm/kg, NO significant ketonaemia (<3 mmol/L) or acidosis (pH >7.30, bicarbonate >15). Profound dehydration (fluid deficit 5-10L vs 3-5L in DKA). Altered consciousness/coma from hyperosmolality. Precipitants: infection, MI, stroke, drugs (diuretics, steroids, antipsychotics — clozapine). Complications: VTE (high risk — dehydration + hypercoagulability), cerebral oedema if corrected too rapidly, rhabdomyolysis. Mortality 10-20% (higher than DKA) — mostly elderly with significant comorbidities. Correct glucose slowly: target 5 mmol/L/hour reduction. Use 0.9% NaCl initially; insulin only after glucose <15 mmol/L unless ketonaemia present.",
+    key_investigations:
+      "Glucose (>30 mmol/L), plasma osmolality (calc: 2[Na+K] + urea + glucose; >320), U&E (hypernatraemia despite total body Na deficit, hypokalaemia), ketones (blood/urine — minimal in HHS), ABG (pH >7.30 — no acidosis), FBC, CRP, blood cultures, ECG (precipitant MI, hypokalaemia changes), CXR, urine MC&S, troponin",
+    icd11_code: "5A23",
+    prevalence: "~20-30% of diabetic emergencies. Predominantly type 2 diabetes. 10-20% mortality. Can be first presentation of T2DM in 25-30% of cases.",
+  },
+  {
+    name: "acute mesenteric ischaemia",
+    symptoms: "abdominal pain,vomiting,diarrhoea,tachycardia,fever,nausea",
+    distinguishing_features:
+      "Surgical emergency — bowel infarction without prompt intervention. Classic: severe central abdominal pain out of proportion to clinical findings (peritonism only once transmural infarction). Four types: arterial embolism (50% — AF most common source, sudden onset), arterial thrombosis (25% — pre-existing atherosclerosis, post-prandial pain, weight loss), venous thrombosis (10% — hypercoagulable states, portal hypertension), non-occlusive (15% — low-flow states: cardiogenic shock, vasoconstriction). D-lactate elevated (bowel bacteria product). CT mesenteric angiography: gold standard. Late signs: haemodynamic instability, peritonitis, metabolic acidosis, haemoconcentration, elevated lactate. Mortality 60-80% if bowel necrosis.",
+    key_investigations:
+      "CT mesenteric angiography (gold standard — arterial phase), lactate (elevated — bowel ischaemia, correlates with severity), ABG (metabolic acidosis), FBC (haemoconcentration — rising haematocrit), CRP, D-dimer, coagulation, ECG (AF — embolic source), echo (cardiac thrombus), AXR (thumbprinting, pneumatosis intestinalis — late sign), explorative laparoscopy if CT inconclusive",
+    icd11_code: "DB99",
+    prevalence: "0.1% of acute surgical admissions but mortality >60% once bowel necrosis. Increasing with ageing population and AF prevalence.",
+  },
+  {
+    name: "acute angle-closure glaucoma",
+    symptoms: "headache,vomiting,visual disturbance,eye pain,nausea",
+    distinguishing_features:
+      "Sudden occlusion of trabecular meshwork by peripheral iris → acute IOP rise (>21 mmHg, often 40-80 mmHg). Risk factors: hypermetropia (shallow anterior chamber), female, Asian ethnicity, age >60, dilated pupil (dim light, mydriatics, anticholinergics, sympathomimetics). Presentation: severe unilateral eye pain radiating to forehead/temple, fixed mid-dilated pupil, corneal cloudiness/oedema, coloured halos around lights, reduced visual acuity. The headache and vomiting can mimic migraine or subarachnoid haemorrhage — look at the eye. Slit-lamp: shallow anterior chamber, corneal oedema, fixed semi-dilated pupil. Immediate treatment: reduce IOP urgently — IV acetazolamide, topical timolol/pilocarpine, IV mannitol. Definitive: laser peripheral iridotomy.",
+    key_investigations:
+      "Tonometry (IOP >21 mmHg, often 40-80 — gold standard), slit-lamp examination (corneal oedema, shallow AC, fixed pupil), gonioscopy (closed angle), visual field testing, dilated fundoscopy (optic disc — cupping), corneal pachymetry, anterior segment OCT",
+    icd11_code: "9C61",
+    prevalence: "~6-8 per 100,000/year in Caucasians; higher in Asians. Female:male ~4:1. Contralateral eye: 50% risk of attack within 5 years without prophylactic iridotomy.",
+  },
+  {
+    name: "cellulitis",
+    symptoms: "rash,fever,malaise,oedema,tachycardia,fatigue",
+    distinguishing_features:
+      "Bacterial infection of dermis and subcutaneous tissue. Most common organisms: beta-haemolytic streptococci (Groups A, B, C, G) and S. aureus. Lower limb (90%) — entry via skin break, tinea pedis, venous ulcer. Features: spreading erythema (mark borders to monitor progression), warmth, swelling, tenderness. Eron classification: Class I (no systemic illness, no comorbidities — oral antibiotics), Class II/III/IV (systemic illness or co-morbidities or severe — IV antibiotics). Differential: DVT (USS), lipodermatosclerosis (chronic, indurated, brown pigmentation), contact dermatitis (bilateral, itchy), necrotising fasciitis (rapidly spreading, severe pain, systemic toxicity, crepitus, gas on imaging). Necrotising fasciitis (LRINEC score ≥6): surgical emergency — do not delay debridement for imaging.",
+    key_investigations:
+      "Clinical diagnosis — bloods and imaging guide severity and rule out complications. FBC (leukocytosis), CRP/ESR (elevated), blood cultures (if systemic illness — bacteraemia in <2%), swab (if open wound/discharge), USS (abscess — fluctuant area, treatment: incision and drainage), LRINEC score (rule out NF: CRP, WCC, Hb, Na, creatinine, glucose), MRI (definitive for NF if diagnosis uncertain)",
+    icd11_code: "1B72",
+    prevalence: "~24 per 1000 person-years. Accounts for 1-3% of A&E attendances. 30-day recurrence rate ~15%. Annual recurrence rate ~8-20%.",
+  },
+  {
+    name: "liver cirrhosis",
+    symptoms: "jaundice,oedema,fatigue,weight loss,nausea,malaise,vomiting,anorexia",
+    distinguishing_features:
+      "End-stage liver disease — replacement of hepatocytes by fibrotic tissue. Causes: alcohol (most common in UK), NAFLD/NASH (increasing), viral hepatitis (HBV, HCV), autoimmune hepatitis, PBC, PSC, haemochromatosis, Wilson's disease. Compensated vs decompensated (ascites, variceal haemorrhage, hepatic encephalopathy, jaundice). Child-Pugh score (bilirubin, albumin, PT, ascites, encephalopathy) and MELD score (bilirubin, INR, creatinine) predict prognosis and transplant priority. Complications: portal hypertension (varices, ascites, splenomegaly), hepatic encephalopathy (ammonia, check EEG — triphasic waves), HRS (AKI in cirrhosis — poor prognosis), SBP (fever, abdominal pain, ascites — PMNs >250/mm³ in ascitic tap), HCC (AFP + USS screening every 6 months).",
+    key_investigations:
+      "LFTs (↑bilirubin, ↑ALP/GGT, ↓albumin — late sign of decompensation), PT/INR (synthetic function marker), FBC (thrombocytopaenia — hypersplenism, anaemia), U&E (hyponatraemia, AKI — hepatorenal), USS abdomen (nodular liver, splenomegaly, ascites, portal vein flow), OGD (varices), diagnostic ascitic tap (PMN count, albumin — SAAG, MC&S — SBP), ARFI/FibroScan (liver stiffness), liver biopsy (rarely needed now), AFP (HCC screening)",
+    icd11_code: "DB93",
+    prevalence: "~25 per 100,000 in UK. 400,000 in UK with cirrhosis. 10-year survival: compensated ~50%, decompensated <50% at 5 years. Liver transplant improves survival significantly.",
+  },
+  {
+    name: "pleural effusion",
+    symptoms: "dyspnoea,pleuritic chest pain,cough,tachypnoea,fatigue,malaise",
+    distinguishing_features:
+      "Accumulation of fluid in pleural space. Classified by Light's criteria into transudates (protein <25g/L, pleural:serum protein <0.5, pleural:serum LDH <0.6) vs exudates (any one criterion met). Transudates: HF (bilateral, raised JVP), cirrhosis, nephrotic syndrome, hypothyroidism. Exudates: pneumonia (parapneumonic — most common exudate), malignancy (commonly unilateral, bloody, large), TB (exudate, lymphocytic, ADA >40), PE (blood-stained exudate), rheumatoid/SLE. Clinical: stony dull to percussion, reduced breath sounds, bronchial breathing above effusion (tactile fremitus absent). CXR: meniscus sign (>200ml), blunts costophrenic angle (>150ml), contralateral mediastinal shift (large). USS: confirms effusion, guides aspiration. CT thorax with contrast: characterises pleura, identifies cause.",
+    key_investigations:
+      "CXR PA (blunted costophrenic angle, meniscus, mediastinal shift), USS thorax (confirms fluid, guides aspiration), CT chest with contrast (characterise pleura, malignancy), diagnostic pleural aspiration (Light's criteria — protein, LDH; pH — <7.2 needs drain; glucose; MC&S; cytology — malignancy; AFB — TB; ADA — TB if >40), FBC, LFTs, U&E, albumin, serum LDH/protein (for Light's), NT-proBNP (HF)",
+    icd11_code: "CB21",
+    prevalence: "~320 per 100,000/year. Commonest causes: HF (40%), malignancy (25%), pneumonia (15%). Malignant effusion median survival 3-12 months depending on primary.",
+  },
+  {
+    name: "Crohn's disease",
+    symptoms: "abdominal pain,diarrhoea,weight loss,fatigue,fever,malaise,nausea",
+    distinguishing_features:
+      "Inflammatory bowel disease — transmural granulomatous inflammation, can affect any part of GI tract (mouth to anus), skip lesions. Most common: terminal ileum + colon (ileocolonic 40%). Features: abdominal pain (RIF most common — terminal ileal disease), diarrhoea (may be bloody but less than UC), weight loss, perianal disease (fistulae, skin tags, abscesses — pathognomonic). Extra-intestinal manifestations (EIMs): joints (arthropathy, AS), eyes (uveitis, episcleritis), skin (erythema nodosum — disease activity, pyoderma gangrenosum — independent), PSC (more in UC). Complications: stricture (obstructive symptoms), fistula (enteroenteral, enterovaginal, enterovesical), abscess, perforation, malabsorption (terminal ileal disease — B12 deficiency, bile salt malabsorption — diarrhoea). Montreal classification: disease location (L1-L4) and behaviour (B1 inflammatory, B2 stricturing, B3 penetrating).",
+    key_investigations:
+      "FBC (anaemia — iron/B12/folate deficiency), CRP/ESR, albumin (low — disease severity/malnutrition), B12/folate (terminal ileal disease), faecal calprotectin (>250 µg/g = active IBD, NPV ~94% for excluding active IBD), faecal cultures (exclude infective colitis), colonoscopy + biopsy (gold standard — cobblestoning, aphthous ulcers, skip lesions, granulomas on histology in 30%), MRI small bowel (strictures, fistulae, active inflammation — no radiation), CT abdomen (acute complications — abscess, perforation)",
+    icd11_code: "DD70",
+    prevalence: "~200-300 per 100,000 in UK. Incidence 5-10 per 100,000/year. Peak onset 15-35 and 55-70 years. Bimodal distribution. Female:male approximately equal.",
+  },
+  {
+    name: "ulcerative colitis",
+    symptoms: "diarrhoea,abdominal pain,weight loss,fatigue,fever,malaise",
+    distinguishing_features:
+      "Inflammatory bowel disease — mucosal inflammation limited to colon, always involves rectum (proctitis), extends proximally in continuity. Bloody diarrhoea is hallmark (unlike Crohn's — often non-bloody). Extent: proctitis (E1), left-sided/distal (E2, up to splenic flexure), extensive/pancolitis (E3). Truelove-Witts criteria for acute severe UC (any one): >6 bloody stools/day, fever >37.8°C, HR >90, Hb <105g/L, ESR >30, CRP >30. Admit immediately — risk of toxic megacolon (>6cm transverse colon on AXR). Complications: toxic megacolon (obstruction, perforation), colorectal cancer (risk increases after 8-10 years of extensive disease — needs surveillance colonoscopy), primary sclerosing cholangitis (PSC — 5%, biliary strictures, ↑risk of cholangiocarcinoma). EIMs similar to Crohn's but PSC more common in UC.",
+    key_investigations:
+      "FBC (anaemia, thrombocytosis — acute phase), CRP, albumin, AXR (toxic megacolon >6cm, mucosal islands), rigid sigmoidoscopy/flexible sigmoidoscopy + biopsy (DO NOT proceed to full colonoscopy in acute severe — risk of perforation), stool cultures (exclude infective colitis — Clostridium difficile, Campylobacter, Salmonella), faecal calprotectin, colonoscopy + biopsy (gold standard in remission — continuous inflammation from rectum, no skip lesions, loss of haustra — lead pipe, pseudopolyps)",
+    icd11_code: "DD71",
+    prevalence: "~250-400 per 100,000 in UK. Incidence ~10-15 per 100,000/year. Slightly more common than Crohn's. Female:male approximately equal. Peak onset 20-40 years.",
+  },
+  {
+    name: "chronic kidney disease",
+    symptoms: "fatigue,oedema,oliguria,nausea,dyspnoea,malaise,anorexia,pruritus",
+    distinguishing_features:
+      "Structural or functional kidney abnormality persisting >3 months. Staged by GFR (G1-G5) and albuminuria (A1-A3) — CGA staging (Cause, GFR, Albuminuria). Causes: diabetic nephropathy (most common — diffuse glomerulosclerosis, Kimmelstiel-Wilson nodules), hypertensive nephrosclerosis, IgA nephropathy (most common primary GN), FSGS, polycystic kidney disease. Complications: anaemia (↓EPO — normochromic normocytic), mineral bone disease (↑PTH, ↓vit D — renal osteodystrophy), cardiovascular disease (leading cause of death in CKD), hyperkalaemia, metabolic acidosis, uraemic symptoms (GFR <15 — uraemic pericarditis, encephalopathy, pruritus). CKD-EPI equation for eGFR. KDIGO staging: G1 (≥90), G2 (60-89), G3a (45-59), G3b (30-44), G4 (15-29), G5 (<15 or dialysis).",
+    key_investigations:
+      "eGFR (CKD-EPI), ACR (albumin:creatinine ratio — A1 <3, A2 3-30, A3 >30 mg/mmol), U&E (creatinine, potassium, bicarbonate), FBC (normochromic normocytic anaemia — EPO deficiency), bone profile (Ca, phosphate, ALP, PTH — renal osteodystrophy), LFTs, urinalysis (proteinuria, haematuria), USS renal tract (kidney size — small in CKD, echogenicity, obstruction, cysts — PKD), renal biopsy (if diagnosis uncertain and management would change)",
+    icd11_code: "GB61",
+    prevalence: "~10-15% of adults globally. Prevalence 6-7% in UK. 1.5-2 million on renal replacement therapy worldwide. CKD G3-G5: ~7% of UK adult population.",
+  },
 ];
