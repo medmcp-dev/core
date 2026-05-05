@@ -110,13 +110,13 @@ node dist/http/server.js
 
 ### Sljedeći zadaci za **Cursor-agenta / backend**
 
-1. **Contract test (opcija):** Mock ili light integracija za `analyzeSymptoms` na 2–3 fiksna inputa ako želimo DB u CI (inače ostaje samo `mapRisk` kao sada).
-2. **Ostalo po prioritetu:** release polish, observability, performance baseline.
+1. **Ostalo po prioritetu:** release polish, observability, performance baseline.
 
 ### Nedavno završeno (backend)
 
 - **Python SDK parity:** `timeout_ms`, `max_retries`, `retry_delay_ms` (isti defaulti kao TS; retry 429/5xx; timeout → `RuntimeError` kao TS).
 - **README:** CI badge + sekcija „Quality gates”.
+- **Contract test:** `tests/analyze/symptom-engine.contract.test.mjs` — privremeni `DB_PATH`, `seed()`, pa `analyzeSymptoms` (oblika odgovora + critical/high scenariji). Vrti se s `npm run test:analyze`.
 
 ### Gotovo nedavno (referenca za sync)
 

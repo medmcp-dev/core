@@ -15,7 +15,7 @@ npm install @medmcp/sdk
 Run locally before a release or large change:
 
 ```bash
-# Core build + analyze regression tests
+# Core build + analyze tests (risk-mapper unit + symptom-engine contract w/ seeded DB)
 npm ci && npm run build && npm run test:analyze
 
 # TypeScript SDK
