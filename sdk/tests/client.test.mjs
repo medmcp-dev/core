@@ -72,3 +72,65 @@ test("throws MedMCPError on non-2xx response", async () => {
     globalThis.fetch = originalFetch;
   }
 });
+
+test("retries on 5xx and eventually succeeds", async () => {
+  const originalFetch = globalThis.fetch;
+  let attempts = 0;
+
+  globalThis.fetch = async () => {
+    attempts += 1;
+    if (attempts < 3) {
+      return new Response(JSON.stringify({ error: "Temporary failure" }), {
+        status: 503,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+
+    return new Response(JSON.stringify({ categories: ["cardiac"] }), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
+  };
+
+  try {
+    const client = new MedMCP({
+      apiKey: "test_key",
+      baseUrl: "https://example.com",
+      maxRetries: 2,
+      retryDelayMs: 1,
+    });
+    const result = await client.labCategories();
+    assert.equal(attempts, 3);
+    assert.deepEqual(result.categories, ["cardiac"]);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+test("throws timeout error when request exceeds timeoutMs", async () => {
+  const originalFetch = globalThis.fetch;
+
+  globalThis.fetch = async (_url, init) =>
+    new Promise((_resolve, reject) => {
+      init?.signal?.addEventListener("abort", () => {
+        reject(new DOMException("The operation was aborted", "AbortError"));
+      });
+    });
+
+  try {
+    const client = new MedMCP({
+      apiKey: "test_key",
+      baseUrl: "https://example.com",
+      timeoutMs: 10,
+      maxRetries: 0,
+    });
+
+    await assert.rejects(client.labCategories(), (err) => {
+      assert.ok(err instanceof Error);
+      assert.match(err.message, /timed out/i);
+      return true;
+    });
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});

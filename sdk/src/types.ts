@@ -76,4 +76,7 @@ export interface WaitlistListResult {
 export interface MedMCPOptions {
   apiKey: string;
   baseUrl?: string;
+  timeoutMs?: number;
+  maxRetries?: number;
+  retryDelayMs?: number;
 }
