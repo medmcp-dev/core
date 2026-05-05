@@ -21,6 +21,8 @@ ENV NODE_ENV=production
 ENV PORT=3000
 ENV DB_PATH=/data/meddata.db
 
+RUN mkdir -p /data
+
 EXPOSE 3000
 
-CMD ["sh", "-c", "node dist/db/seed.js && node dist/http/server.js"]
+CMD ["sh", "-c", "node dist/db/seed.js && node dist/http/server.js 2>&1"]
