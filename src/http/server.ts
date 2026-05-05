@@ -42,7 +42,7 @@ app.notFound((c) => c.json({ error: "Not found" }, 404));
 
 const PORT = Number(process.env.PORT ?? 3000);
 
-serve({ fetch: app.fetch, port: PORT });
+serve({ fetch: app.fetch, port: PORT, hostname: "0.0.0.0" });
 
 console.log(`MedMCP HTTP server running on http://localhost:${PORT}`);
 
