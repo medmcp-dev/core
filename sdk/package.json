@@ -8,6 +8,7 @@
   "files": ["dist/"],
   "scripts": {
     "build": "tsc",
+    "test": "npm run build && node --test tests/*.test.mjs",
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
