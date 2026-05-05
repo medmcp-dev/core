@@ -84,6 +84,51 @@ class TestMedMCPClient(unittest.TestCase):
         self.assertEqual(ctx.exception.status, 401)
         self.assertEqual(ctx.exception.body["error"], "Unauthorized")
 
+    @patch("urllib.request.urlopen")
+    def test_retries_5xx_then_succeeds(self, mock_urlopen):
+        attempt = {"n": 0}
+
+        def side_effect(_req, timeout=None):
+            attempt["n"] += 1
+            if attempt["n"] < 3:
+                fp = io.BytesIO(b"{}")
+                raise urllib.error.HTTPError(
+                    "https://example.com/v1/lab?action=categories",
+                    503,
+                    "Service Unavailable",
+                    None,
+                    fp,
+                )
+            return FakeResponse({"categories": ["cardiac"]})
+
+        mock_urlopen.side_effect = side_effect
+
+        client = MedMCP(
+            api_key="test_key",
+            base_url="https://example.com",
+            max_retries=2,
+            retry_delay_ms=1,
+        )
+        result = client.lab_categories()
+        self.assertEqual(result, ["cardiac"])
+        self.assertEqual(attempt["n"], 3)
+
+    @patch("urllib.request.urlopen")
+    def test_timeout_raises_runtime_error(self, mock_urlopen):
+        mock_urlopen.side_effect = TimeoutError()
+
+        client = MedMCP(
+            api_key="test_key",
+            base_url="https://example.com",
+            timeout_ms=10,
+            max_retries=0,
+        )
+
+        with self.assertRaises(RuntimeError) as ctx:
+            client.lab_categories()
+
+        self.assertRegex(str(ctx.exception).lower(), r"timed out")
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -2,11 +2,30 @@
 
 Medical reasoning API for AI agents. Converts clinical input into structured risk signals.
 
+[![CI](https://github.com/medmcp-dev/core/actions/workflows/ci.yml/badge.svg)](https://github.com/medmcp-dev/core/actions/workflows/ci.yml)
+
 **Website:** https://medmcp.vercel.app
 
 ```bash
 npm install @medmcp/sdk
 ```
+
+### Quality gates
+
+Run locally before a release or large change:
+
+```bash
+# Core build + analyze regression tests
+npm ci && npm run build && npm run test:analyze
+
+# TypeScript SDK
+cd sdk && npm ci && npm test
+
+# Python SDK
+cd sdk-python && python -m unittest discover -s tests -p "test_*.py"
+```
+
+CI runs the same checks on push and pull requests to `main` (see `.github/workflows/ci.yml`).
 
 ---
 
@@ -58,7 +77,12 @@ pip install medmcp
 ```python
 from medmcp import MedMCP
 
-client = MedMCP(api_key="mk_your_key_here")
+client = MedMCP(
+    api_key="mk_your_key_here",
+    timeout_ms=10_000,
+    max_retries=2,
+    retry_delay_ms=250,
+)
 result = client.analyze("chest pain for 2 hours")
 lab = client.lab_get("troponin")
 all_labs = client.lab_list("cardiac")
@@ -129,6 +153,8 @@ Config options:
 - `lab_categories()`
 - `waitlist_join(email: str)`
 - `waitlist_list()`
+
+Constructor kwargs (optional, defaults match TypeScript SDK): `timeout_ms`, `max_retries` (retries `429` / `5xx`), `retry_delay_ms`. On socket timeout after retries, raises `RuntimeError` with the same message shape as the TS client.
 
 ---
 

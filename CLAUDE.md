@@ -88,8 +88,8 @@ node dist/http/server.js
 
 - [ ] Stripe integracija (API key management, billing) — kad bude vrijeme
 - [ ] Daljnji symptom engine (više pravila, medicinski review)
-- [ ] Python SDK: timeout/retry parity s TS SDK-om
-- [ ] Dokumentacija / README polish (CI badge, quality gates)
+- [x] Python SDK: timeout/retry parity s TS SDK-om
+- [x] Dokumentacija / README (CI badge, quality gates)
 - [ ] Dodatni seed / sync za drugs, ICD-11, interactions
 
 ---
@@ -110,9 +110,13 @@ node dist/http/server.js
 
 ### Sljedeći zadaci za **Cursor-agenta / backend**
 
-1. **Python SDK parity:** `timeoutMs`, retry za 429/5xx, jednaki error shape gdje ima smisla — nakon što Claude potvrdi default brojeve kao TS.
-2. **README:** CI status badge (`CI` workflow) + kratka sekcija “Quality gates” (`npm run test:analyze`, `sdk`/`sdk-python`).
-3. **Contract test (opcija):** Mock ili light integracija za `analyzeSymptoms` na 2–3 fiksna inputa ako želimo DB u CI (inače ostaje samo `mapRisk` kao sada).
+1. **Contract test (opcija):** Mock ili light integracija za `analyzeSymptoms` na 2–3 fiksna inputa ako želimo DB u CI (inače ostaje samo `mapRisk` kao sada).
+2. **Ostalo po prioritetu:** release polish, observability, performance baseline.
+
+### Nedavno završeno (backend)
+
+- **Python SDK parity:** `timeout_ms`, `max_retries`, `retry_delay_ms` (isti defaulti kao TS; retry 429/5xx; timeout → `RuntimeError` kao TS).
+- **README:** CI badge + sekcija „Quality gates”.
 
 ### Gotovo nedavno (referenca za sync)
 
