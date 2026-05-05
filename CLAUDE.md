@@ -20,7 +20,7 @@ src/
     seed.ts           # Puni bazu iz seed-* fileova
   data/
     seed-concepts.ts  # 16+ medical concepts
-    seed-drugs.ts     # 8 drugs
+    seed-drugs.ts     # proširen set lijekova
     seed-interactions.ts
     seed-icd11.ts
     seed-diagnoses.ts # 100 diagnoses
@@ -77,20 +77,46 @@ node dist/http/server.js
 
 ## U tijeku 🔄
 
-- [ ] **Railway deployment debugging** — server se pokreće (logovi pokazuju startup na :8080) ali healthcheck pada → 502. Zadnji pokušaj: dodali `mkdir -p /data` u Dockerfile i `2>&1` redirect. Commit: `533794a`. Čeka se deploy rezultat.
+- [x] **Railway** — stabilan deploy (lazy DB init i sl.; provjeri `main`).
 - [x] **SDK parity (TS + Python)** — dodane metode za `lab` i `waitlist` u oba SDK-a:
   - TS (`sdk/src/client.ts`): `labGet`, `labList`, `labCategories`, `waitlistJoin`, `waitlistList`
   - TS tipovi (`sdk/src/types.ts`): `LabValue`, `LabListResult`, `LabCategoriesResult`, `WaitlistJoinResult`, `WaitlistListResult`
   - Python (`sdk-python/medmcp/client.py`): `lab_get`, `lab_list`, `lab_categories`, `waitlist_join`, `waitlist_list`
   - Python tipovi (`sdk-python/medmcp/types.py`): `LabValue`, `LabListItem`, `WaitlistEntry`
 
-## Sljedeće 📋
+## Sljedeće 📋 (općenito)
 
-- [ ] Stripe integracija (API key management, billing)
-- [ ] Proširiti symptom engine — trenutno rule-based, mogući upgrade
-- [ ] SDK-ovi — dodati testove, timeout/retry i release/publish flow (`npm` + `PyPI`)
-- [ ] Dokumentacija / landing page
-- [ ] Više seed data (drugs, interactions, ICD-11 kodovi — trenutno mali brojevi)
+- [ ] Stripe integracija (API key management, billing) — kad bude vrijeme
+- [ ] Daljnji symptom engine (više pravila, medicinski review)
+- [ ] Python SDK: timeout/retry parity s TS SDK-om
+- [ ] Dokumentacija / README polish (CI badge, quality gates)
+- [ ] Dodatni seed / sync za drugs, ICD-11, interactions
+
+---
+
+## Suradnja: Claude vs Cursor (backend agent)
+
+**Pravilo:** Claude vodi **arhitekturu, proizvod i medicinsku/stratešku odluku**. Cursor-agent (Composer) izvršava **implementaciju, testove, CI i ship** u kodu.
+
+- **Ne raditi paralelno** isti file bez dogovora; jedna strana definira cilj → druga merga.
+- Nakon svake veće cjeline: sink `main`, ažuriraj ovaj podlist ako se prioriteti promijene.
+
+### Sljedeći zadaci za **Claude** (čitati i držati se redoslijeda ako nije drugačije dogovoreno)
+
+1. **Symptom / risk pravila:** Definiraj sljedeći set (prioritet + opravdanje): koje još “cluster” kombinacije ulaze u `critical` / `high`, što ostaje izvan automatike.
+2. **Medicinski review:** Lista seed sadržaja koji mora Bruno eksplicitno potvrditi prije širenja kao “clinical truth”.
+3. **API / proizvod:** Verzioniranje (`/v1` vs breaking changes), i hoće li `interpretation` polje ostati tekst ili treba strukturiran `signals[]` u v2.
+4. **GTM niša:** Jedna rečenica ICP-a + tri use-case rečenice za startupove — da se README i docs usklade.
+
+### Sljedeći zadaci za **Cursor-agenta / backend**
+
+1. **Python SDK parity:** `timeoutMs`, retry za 429/5xx, jednaki error shape gdje ima smisla — nakon što Claude potvrdi default brojeve kao TS.
+2. **README:** CI status badge (`CI` workflow) + kratka sekcija “Quality gates” (`npm run test:analyze`, `sdk`/`sdk-python`).
+3. **Contract test (opcija):** Mock ili light integracija za `analyzeSymptoms` na 2–3 fiksna inputa ako želimo DB u CI (inače ostaje samo `mapRisk` kao sada).
+
+### Gotovo nedavno (referenca za sync)
+
+- SDK lab/waitlist, TS timeout/retry, SDK testovi, seed proširenje, symptom risk v1.1, `npm run test:analyze`, GitHub Actions CI.
 
 ---
 
