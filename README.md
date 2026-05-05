@@ -31,11 +31,22 @@ npm install @medmcp/sdk
 ```ts
 import { MedMCP } from '@medmcp/sdk';
 
-const client = new MedMCP({ apiKey: 'mk_your_key_here' });
+const client = new MedMCP({
+  apiKey: 'mk_your_key_here',
+  timeoutMs: 10_000,  // optional
+  maxRetries: 2,      // optional, retries 429/5xx
+  retryDelayMs: 250   // optional
+});
+
 const result = await client.analyze('chest pain for 2 hours');
+const lab = await client.labGet('troponin');
+const categories = await client.labCategories();
+await client.waitlistJoin('user@example.com');
 
 console.log(result.risk_level);      // "high"
 console.log(result.interpretation);  // "1 symptom(s) identified: chest pain. Top differential: pulmonary embolism..."
+console.log(lab.lab_value.reference_range);
+console.log(categories.categories);
 ```
 
 ### Python
@@ -49,9 +60,14 @@ from medmcp import MedMCP
 
 client = MedMCP(api_key="mk_your_key_here")
 result = client.analyze("chest pain for 2 hours")
+lab = client.lab_get("troponin")
+all_labs = client.lab_list("cardiac")
+client.waitlist_join("user@example.com")
 
 print(result.risk_level)      # "high"
 print(result.interpretation)  # "1 symptom(s) identified: chest pain. Top differential: pulmonary embolism..."
+print(lab["lab_value"].reference_range)
+print(all_labs["count"])
 ```
 
 ### curl
@@ -79,6 +95,40 @@ Response:
 ```
 
 Integration time: under 5 minutes.
+
+---
+
+## SDK API
+
+### TypeScript client methods (`@medmcp/sdk`)
+
+- `analyze(text: string)`
+- `health()`
+- `schema()`
+- `labGet(name: string)`
+- `labList(category?: string)`
+- `labCategories()`
+- `waitlistJoin(email: string)`
+- `waitlistList()`
+
+Config options:
+
+- `apiKey` (required)
+- `baseUrl` (optional)
+- `timeoutMs` (optional)
+- `maxRetries` (optional; retries `429` and `5xx`)
+- `retryDelayMs` (optional)
+
+### Python client methods (`medmcp`)
+
+- `analyze(text: str)`
+- `health()`
+- `schema()`
+- `lab_get(name: str)`
+- `lab_list(category: str | None = None)`
+- `lab_categories()`
+- `waitlist_join(email: str)`
+- `waitlist_list()`
 
 ---
 
@@ -256,6 +306,34 @@ Add to your MCP client config:
 | Medication context | Planned |
 | JS SDK (`@medmcp/sdk`) | ✅ v1 |
 | Python SDK (`medmcp`) | ✅ v1 |
+
+---
+
+## Release Checklist
+
+### npm (`@medmcp/sdk`)
+
+```bash
+cd sdk
+npm test
+npm run build
+npm version patch
+npm publish
+```
+
+### PyPI (`medmcp`)
+
+```bash
+cd sdk-python
+python -m unittest discover -s tests -p "test_*.py"
+python -m build
+python -m twine upload dist/*
+```
+
+Notes:
+- Bump versions together when SDK surfaces change.
+- Tag release in git after successful npm/PyPI publish.
+- Keep README examples aligned with both SDK clients.
 
 ---
 
