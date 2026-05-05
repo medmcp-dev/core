@@ -27,6 +27,7 @@ src/
     seed-labs.ts
   tools/              # MCP tool handlers
   analyze/            # Symptom engine (rule-based, bez LLM-a)
+  examples/           # minimalni Node + Python bez lokalnog SDK builda
   http/
     routes/           # health, schema, analyze, lab, waitlist
     middleware/       # auth (X-API-Key), rateLimit
@@ -140,7 +141,8 @@ Koristi kao roadmap: što već imaš vs što diže povjerenje developera i klini
 - [x] SDK (TypeScript + Python) s lab/waitlist + timeout/retry na oba gdje ima smisla
 - [x] README quickstart + quality gates + CI badge na repou
 - [x] CI: core build, analyze testovi, TS SDK test, Python SDK test
-- [ ] „5 minuti do prvog poziva”: minimalni starter repo ili Copy-paste sekcije po use-caseu (scribe, intake, copilot)
+- [x] Minimalni primjeri bez SDK builda: `examples/` (Node + Python, `analyze` + `lab`)
+- [ ] Dalje: use-case copy (scribe, intake, copilot) ili zasebni starter repo
 - [ ] Jedan `CHANGELOG.md` / release notes proces prije širenja korisnika
 - [ ] Javni roadmap (što dolazi u 30/90 dana) usklađen s landingom (Lovable)
 

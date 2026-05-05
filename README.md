@@ -120,6 +120,8 @@ Response:
 
 Integration time: under 5 minutes.
 
+**Zero-dependency scripts** (curl-free, same API): see [`examples/README.md`](examples/README.md) (Node + Python).
+
 ---
 
 ## SDK API
