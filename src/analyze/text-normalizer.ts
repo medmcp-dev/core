@@ -61,7 +61,7 @@ const SYNONYMS: Record<string, string[]> = {
   ],
   "presyncope": [
     "presyncope", "pre-syncope", "nearly fainted", "almost fainted",
-    "near faint", "near syncope", "near blackout",
+    "near faint", "near syncope", "near blackout", "feeling faint", "felt faint",
   ],
   "diaphoresis": [
     "diaphoresis", "sweating", "sweaty", "drenching sweat",
@@ -131,6 +131,7 @@ const SYNONYMS: Record<string, string[]> = {
   // --- General / Systemic ---
   "fever": [
     "fever", "pyrexia", "high temperature", "febrile", "temperature",
+    "feeling feverish", "burning up",
   ],
   "rigors": [
     "rigors", "rigour", "shaking chills", "chills", "shivering",
@@ -166,7 +167,7 @@ const SYNONYMS: Record<string, string[]> = {
   ],
   "abdominal pain": [
     "abdominal pain", "stomach pain", "belly pain", "stomach ache",
-    "tummy pain", "abdominal cramps",
+    "tummy pain", "abdominal cramps", "sharp stomach pain", "stomach hurts",
   ],
   "epigastric pain": [
     "epigastric pain", "upper abdominal pain", "upper stomach pain",
@@ -186,6 +187,7 @@ const SYNONYMS: Record<string, string[]> = {
   ],
   "constipation": [
     "constipation", "constipated", "difficulty passing stool",
+    "can't pass stool", "cannot pass stool", "unable to pass stool",
   ],
   "diarrhoea": [
     "diarrhoea", "diarrhea", "loose stools", "frequent loose stools", "watery stool",
