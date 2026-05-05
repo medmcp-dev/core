@@ -78,12 +78,17 @@ node dist/http/server.js
 ## U tijeku 🔄
 
 - [ ] **Railway deployment debugging** — server se pokreće (logovi pokazuju startup na :8080) ali healthcheck pada → 502. Zadnji pokušaj: dodali `mkdir -p /data` u Dockerfile i `2>&1` redirect. Commit: `533794a`. Čeka se deploy rezultat.
+- [x] **SDK parity (TS + Python)** — dodane metode za `lab` i `waitlist` u oba SDK-a:
+  - TS (`sdk/src/client.ts`): `labGet`, `labList`, `labCategories`, `waitlistJoin`, `waitlistList`
+  - TS tipovi (`sdk/src/types.ts`): `LabValue`, `LabListResult`, `LabCategoriesResult`, `WaitlistJoinResult`, `WaitlistListResult`
+  - Python (`sdk-python/medmcp/client.py`): `lab_get`, `lab_list`, `lab_categories`, `waitlist_join`, `waitlist_list`
+  - Python tipovi (`sdk-python/medmcp/types.py`): `LabValue`, `LabListItem`, `WaitlistEntry`
 
 ## Sljedeće 📋
 
 - [ ] Stripe integracija (API key management, billing)
 - [ ] Proširiti symptom engine — trenutno rule-based, mogući upgrade
-- [ ] SDK-ovi (TypeScript i Python SDK-ovi su u `/sdk` i `/sdk-python` folderima — status nepoznat)
+- [ ] SDK-ovi — dodati testove, timeout/retry i release/publish flow (`npm` + `PyPI`)
 - [ ] Dokumentacija / landing page
 - [ ] Više seed data (drugs, interactions, ICD-11 kodovi — trenutno mali brojevi)
 
@@ -94,3 +99,4 @@ node dist/http/server.js
 - Vlasnik medicinskih podataka je Bruno (med student) — uvijek potvrdi s njim točnost dijagnoza/lijekova
 - Architekturalne odluke: Claude
 - Komunikacija: hrvatski
+- Landing page/website je napravljen preko Lovable (koristiti kao source-of-truth za web copy/branding dok se docs usklađuju).

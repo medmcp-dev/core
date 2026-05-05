@@ -1,4 +1,13 @@
-import type { AnalyzeResult, HealthResult, MedMCPOptions } from "./types.js";
+import type {
+  AnalyzeResult,
+  HealthResult,
+  LabCategoriesResult,
+  LabGetResult,
+  LabListResult,
+  MedMCPOptions,
+  WaitlistJoinResult,
+  WaitlistListResult,
+} from "./types.js";
 
 const DEFAULT_BASE_URL = "https://core-production-389e.up.railway.app";
 
@@ -36,6 +45,30 @@ export class MedMCP {
 
   async schema(): Promise<unknown> {
     return this.get<unknown>("/v1/schema");
+  }
+
+  async labGet(name: string): Promise<LabGetResult> {
+    const query = new URLSearchParams({ name });
+    return this.get<LabGetResult>(`/v1/lab?${query.toString()}`);
+  }
+
+  async labList(category?: string): Promise<LabListResult> {
+    const query = new URLSearchParams({ action: "list" });
+    if (category) query.set("category", category);
+    return this.get<LabListResult>(`/v1/lab?${query.toString()}`);
+  }
+
+  async labCategories(): Promise<LabCategoriesResult> {
+    const query = new URLSearchParams({ action: "categories" });
+    return this.get<LabCategoriesResult>(`/v1/lab?${query.toString()}`);
+  }
+
+  async waitlistJoin(email: string): Promise<WaitlistJoinResult> {
+    return this.post<WaitlistJoinResult>("/v1/waitlist", { email });
+  }
+
+  async waitlistList(): Promise<WaitlistListResult> {
+    return this.get<WaitlistListResult>("/v1/waitlist");
   }
 
   private async get<T>(path: string): Promise<T> {

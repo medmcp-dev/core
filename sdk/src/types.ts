@@ -22,6 +22,57 @@ export interface HealthResult {
   timestamp: string;
 }
 
+export interface LabValue {
+  name: string;
+  abbreviation: string | null;
+  unit: string;
+  reference_range: string;
+  critical_low?: string | null;
+  critical_high?: string | null;
+  category: string;
+  interpretation?: string | null;
+  clinical_notes?: string | null;
+  male_range?: string | null;
+  female_range?: string | null;
+}
+
+export interface LabGetResult {
+  lab_value: LabValue;
+}
+
+export interface LabListItem {
+  name: string;
+  abbreviation: string | null;
+  unit: string;
+  reference_range: string;
+  category: string;
+}
+
+export interface LabListResult {
+  count: number;
+  lab_values: LabListItem[];
+}
+
+export interface LabCategoriesResult {
+  categories: string[];
+}
+
+export interface WaitlistJoinResult {
+  ok: boolean;
+  message: string;
+}
+
+export interface WaitlistEntry {
+  id: number;
+  email: string;
+  created_at: string;
+}
+
+export interface WaitlistListResult {
+  count: number;
+  waitlist: WaitlistEntry[];
+}
+
 export interface MedMCPOptions {
   apiKey: string;
   baseUrl?: string;
