@@ -8,7 +8,7 @@ const SymptomDataSchema = z.object({
 
 const AnalyzeInputSchema = z.object({
   type: z.enum(["symptom", "lab", "vitals", "medication"]),
-  data: z.record(z.unknown()),
+  data: z.record(z.string(), z.unknown()),
 });
 
 export async function analyzeHandler(c: Context): Promise<Response> {
