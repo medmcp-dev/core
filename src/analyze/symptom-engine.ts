@@ -36,7 +36,7 @@ export function analyzeSymptoms(text: string): AnalyzeOutput {
     ...new Set(result.differentials.flatMap((d) => d.matched_symptoms)),
   ];
 
-  const { risk_level, confidence } = mapRisk(
+  const { risk_level, confidence, reasons } = mapRisk(
     extractedSymptoms,
     allMatchedSymptoms,
     result.differentials.length
@@ -59,10 +59,13 @@ export function analyzeSymptoms(text: string): AnalyzeOutput {
   const differentialSummary = topDx
     ? `Top differential: ${topDx.name} (match score: ${topDx.match_score}).`
     : "No matching differentials found.";
+  const riskSummary =
+    reasons.length > 0 ? ` Risk drivers: ${Array.from(new Set(reasons)).join("; ")}.` : "";
 
   const interpretation =
     `${extractedSymptoms.length} symptom(s) identified: ${symptomList}. ` +
-    differentialSummary;
+    differentialSummary +
+    riskSummary;
 
   return { risk_level, confidence, entities, source_type: "symptom", interpretation };
 }
