@@ -26,4 +26,6 @@ RUN mkdir -p /data
 
 EXPOSE 3000
 
-CMD ["node", "dist/http/server.js"]
+RUN node -e "require('better-sqlite3'); console.log('native module ok')"
+
+CMD ["sh", "-c", "node dist/http/server.js 2>&1"]
