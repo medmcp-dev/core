@@ -12,14 +12,8 @@ import { analyzeHandler } from "./routes/analyze.js";
 import { labHandler } from "./routes/lab.js";
 import { waitlistPostHandler, waitlistGetHandler } from "./routes/waitlist.js";
 
-process.on("uncaughtException", (err) => { console.error("UNCAUGHT:", err); process.exit(1); });
-process.on("unhandledRejection", (err) => { console.error("UNHANDLED:", err); process.exit(1); });
-
-console.log("Step 1: seeding...");
-seed();
-console.log("Step 2: api key...");
-seedFirstApiKey();
-console.log("Step 3: building app...");
+process.on("uncaughtException", (err) => { console.error("UNCAUGHT:", err); });
+process.on("unhandledRejection", (err) => { console.error("UNHANDLED:", err); });
 
 const app = new Hono();
 
@@ -49,9 +43,17 @@ app.notFound((c) => c.json({ error: "Not found" }, 404));
 
 const PORT = Number(process.env.PORT ?? 3000);
 
-console.log(`Step 4: starting server on port ${PORT}...`);
+console.log(`Starting server on port ${PORT}...`);
 serve({ fetch: app.fetch, port: PORT, hostname: "0.0.0.0" });
-console.log(`MedMCP HTTP server running on http://localhost:${PORT}`);
+console.log(`MedMCP HTTP server running on http://0.0.0.0:${PORT}`);
+
+try {
+  seed();
+  seedFirstApiKey();
+  console.log("Initialization complete.");
+} catch (err) {
+  console.error("Initialization error (non-fatal):", err);
+}
 
 function seedFirstApiKey(): void {
   if (hasApiKeys()) return;
