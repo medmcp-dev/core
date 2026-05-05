@@ -109,4 +109,70 @@ export const drugInteractions = [
     management:
       "Standard combination in heart failure (evidence-based — reduces mortality). Start lisinopril at low dose (2.5mg), check renal function and electrolytes at 1-2 weeks. Hold furosemide 24h before initiating ACE inhibitor if patient is dry. If creatinine rises >30% above baseline, reduce furosemide dose. Monitor K⁺.",
   },
+  {
+    drug_a: "sertraline",
+    drug_b: "warfarin",
+    severity: "moderate",
+    mechanism:
+      "Pharmacodynamic interaction: SSRIs reduce platelet serotonin uptake, impairing platelet aggregation; combined with warfarin anticoagulation this increases bleeding tendency. Minor CYP effects may additionally alter anticoagulant exposure in some patients.",
+    clinical_effect:
+      "Increased risk of mucosal and GI bleeding, bruising, and clinically relevant hemorrhage, especially in older adults or those with additional antiplatelet/NSAID use.",
+    management:
+      "Combination can be used with caution. Check INR more closely after SSRI initiation/change, assess bleeding risk factors, consider gastroprotection where appropriate, and counsel patients to report bleeding symptoms promptly.",
+  },
+  {
+    drug_a: "aspirin",
+    drug_b: "sertraline",
+    severity: "moderate",
+    mechanism:
+      "Additive antiplatelet impairment: aspirin irreversibly blocks TXA2 generation while sertraline decreases platelet serotonin-mediated aggregation.",
+    clinical_effect:
+      "Higher risk of GI bleeding and easy bruising compared with either drug alone, particularly in elderly patients or history of peptic ulcer disease.",
+    management:
+      "Use only when indication is clear. Consider PPI gastroprotection, avoid additional NSAIDs/alcohol excess, and monitor for occult/overt bleeding.",
+  },
+  {
+    drug_a: "apixaban",
+    drug_b: "clarithromycin",
+    severity: "severe",
+    mechanism:
+      "Clarithromycin strongly inhibits CYP3A4 and P-glycoprotein, both key elimination pathways for apixaban, increasing apixaban plasma concentration.",
+    clinical_effect:
+      "Marked increase in anticoagulant effect and major bleeding risk, especially in elderly patients and those with renal dysfunction.",
+    management:
+      "Avoid combination when possible. Use alternative antibiotic (e.g., doxycycline/azithromycin when appropriate) or consider temporary anticoagulation strategy adjustment with specialist input.",
+  },
+  {
+    drug_a: "insulin glargine",
+    drug_b: "salbutamol",
+    severity: "moderate",
+    mechanism:
+      "High-dose beta-2 agonism increases glycogenolysis and can raise glucose transiently; insulin requirements may increase during repeated nebulised salbutamol treatment.",
+    clinical_effect:
+      "Short-term hyperglycaemia during acute asthma treatment; risk of glycaemic instability in insulin-treated diabetes.",
+    management:
+      "Monitor capillary glucose more frequently during acute bronchodilator therapy and adjust insulin temporarily if clinically needed.",
+  },
+  {
+    drug_a: "furosemide",
+    drug_b: "salbutamol",
+    severity: "moderate",
+    mechanism:
+      "Both agents lower serum potassium by different pathways: furosemide causes renal potassium wasting, while salbutamol shifts potassium intracellularly.",
+    clinical_effect:
+      "Synergistic hypokalaemia can precipitate weakness and arrhythmias, especially with frequent nebulised beta-agonist use.",
+    management:
+      "Check potassium in high-risk or acutely unwell patients, replace potassium if needed, and review diuretic/bronchodilator intensity.",
+  },
+  {
+    drug_a: "metformin",
+    drug_b: "furosemide",
+    severity: "moderate",
+    mechanism:
+      "Diuretic-induced volume depletion can reduce renal perfusion and eGFR, impairing metformin clearance and increasing exposure.",
+    clinical_effect:
+      "Potential accumulation of metformin with higher risk of adverse effects (notably GI symptoms and rare lactic acidosis in severe renal compromise).",
+    management:
+      "Monitor renal function and hydration status, especially after dose escalation or acute illness. Temporarily hold metformin during significant dehydration or AKI risk.",
+  },
 ];

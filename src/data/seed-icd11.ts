@@ -109,4 +109,92 @@ export const icd11Codes = [
       "Unstable angina (BB42 — no troponin rise), Stable angina (BA85), Myocarditis (BC43)",
     category: "cardiovascular",
   },
+  {
+    code: "BD10",
+    title: "Heart failure",
+    description:
+      "Clinical syndrome caused by structural or functional cardiac abnormality leading to elevated intracardiac pressures and/or inadequate cardiac output at rest or during stress. Symptoms include dyspnoea, orthopnoea, fatigue, ankle swelling and reduced exercise tolerance. Classified by LVEF into HFrEF, HFmrEF, and HFpEF. Common causes include ischemic heart disease, hypertension, valvular disease, and cardiomyopathy.",
+    inclusion_terms:
+      "Congestive heart failure, chronic heart failure, acute decompensated heart failure, left ventricular failure",
+    exclusion_terms:
+      "Isolated lower-limb oedema without cardiac cause, cardiogenic shock (MD90), congenital structural heart disease without HF",
+    category: "cardiovascular",
+  },
+  {
+    code: "CB01",
+    title: "Asthma",
+    description:
+      "Chronic inflammatory airway disease characterised by variable respiratory symptoms (wheeze, dyspnoea, chest tightness, cough) and variable expiratory airflow limitation. Triggered by allergens, viral infection, exercise, cold air, or irritants. Pathophysiology includes airway hyperresponsiveness, inflammation, mucus overproduction, and reversible bronchoconstriction.",
+    inclusion_terms:
+      "Bronchial asthma, allergic asthma, non-allergic asthma, exercise-induced bronchoconstriction",
+    exclusion_terms:
+      "COPD (CA22), vocal cord dysfunction, isolated acute bronchitis without variable airflow limitation",
+    category: "respiratory",
+  },
+  {
+    code: "6A70",
+    title: "Depressive episode",
+    description:
+      "Affective disorder episode characterised by persistent depressed mood and/or loss of interest or pleasure with associated cognitive, biological, and psychomotor symptoms for at least two weeks causing clinically significant distress or impairment. Symptoms can include sleep disturbance, appetite change, fatigue, guilt, impaired concentration, and suicidal ideation.",
+    inclusion_terms:
+      "Major depressive episode, unipolar depressive episode, clinical depression",
+    exclusion_terms:
+      "Bipolar depressive episode (6A60), normal grief reaction without functional impairment, substance-induced depressive disorder",
+    category: "mental-health",
+  },
+  {
+    code: "FA01",
+    title: "Iron deficiency anaemia",
+    description:
+      "Anaemia due to inadequate iron availability for hemoglobin synthesis, most commonly from chronic blood loss, increased requirements, malabsorption, or poor intake. Typical findings include low hemoglobin, low MCV (microcytosis), low ferritin, and low transferrin saturation. Clinical features include fatigue, pallor, dyspnoea on exertion, pica, and restless legs.",
+    inclusion_terms:
+      "Microcytic hypochromic anaemia due to iron deficiency, chronic blood-loss anaemia",
+    exclusion_terms:
+      "Anaemia of chronic inflammation, thalassaemia trait, vitamin B12 deficiency anaemia",
+    category: "haematology",
+  },
+  {
+    code: "1C62",
+    title: "Urinary tract infection, site not specified",
+    description:
+      "Infection involving the urinary tract when clinical documentation does not reliably distinguish upper from lower tract. Common pathogens include Escherichia coli and other enteric Gram-negative organisms. Symptoms may include dysuria, urgency, frequency, suprapubic discomfort, and occasionally systemic features.",
+    inclusion_terms:
+      "UTI NOS, bacterial urinary tract infection",
+    exclusion_terms:
+      "Acute pyelonephritis (GB54), asymptomatic bacteriuria, sexually transmitted urethritis",
+    category: "infectious",
+  },
+  {
+    code: "DD90",
+    title: "Peptic ulcer disease",
+    description:
+      "Mucosal ulceration in stomach or proximal duodenum due to imbalance between mucosal defense and acid-peptic injury, commonly associated with Helicobacter pylori infection or NSAID use. Presentations include epigastric pain, dyspepsia, nausea, GI bleeding, or perforation in severe cases.",
+    inclusion_terms:
+      "Gastric ulcer, duodenal ulcer, NSAID-associated ulcer disease",
+    exclusion_terms:
+      "Functional dyspepsia without ulcer, gastric malignancy, erosive gastritis without ulcer crater",
+    category: "gastrointestinal",
+  },
+  {
+    code: "GB61",
+    title: "Chronic kidney disease",
+    description:
+      "Persistent abnormalities of kidney structure or function for at least 3 months with health implications. Defined by reduced eGFR (<60 mL/min/1.73m2) and/or markers of kidney damage such as albuminuria. CKD is staged by G (eGFR) and A (albuminuria) categories and is associated with cardiovascular risk, mineral-bone disease, anaemia, and progression to kidney failure.",
+    inclusion_terms:
+      "CKD, chronic renal insufficiency, chronic renal failure",
+    exclusion_terms:
+      "Acute kidney injury (GB60), transient eGFR reduction from dehydration, isolated kidney stone without chronic dysfunction",
+    category: "renal",
+  },
+  {
+    code: "5C80",
+    title: "Obesity",
+    description:
+      "Excess adiposity that impairs health, commonly assessed in adults by BMI >=30 kg/m2, though body composition and central adiposity also contribute to risk. Obesity is linked to insulin resistance, type 2 diabetes, cardiovascular disease, sleep apnea, osteoarthritis, and certain cancers. Management includes nutrition/physical activity interventions, behavioral support, pharmacotherapy, and bariatric procedures for selected patients.",
+    inclusion_terms:
+      "Adult obesity, severe obesity, adiposity-related chronic disease",
+    exclusion_terms:
+      "Overweight without obesity, edema-related weight gain, lipodystrophy syndromes",
+    category: "endocrine",
+  },
 ];

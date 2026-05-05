@@ -135,4 +135,72 @@ export const drugs = [
     monitoring:
       "Magnesium at baseline and annually for long-term use. Vitamin B12 if symptomatic. Reassess need for continued PPI every 6-12 months (many patients can step down or stop).",
   },
+  {
+    name: "insulin glargine",
+    generic_name: "insulin glargine",
+    drug_class: "long-acting basal insulin analogue",
+    mechanism:
+      "Modified human insulin that precipitates in subcutaneous tissue at physiologic pH and slowly releases active insulin over ~24 hours with relatively flat profile. Binds insulin receptors, promotes peripheral glucose uptake, suppresses hepatic glucose output, and inhibits lipolysis/ketogenesis.",
+    indications:
+      "Type 1 diabetes mellitus (basal component), Type 2 diabetes mellitus when oral therapy is insufficient, steroid-induced hyperglycaemia requiring basal control",
+    contraindications:
+      "Current hypoglycaemia, hypersensitivity to insulin glargine or excipients. Use caution in renal/hepatic impairment due to reduced insulin clearance.",
+    side_effects:
+      "Hypoglycaemia (most important adverse effect), weight gain, lipohypertrophy/lipoatrophy at injection sites, local injection reactions, rare hypersensitivity.",
+    dosing:
+      "Given once daily at the same time. Typical start in T2DM: 10 units OD or 0.1-0.2 units/kg/day, then titrate every 3-4 days by fasting glucose. In T1DM usually provides 40-50% of total daily insulin dose.",
+    monitoring:
+      "Capillary glucose (especially fasting), HbA1c every 3 months until stable, hypoglycaemia episodes, weight, injection-site rotation and technique.",
+  },
+  {
+    name: "salbutamol",
+    generic_name: "salbutamol sulfate",
+    drug_class: "short-acting beta-2 agonist (SABA) bronchodilator",
+    mechanism:
+      "Selective beta-2 adrenergic receptor agonist in bronchial smooth muscle → activates adenylate cyclase → increased cAMP → smooth muscle relaxation and rapid bronchodilation. Also shifts potassium intracellularly via Na/K ATPase stimulation.",
+    indications:
+      "Acute bronchospasm in asthma/COPD, exercise-induced bronchoconstriction prophylaxis, adjunctive treatment of hyperkalaemia",
+    contraindications:
+      "Severe hypersensitivity. Relative caution: significant tachyarrhythmias, ischemic heart disease, uncontrolled hyperthyroidism.",
+    side_effects:
+      "Tremor, palpitations, tachycardia, anxiety, headache. Dose-related hypokalaemia and mild hyperglycaemia, especially with repeated nebulised doses.",
+    dosing:
+      "Inhaler: 100-200 mcg PRN every 4-6h (1-2 puffs). Nebulised acute severe asthma: 2.5-5 mg every 20 minutes initially. Hyperkalaemia adjunct: 10-20 mg nebulised.",
+    monitoring:
+      "Symptom relief and inhaler use frequency (overuse indicates poor control), pulse, serum potassium in high-dose nebulisation settings, peak flow in acute exacerbations.",
+  },
+  {
+    name: "sertraline",
+    generic_name: "sertraline hydrochloride",
+    drug_class: "selective serotonin reuptake inhibitor (SSRI)",
+    mechanism:
+      "Selectively inhibits presynaptic serotonin transporter (SERT) leading to increased synaptic serotonin and downstream receptor adaptation over weeks. Minimal anticholinergic and cardiotoxic activity compared with tricyclic antidepressants.",
+    indications:
+      "Major depressive disorder, generalized anxiety disorder, panic disorder, PTSD, obsessive-compulsive disorder, social anxiety disorder",
+    contraindications:
+      "Concurrent MAOI use or within 14 days of MAOI discontinuation, known hypersensitivity. Caution with bipolar disorder (mania switch risk), bleeding disorders, and severe hepatic impairment.",
+    side_effects:
+      "GI upset (nausea/diarrhoea), insomnia or somnolence, sexual dysfunction, headache, sweating. Early anxiety activation may occur. Rare: serotonin syndrome, hyponatraemia (SIADH), increased bleeding risk.",
+    dosing:
+      "Start 25-50 mg once daily, increase by 25-50 mg at intervals of at least 1 week based on response/tolerability. Typical therapeutic range 50-200 mg/day.",
+    monitoring:
+      "Mood, suicidality (especially first weeks and younger patients), side effects, adherence, sodium in high-risk patients (elderly, diuretics), signs of serotonin toxicity.",
+  },
+  {
+    name: "apixaban",
+    generic_name: "apixaban",
+    drug_class: "direct oral anticoagulant (DOAC) / factor Xa inhibitor",
+    mechanism:
+      "Directly and reversibly inhibits factor Xa (free and clot-associated) resulting in reduced thrombin generation and fibrin clot formation without requiring antithrombin cofactor.",
+    indications:
+      "Stroke/systemic embolism prevention in non-valvular atrial fibrillation, treatment of DVT/PE, secondary prevention after DVT/PE, thromboprophylaxis after hip or knee replacement",
+    contraindications:
+      "Active pathological bleeding, severe hepatic disease with coagulopathy, mechanical heart valves, severe hypersensitivity. Use caution in severe renal impairment and with potent CYP3A4/P-gp modulators.",
+    side_effects:
+      "Bleeding (GI, genitourinary, intracranial less frequent than warfarin), bruising, anemia, nausea. Rare hypersensitivity reactions.",
+    dosing:
+      "AF stroke prevention: 5 mg BD (reduce to 2.5 mg BD if dose-reduction criteria met). Acute DVT/PE: 10 mg BD for 7 days then 5 mg BD. Extended prevention: 2.5 mg BD.",
+    monitoring:
+      "No routine INR monitoring. Periodic renal/hepatic function, full blood count, bleeding signs, adherence (short half-life means missed doses reduce protection).",
+  },
 ];
