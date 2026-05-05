@@ -68,7 +68,7 @@ node dist/http/server.js
 - [x] MCP server s 5 alata (medical_concept, drug_info, drug_interactions, icd11_code, lab_value, differential_diagnosis)
 - [x] HTTP REST API (Hono) s auth middleware i rate limitingom
 - [x] SQLite baza s kompletnom schemom + migracijama
-- [x] Seed data: 100 dijagnoza, 8 lijekova, 16+ medical concepts, lab values
+- [x] Seed data: 100 dijagnoza, proširen skup lijekova/interakcija/ICD-11, concepts, lab values
 - [x] Symptom engine (rule-based differential diagnosis)
 - [x] Waitlist endpoint
 - [x] Dockerfile (multi-stage build)
@@ -91,6 +91,61 @@ node dist/http/server.js
 - [x] Python SDK: timeout/retry parity s TS SDK-om
 - [x] Dokumentacija / README (CI badge, quality gates)
 - [ ] Dodatni seed / sync za drugs, ICD-11, interactions
+
+---
+
+## Checklista: cilj — default medicinski sloj (MCP + HTTP) za AI startupove
+
+Koristi kao roadmap: što već imaš vs što diže povjerenje developera i kliničara. Ažuriraj kvačice kad nešto završi ili promijeni prioritet.
+
+### 1) Trust & sigurnost signala
+
+- [x] Deterministički put (rule-based symptom engine bez LLM-a u jezgri `/v1/analyze`)
+- [x] Jasna klasifikacija rizika + cluster pravila + „Risk drivers” u tekstu (uz medicinski review)
+- [ ] Formalni medicinski review ciklus (tko odobrava nove seed/rule promjene, minimalni checklist po PR-u)
+- [ ] Jedna policy stranica: što proizvod **nije** (nije dijagnoza, nije osobni savjet bez konteksta)
+- [ ] Verzioniranje znanja (npr. `data_revision` ili tag u `/v1/health`) da se zna koja je pravila/skup podataka aktivna
+
+### 2) Developer experience (da te startupi biraju kao default)
+
+- [x] HTTP API + MCP (stdio), JSON kontrakt, `/v1/schema`
+- [x] SDK (TypeScript + Python) s lab/waitlist + timeout/retry na oba gdje ima smisla
+- [x] README quickstart + quality gates + CI badge na repou
+- [x] CI: core build, analyze testovi, TS SDK test, Python SDK test
+- [ ] „5 minuti do prvog poziva”: minimalni starter repo ili Copy-paste sekcije po use-caseu (scribe, intake, copilot)
+- [ ] Jedan `CHANGELOG.md` / release notes proces prije širenja korisnika
+- [ ] Javni roadmap (što dolazi u 30/90 dana) usklađen s landingom (Lovable)
+
+### 3) Dubina kliničkog sadržaja (perceived intelligence)
+
+- [x] Bazni skup: dijagnoze, labs, ICD-11, lijekovi, interakcije (seed + MCP alati)
+- [x] Proširenje seeda (lijevo mjesto za još: više ATC/klasa, više ICD, više DD pravila)
+- [ ] Sinonimi / normalizacija teksta — kontinuirano proširenje bez lažnog preciznog matcha
+- [ ] Jasno dokumentirani izvori i dopuštena upotreba (licence, vlastiti sadržaj, SME verify)
+- [ ] Lokalizacija (EN kao default; HR copy gdje ima smisla za domaće pilote)
+
+### 4) Pouzdanost, opservabilnost, sigurnost
+
+- [x] Deploy (Railway) + health endpoint
+- [x] Rate limit + API key na HTTP sloju
+- [ ] Mjerenje: p50/p95 latencija po ruti, error rate, rate-limit hit rate (barem log-based na početku)
+- [ ] Runbook: što raditi kad 502/DB lock/rate limit storm
+- [ ] Secret scanning / dependabot / osnovni security checklist prije „public beta”
+- [ ] GDPR flow (što se logira, retention) — kratki doc, ne roman
+
+### 5) Tržište i „moat” (zašto baš ti)
+
+- [x] Online referenca: website (Lovable) + core repo
+- [ ] Jedna rečenica ICP + 3 use-case rečenice (Claude zadatak → uskladiti README + landing)
+- [ ] 5–10 ciljanih startupova + 2 pilot integracije + 1 javni case study (čak i kratki)
+- [ ] Pricing v1 i free tier koji ne ubija troškove API-ja
+- [ ] (Kasnije) Stripe / billing kad prođe traction faza koju sama odrediš
+
+### 6) Faze (grubo vrijeme — prilagodi sebi)
+
+**0–8 tjedana:** CI + SDK + dokumentacija + stalno širenje seeda/pravila + prvi piloti.  
+**3–6 mjeseci:** observability, SLA mindset, SME review rutina, jedan jak case study.  
+**6–12 mjeseci:** enterprise-ready signal (billing, pravni okvir, eventualni compliance put za US ako treba).
 
 ---
 
