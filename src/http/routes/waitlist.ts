@@ -1,6 +1,23 @@
 import type { Context } from "hono";
 import { z } from "zod";
-import { addToWaitlist, getWaitlist } from "../../db/database.js";
+
+type WaitlistDb = {
+  addToWaitlist: (email: string) => { ok: boolean; already_exists: boolean };
+  getWaitlist: () => { id: number; email: string; created_at: string }[];
+};
+
+let waitlistDb: WaitlistDb | null = null;
+
+async function getWaitlistDb(): Promise<WaitlistDb> {
+  if (waitlistDb) return waitlistDb;
+
+  const db = await import("../../db/database.js");
+  waitlistDb = {
+    addToWaitlist: db.addToWaitlist,
+    getWaitlist: db.getWaitlist,
+  };
+  return waitlistDb;
+}
 
 const WaitlistSchema = z.object({
   email: z.string().email("Invalid email address"),
@@ -19,7 +36,14 @@ export async function waitlistPostHandler(c: Context): Promise<Response> {
     return c.json({ error: "Invalid email address" }, 400);
   }
 
-  const result = addToWaitlist(parsed.data.email);
+  let result: { ok: boolean; already_exists: boolean };
+  try {
+    const db = await getWaitlistDb();
+    result = db.addToWaitlist(parsed.data.email);
+  } catch (err) {
+    console.error("Waitlist DB initialization failed:", err);
+    return c.json({ error: "Service unavailable" }, 503);
+  }
 
   if (result.already_exists) {
     return c.json({ ok: true, message: "You're already on the list." });
@@ -29,6 +53,13 @@ export async function waitlistPostHandler(c: Context): Promise<Response> {
 }
 
 export async function waitlistGetHandler(c: Context): Promise<Response> {
-  const list = getWaitlist();
+  let list: { id: number; email: string; created_at: string }[];
+  try {
+    const db = await getWaitlistDb();
+    list = db.getWaitlist();
+  } catch (err) {
+    console.error("Waitlist DB initialization failed:", err);
+    return c.json({ error: "Service unavailable" }, 503);
+  }
   return c.json({ count: list.length, waitlist: list });
 }

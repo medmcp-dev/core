@@ -2,8 +2,6 @@ import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { serve } from "@hono/node-server";
 import { randomUUID } from "crypto";
-import { hasApiKeys, createApiKey } from "../db/database.js";
-import { seed } from "../db/seed.js";
 import { authMiddleware } from "./middleware/auth.js";
 import { rateLimit } from "./middleware/rateLimit.js";
 import { healthHandler } from "./routes/health.js";
@@ -47,15 +45,22 @@ console.log(`Starting server on port ${PORT}...`);
 serve({ fetch: app.fetch, port: PORT, hostname: "0.0.0.0" });
 console.log(`MedMCP HTTP server running on http://0.0.0.0:${PORT}`);
 
-try {
-  seed();
-  seedFirstApiKey();
-  console.log("Initialization complete.");
-} catch (err) {
-  console.error("Initialization error (non-fatal):", err);
+void initializeDataLayer();
+
+async function initializeDataLayer(): Promise<void> {
+  try {
+    const { seed } = await import("../db/seed.js");
+    seed();
+    await seedFirstApiKey();
+    console.log("Initialization complete.");
+  } catch (err) {
+    console.error("Initialization error (non-fatal):", err);
+  }
 }
 
-function seedFirstApiKey(): void {
+async function seedFirstApiKey(): Promise<void> {
+  const db = await import("../db/database.js");
+  const { hasApiKeys, createApiKey } = db;
   if (hasApiKeys()) return;
 
   const key = process.env.MEDDATA_API_KEY ?? `mk_${randomUUID().replace(/-/g, "")}`;
