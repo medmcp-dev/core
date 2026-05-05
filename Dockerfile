@@ -25,4 +25,4 @@ RUN mkdir -p /data
 
 EXPOSE 3000
 
-CMD ["sh", "-c", "node dist/db/seed.js && node dist/http/server.js 2>&1"]
+CMD ["node", "dist/http/server.js"]

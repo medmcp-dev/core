@@ -2,7 +2,8 @@ import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { serve } from "@hono/node-server";
 import { randomUUID } from "crypto";
-import { initSchema, hasApiKeys, createApiKey } from "../db/database.js";
+import { hasApiKeys, createApiKey } from "../db/database.js";
+import { seed } from "../db/seed.js";
 import { authMiddleware } from "./middleware/auth.js";
 import { rateLimit } from "./middleware/rateLimit.js";
 import { healthHandler } from "./routes/health.js";
@@ -11,7 +12,7 @@ import { analyzeHandler } from "./routes/analyze.js";
 import { labHandler } from "./routes/lab.js";
 import { waitlistPostHandler, waitlistGetHandler } from "./routes/waitlist.js";
 
-initSchema();
+seed();
 seedFirstApiKey();
 
 const app = new Hono();

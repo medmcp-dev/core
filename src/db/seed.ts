@@ -179,4 +179,8 @@ function seed(): void {
   console.log(`  Lab values       : ${counts.labs}`);
 }
 
-seed();
+export { seed };
+
+if (process.argv[1]?.endsWith("seed.js") || process.argv[1]?.endsWith("seed.ts")) {
+  seed();
+}
