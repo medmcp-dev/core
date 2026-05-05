@@ -18,4 +18,4 @@ RUN mkdir -p /data
 
 EXPOSE 3000
 
-CMD ["sh", "-c", "node dist/http/server.js 2>&1"]
+CMD ["sh", "-c", "echo '=== CONTAINER_V4 STARTED ===' && node dist/http/server.js 2>&1"]
