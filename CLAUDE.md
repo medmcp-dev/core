@@ -64,6 +64,33 @@ node dist/http/server.js
 
 ---
 
+## Runbook (brza dijagnostika)
+
+### 502 / gateway upstream error
+- U deploy logovima traži crash pri startu ili port mismatch: server mora slušati **`0.0.0.0`** i **`PORT`** iz enva (Railway ga postavlja).
+- Provjeri izvana: `GET /v1/health` — ako ne odgovara, health check / proxy pada prije aplikacije.
+- **SQLite na volumeu:** `DB_PATH` mora biti na montiranoj stazi (npr. `/data/meddata.db`). Ako put ne postoji ili nema prava na pisanje, startup ili seed može pasti.
+
+### 503 „Service unavailable“ (npr. waitlist)
+- Tipično greška oko DB inita ili nedostupnog diska pri `addToWaitlist` / čitanju waitliste — pogledaj stderr u logovima („Waitlist DB initialization failed“ ili slično).
+
+### 401 Unauthorized
+- Za zaštićene rute obavezno **`X-API-Key`** (isti ključ kao u SQLite `api_keys` tablici ili `MEDDATA_API_KEY` pri prvom pokretanju ako nije prethodno seedano).
+
+### 429 Too many requests
+- **Rate limit po IP-u:** `/v1/analyze` i `/v1/lab` ≈ **60/min**; `/v1/waitlist` ≈ **5/sat**. Sačekaj prozor ili smanji intenzitet testova — konfig je u `src/http/server.ts`.
+
+### Logovi
+- Za `/v1/*` (osim zadanog **GET `/v1/health`**) vide se linije `[http] METHOD path status …ms`. Za health ping u log postavi **`LOG_HTTP_HEALTH=true`**.
+
+### Lokalna provjera
+```bash
+npm run build && node dist/http/server.js
+npm run test:analyze
+```
+
+---
+
 ## Napravljeno ✅
 
 - [x] MCP server s 5 alata (medical_concept, drug_info, drug_interactions, icd11_code, lab_value, differential_diagnosis)
@@ -132,7 +159,8 @@ Koristi kao roadmap: što već imaš vs što diže povjerenje developera i klini
 - [x] Bazni HTTP access log (`[http] …`) za `/v1/*` (health isključen osim `LOG_HTTP_HEALTH`); health vraća `release` + opc. `data_revision` / `git_revision`
 - [ ] Mjerenje: p50/p95 latencija po ruti, error rate, rate-limit hit rate (centralizirani alat / APM)
 - [ ] Runbook: što raditi kad 502/DB lock/rate limit storm
-- [ ] Secret scanning / dependabot / osnovni security checklist prije „public beta”
+- [x] Dependabot (npm core + sdk, pip sdk-python, github-actions)
+- [ ] Secret scanning (GitHub u postavkama repoa); ručni pregled prije širenje repoa
 - [ ] GDPR flow (što se logira, retention) — kratki doc, ne roman
 
 ### 5) Tržište i „moat” (zašto baš ti)
