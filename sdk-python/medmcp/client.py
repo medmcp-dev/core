@@ -60,6 +60,9 @@ class MedMCP:
             status=data["status"],
             version=data["version"],
             timestamp=data["timestamp"],
+            release=data.get("release"),
+            data_revision=data.get("data_revision"),
+            git_revision=data.get("git_revision"),
         )
 
     def schema(self) -> dict[str, Any]:

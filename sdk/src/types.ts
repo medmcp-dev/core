@@ -18,8 +18,15 @@ export interface AnalyzeResult {
 
 export interface HealthResult {
   status: string;
+  /** Public API schema version string */
   version: string;
   timestamp: string;
+  /** Core package semver (`@medmcp/core`), when exposed by `/v1/health` */
+  release?: string;
+  /** Deployer-defined seed/rules revision */
+  data_revision?: string;
+  /** Git SHA when `MEDDATA_GIT_REVISION` / platform env is set */
+  git_revision?: string;
 }
 
 export interface LabValue {

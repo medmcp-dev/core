@@ -51,6 +51,7 @@ Auth: `X-API-Key` header. Key se generira automatski pri prvom pokretanju ako `M
 - **URL:** `https://core-production-389e.up.railway.app`
 - **Volume:** montiran na `/data`, DB na `/data/meddata.db`
 - **Env vars:** `DB_PATH=/data/meddata.db`, `PORT` (Railway injektira), `MEDDATA_API_KEY` (opcionalno)
+- Opcionalno observability/revizija u `/v1/health`: `MEDDATA_DATA_REVISION`, `MEDDATA_GIT_REVISION` (Railway često ima `RAILWAY_GIT_COMMIT_SHA` — već čitamo kao fallback). Za log health checkova: `LOG_HTTP_HEALTH=true`.
 - **Auto-deploy:** svaki push na `main` → Railway automatski builda i deploya
 - **Health check:** `/v1/health`, timeout 30s
 
@@ -128,7 +129,8 @@ Koristi kao roadmap: što već imaš vs što diže povjerenje developera i klini
 
 - [x] Deploy (Railway) + health endpoint
 - [x] Rate limit + API key na HTTP sloju
-- [ ] Mjerenje: p50/p95 latencija po ruti, error rate, rate-limit hit rate (barem log-based na početku)
+- [x] Bazni HTTP access log (`[http] …`) za `/v1/*` (health isključen osim `LOG_HTTP_HEALTH`); health vraća `release` + opc. `data_revision` / `git_revision`
+- [ ] Mjerenje: p50/p95 latencija po ruti, error rate, rate-limit hit rate (centralizirani alat / APM)
 - [ ] Runbook: što raditi kad 502/DB lock/rate limit storm
 - [ ] Secret scanning / dependabot / osnovni security checklist prije „public beta”
 - [ ] GDPR flow (što se logira, retention) — kratki doc, ne roman

@@ -27,6 +27,9 @@ class HealthResult:
     status: str
     version: str
     timestamp: str
+    release: str | None = None
+    data_revision: str | None = None
+    git_revision: str | None = None
 
 
 @dataclass

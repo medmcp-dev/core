@@ -9,6 +9,7 @@ import { schemaHandler } from "./routes/schema.js";
 import { analyzeHandler } from "./routes/analyze.js";
 import { labHandler } from "./routes/lab.js";
 import { waitlistPostHandler, waitlistGetHandler } from "./routes/waitlist.js";
+import { requestTimingLog } from "./middleware/requestLog.js";
 
 process.on("uncaughtException", (err) => { console.error("UNCAUGHT:", err); });
 process.on("unhandledRejection", (err) => { console.error("UNHANDLED:", err); });
@@ -16,6 +17,8 @@ process.on("unhandledRejection", (err) => { console.error("UNHANDLED:", err); })
 const app = new Hono();
 
 app.use("*", cors({ origin: "*", allowMethods: ["GET", "POST", "OPTIONS"] }));
+
+app.use("/v1/*", requestTimingLog);
 
 app.get("/v1/health", healthHandler);
 

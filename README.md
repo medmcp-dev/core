@@ -207,8 +207,21 @@ Converts clinical input into a structured risk signal.
 No auth required.
 
 ```json
-{ "status": "ok", "version": "1.0.0", "timestamp": "..." }
+{
+  "status": "ok",
+  "version": "1.0.0",
+  "timestamp": "...",
+  "release": "0.1.0",
+  "data_revision": "(optional — set MEDDATA_DATA_REVISION)",
+  "git_revision": "(optional — set MEDDATA_GIT_REVISION or Railway auto)"
+}
 ```
+
+- `version`: public HTTP API compatibility
+- `release`: semver of `@medmcp/core` package at build/deploy
+- `data_revision`: your opaque tag for seed/rules (recommended for reproducibility)
+
+Request timing is logged as `[http] METHOD path status ms` for `/v1/*` except **`GET /v1/health`** (set `LOG_HTTP_HEALTH=1` to include health pings).
 
 ---
 
