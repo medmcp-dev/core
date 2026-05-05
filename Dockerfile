@@ -16,4 +16,4 @@ RUN mkdir -p /data
 
 EXPOSE 3000
 
-CMD ["sh", "-c", "node dist/http/server.js 2>&1"]
+CMD ["sh", "-c", "echo '=== CONTAINER START ===' && node --version && ls dist/http/server.js && node dist/http/server.js 2>&1"]
