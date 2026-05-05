@@ -4,6 +4,7 @@
   "description": "Medical reasoning API for AI agents — structured risk signals from clinical input",
   "type": "module",
   "main": "dist/index.js",
+  "files": ["dist/", "src/"],
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
