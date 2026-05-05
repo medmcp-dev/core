@@ -175,4 +175,48 @@ export const drugInteractions = [
     management:
       "Monitor renal function and hydration status, especially after dose escalation or acute illness. Temporarily hold metformin during significant dehydration or AKI risk.",
   },
+  {
+    drug_a: "ibuprofen",
+    drug_b: "lisinopril",
+    severity: "moderate",
+    mechanism:
+      "NSAIDs reduce renal prostaglandin synthesis; prostaglandins maintain renal perfusion in some ACE-inhibitor–treated patients, especially if volume-depleted. NSAIDs can also antagonise the antihypertensive effect.",
+    clinical_effect:
+      "Risk of acute kidney injury, hyperkalaemia, and worsening hypertension or heart failure; additive GI risk if patient also uses aspirin.",
+    management:
+      "Avoid chronic combination where possible. If short NSAID course is essential, use lowest dose/duration, ensure hydration, monitor creatinine and potassium within days of starting/stopping.",
+  },
+  {
+    drug_a: "ibuprofen",
+    drug_b: "warfarin",
+    severity: "severe",
+    mechanism:
+      "Additive pharmacodynamic bleeding risk (NSAID mucosal injury + platelet dysfunction + warfarin anticoagulation). NSAIDs may also displace warfarin from protein binding in some contexts.",
+    clinical_effect:
+      "Increased risk of major GI and other bleeding, especially in elderly patients and those with prior ulcer disease.",
+    management:
+      "Avoid routine co-use. If unavoidable, add gastroprotection, use minimal NSAID duration/dose, monitor INR and bleeding closely, and consider alternative analgesia (e.g. paracetamol where appropriate).",
+  },
+  {
+    drug_a: "ibuprofen",
+    drug_b: "apixaban",
+    severity: "severe",
+    mechanism:
+      "Combined antiplatelet/anti-inflammatory effects of NSAIDs with anticoagulation → high bleeding risk; NSAID-associated GI injury is common.",
+    clinical_effect:
+      "Major bleeding (GI, intracranial) risk is materially increased compared with DOAC alone.",
+    management:
+      "Avoid combination when possible. Prefer paracetamol-based analgesia; if NSAID is unavoidable, specialist-led risk/benefit discussion, gastroprotection, and shortest duration.",
+  },
+  {
+    drug_a: "paracetamol",
+    drug_b: "warfarin",
+    severity: "mild",
+    mechanism:
+      "At usual analgesic doses interaction is limited; prolonged use or higher cumulative doses can potentiate warfarin effect via hepatic enzyme inhibition and glutathione depletion in overdose contexts.",
+    clinical_effect:
+      "Potential INR elevation mainly with sustained high intake or acute overdose; routine short courses usually low risk.",
+    management:
+      "Keep total paracetamol ≤4 g/day from all sources; check INR after major dose changes or if patient reports increased paracetamol use.",
+  },
 ];

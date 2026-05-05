@@ -197,4 +197,26 @@ export const icd11Codes = [
       "Overweight without obesity, edema-related weight gain, lipodystrophy syndromes",
     category: "endocrine",
   },
+  {
+    code: "8A80",
+    title: "Migraine",
+    description:
+      "Primary headache disorder with recurrent attacks typically lasting 4–72 hours, often unilateral, pulsating, of moderate or severe intensity, aggravated by routine activity, and associated with nausea and/or photophobia and phonophobia; some attacks are preceded or accompanied by reversible aura symptoms. Chronic migraine denotes headache on ≥15 days/month for >3 months with migraine features on ≥8 days/month.",
+    inclusion_terms:
+      "Migraine with aura, migraine without aura, chronic migraine, menstrual migraine",
+    exclusion_terms:
+      "Secondary headache from SAH or meningitis, tension-type headache (8A81), cluster headache (8A82)",
+    category: "neurological",
+  },
+  {
+    code: "DB10",
+    title: "Acute appendicitis",
+    description:
+      "Acute inflammation of the vermiform appendix, usually from luminal obstruction followed by bacterial proliferation. Typical presentation includes periumbilical pain migrating to the right iliac fossa, anorexia, nausea, fever, and localized tenderness (McBurney point). Complications include perforation, abscess, and peritonitis.",
+    inclusion_terms:
+      "Appendicitis, RIF pain with suspected appendicitis, perforated appendix",
+    exclusion_terms:
+      "Mesenteric adenitis, ovarian pathology, renal colic, gastroenteritis without appendiceal inflammation",
+    category: "gastrointestinal",
+  },
 ];

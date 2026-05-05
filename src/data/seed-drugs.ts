@@ -203,4 +203,38 @@ export const drugs = [
     monitoring:
       "No routine INR monitoring. Periodic renal/hepatic function, full blood count, bleeding signs, adherence (short half-life means missed doses reduce protection).",
   },
+  {
+    name: "paracetamol",
+    generic_name: "paracetamol (acetaminophen)",
+    drug_class: "para-aminophenol derivative / analgesic and antipyretic",
+    mechanism:
+      "Exact mechanism not fully elucidated; central COX inhibition (weak peripheral COX inhibition at usual doses), serotonergic and cannabinoid CB1 pathways may contribute to analgesia. Antipyretic effect via hypothalamic thermoregulatory centre.",
+    indications:
+      "Mild to moderate pain, fever reduction, component of multimodal analgesia",
+    contraindications:
+      "Severe active liver disease, known hypersensitivity. Caution: chronic alcohol use, malnutrition, concurrent hepatotoxic drugs — cumulative liver injury risk at high cumulative dose.",
+    side_effects:
+      "Generally well tolerated at ≤4 g/day in adults without liver risk factors. Hepatotoxicity with overdose or repeated supratherapeutic dosing. Rare: serious skin reactions, blood dyscrasias.",
+    dosing:
+      "Adults: 0.5–1 g every 4–6 h as needed, max 4 g/day from all sources (lower max in frailty, liver disease, or chronic alcohol — follow local guidance).",
+    monitoring:
+      "Liver function if high-risk or prolonged high-dose use; total daily dose from combination products.",
+  },
+  {
+    name: "ibuprofen",
+    generic_name: "ibuprofen",
+    drug_class: "NSAID (propionic acid derivative)",
+    mechanism:
+      "Non-selective inhibition of cyclo-oxygenase (COX-1 and COX-2) → reduced prostaglandin synthesis → analgesic, anti-inflammatory, and antipyretic effects. Also antiplatelet effect (reversible COX-1 inhibition).",
+    indications:
+      "Mild to moderate pain, dysmenorrhoea, inflammatory conditions, fever",
+    contraindications:
+      "Active or history of recurrent peptic ulcer/GI bleeding, severe heart failure, third-trimester pregnancy, hypersensitivity to ibuprofen/aspirin (asthma, rhinitis, urticaria). Caution: CKD, dehydration, concurrent anticoagulants, elderly.",
+    side_effects:
+      "GI upset, dyspepsia, GI bleeding/ulceration, fluid retention, BP elevation, AKI in volume depletion, rare hypersensitivity.",
+    dosing:
+      "Adults: 200–400 mg every 6–8 h with food as needed, OTC max typically 1.2 g/day without supervision (local labels vary).",
+    monitoring:
+      "Renal function, BP, GI symptoms; consider gastroprotection with risk factors.",
+  },
 ];
