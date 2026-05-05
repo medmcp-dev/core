@@ -77,7 +77,10 @@ export function mapRisk(
 
     if (HIGH_SYMPTOMS.has(sym)) {
       reasons.push(`high-risk symptom present: ${sym}`);
-      risk_level = "high";
+      // Do not downgrade critical (e.g. chest pain + dyspnoea cluster already set critical).
+      if (risk_level !== "critical") {
+        risk_level = "high";
+      }
       riskPoints += 2;
       continue;
     }
