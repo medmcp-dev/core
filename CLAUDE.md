@@ -131,9 +131,9 @@ Koristi kao roadmap: što već imaš vs što diže povjerenje developera i klini
 
 - [x] Deterministički put (rule-based symptom engine bez LLM-a u jezgri `/v1/analyze`)
 - [x] Jasna klasifikacija rizika + cluster pravila + „Risk drivers” u tekstu (uz medicinski review)
-- [ ] Formalni medicinski review ciklus (tko odobrava nove seed/rule promjene, minimalni checklist po PR-u)
+- [ ] Formalni medicinski review ciklus (tko odobrava nove seed/rule promjene, minimalni checklist po PR-u) — vidi **Medicinski review (Bruno)** ispod
 - [ ] Jedna policy stranica: što proizvod **nije** (nije dijagnoza, nije osobni savjet bez konteksta)
-- [ ] Verzioniranje znanja (npr. `data_revision` ili tag u `/v1/health`) da se zna koja je pravila/skup podataka aktivna
+- [x] Verzioniranje znanja — u `/v1/health`: `release` (semver), opc. `git_revision`, opc. **`MEDDATA_DATA_REVISION`** (postavi na Railwayu kad mijenjaš seed/pravila)
 
 ### 2) Developer experience (da te startupi biraju kao default)
 
@@ -160,7 +160,7 @@ Koristi kao roadmap: što već imaš vs što diže povjerenje developera i klini
 - [x] Rate limit + API key na HTTP sloju
 - [x] Bazni HTTP access log (`[http] …`) za `/v1/*` (health isključen osim `LOG_HTTP_HEALTH`); health vraća `release` + opc. `data_revision` / `git_revision`
 - [ ] Mjerenje: p50/p95 latencija po ruti, error rate, rate-limit hit rate (centralizirani alat / APM)
-- [ ] Runbook: što raditi kad 502/DB lock/rate limit storm
+- [x] Runbook: vidi sekciju **Runbook (brza dijagnostika)** u ovom fileu
 - [x] Dependabot (npm core + sdk, pip sdk-python, github-actions)
 - [ ] Secret scanning (GitHub u postavkama repoa); ručni pregled prije širenje repoa
 - [ ] GDPR flow (što se logira, retention) — kratki doc, ne roman
@@ -208,6 +208,17 @@ Koristi kao roadmap: što već imaš vs što diže povjerenje developera i klini
 ### Gotovo nedavno (referenca za sync)
 
 - SDK lab/waitlist, TS timeout/retry, SDK testovi, seed proširenje, symptom risk v1.1, `npm run test:analyze`, GitHub Actions CI.
+
+---
+
+## Medicinski review (Bruno) — mini-checklist po PR-u
+
+Koristi kad PR dira **`src/data/seed-*`**, **`src/analyze/`**, ili značajno **`src/tools/`** medicinski sadržaj:
+
+- [ ] Jesu li kliničke tvrdnje u skladu s onim što želiš javno stajati iza (seed ≠ sveobuhvatna medicina)?
+- [ ] Jesu li **severity** kod interakcija (mild/moderate/severe) i parovi lijekova smisleni?
+- [ ] Treba li **ICD-11 kod** provjera u odnosu na službeni MMS prije širenja kao „izvor istine“?
+- [ ] Nakon mergea na produkciju: postavi **`MEDDATA_DATA_REVISION`** na Railwayu na novu oznaku (npr. datum + kratki opis).
 
 ---
 
