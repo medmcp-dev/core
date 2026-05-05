@@ -1,0 +1,7 @@
+.env
+node_modules/
+meddata.db
+meddata.db-shm
+meddata.db-wal
+.claude/
+.mcp.json

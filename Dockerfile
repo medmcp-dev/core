@@ -4,11 +4,9 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y python3 make g++ && rm -rf /var/lib/apt/lists/*
 
 COPY package*.json ./
-RUN npm ci
+RUN npm ci --omit=dev
 
-COPY tsconfig.json ./
-COPY src/ ./src/
-RUN npm run build && npm prune --omit=dev
+COPY dist/ ./dist/
 
 ENV NODE_ENV=production
 ENV PORT=3000
@@ -18,4 +16,4 @@ RUN mkdir -p /data
 
 EXPOSE 3000
 
-CMD ["sh", "-c", "echo '=== CONTAINER_V4 STARTED ===' && node dist/http/server.js 2>&1"]
+CMD ["sh", "-c", "node dist/http/server.js 2>&1"]

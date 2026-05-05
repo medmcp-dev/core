@@ -1,0 +1,1 @@
+{"version":3,"file":"risk-mapper.d.ts","sourceRoot":"","sources":["../../src/analyze/risk-mapper.ts"],"names":[],"mappings":"AAAA,MAAM,MAAM,SAAS,GAAG,KAAK,GAAG,QAAQ,GAAG,MAAM,GAAG,UAAU,CAAC;AAqB/D,MAAM,WAAW,UAAU;IACzB,UAAU,EAAE,SAAS,CAAC;IACtB,UAAU,EAAE,MAAM,CAAC;CACpB;AAED,wBAAgB,OAAO,CACrB,iBAAiB,EAAE,MAAM,EAAE,EAC3B,eAAe,EAAE,MAAM,EAAE,EACzB,iBAAiB,EAAE,MAAM,GACxB,UAAU,CA2BZ"}
