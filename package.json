@@ -7,6 +7,7 @@
   "files": ["dist/", "src/"],
   "scripts": {
     "build": "tsc",
+    "test:analyze": "npm run build && node --test tests/analyze/*.test.mjs",
     "start": "node dist/index.js",
     "start:http": "node dist/http/server.js",
     "dev": "tsc --watch",
