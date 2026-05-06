@@ -27,6 +27,8 @@ cd sdk-python && python -m unittest discover -s tests -p "test_*.py"
 
 CI runs the same checks on push and pull requests to `main` (see `.github/workflows/ci.yml`).
 
+**Release notes:** see [`CHANGELOG.md`](./CHANGELOG.md). Before a tagged release, update that file and bump `version` in the root `package.json` (and SDK package versions when you publish them).
+
 ---
 
 ## What it is
