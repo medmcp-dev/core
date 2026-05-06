@@ -137,7 +137,7 @@ Koristi kao roadmap: što već imaš vs što diže povjerenje developera i klini
 
 ### 2) Developer experience (da te startupi biraju kao default)
 
-- [x] HTTP API + MCP (stdio), JSON kontrakt, `/v1/schema`
+- [x] HTTP API + MCP (stdio), JSON kontrakt, `/v1/schema` (+ `agent_tooling`, `X-MedMCP-*` zaglavlja na `/v1/*`, MCP prefiksi za tool opise)
 - [x] SDK (TypeScript + Python) s lab/waitlist + timeout/retry na oba gdje ima smisla
 - [x] README quickstart + quality gates + CI badge na repou
 - [x] CI: core build, analyze testovi, TS SDK test, Python SDK test
@@ -150,7 +150,7 @@ Koristi kao roadmap: što već imaš vs što diže povjerenje developera i klini
 
 - [x] Bazni skup: dijagnoze, labs, ICD-11, lijekovi, interakcije (seed + MCP alati)
 - [x] Proširenje seeda (lijevo mjesto za još: više ATC/klasa, više ICD, više DD pravila)
-- [ ] Sinonimi / normalizacija teksta — kontinuirano proširenje bez lažnog preciznog matcha
+- [ ] Sinonimi / normalizacija teksta — kontinuirano proširenje bez lažnog preciznog matcha (zadnji batch u `src/analyze/text-normalizer.ts`)
 - [ ] Jasno dokumentirani izvori i dopuštena upotreba (licence, vlastiti sadržaj, SME verify)
 - [ ] Lokalizacija (EN kao default; HR copy gdje ima smisla za domaće pilote)
 
@@ -197,17 +197,24 @@ Koristi kao roadmap: što već imaš vs što diže povjerenje developera i klini
 
 ### Sljedeći zadaci za **Cursor-agenta / backend**
 
-1. **Ostalo po prioritetu:** release polish, observability, performance baseline.
+1. **Ostalo po prioritetu:** release polish, observability (npr. p95 po ruti u logovima ili APM), performance baseline — kad Claude/Bruno dodijele cilj ili pilot traži konkretnu metriku.
 
-### Nedavno završeno (backend)
+### Nedavno završeno (backend — sink s `main`)
 
-- **Python SDK parity:** `timeout_ms`, `max_retries`, `retry_delay_ms` (isti defaulti kao TS; retry 429/5xx; timeout → `RuntimeError` kao TS).
-- **README:** CI badge + sekcija „Quality gates”.
-- **Contract test:** `tests/analyze/symptom-engine.contract.test.mjs` — privremeni `DB_PATH`, `seed()`, pa `analyzeSymptoms` (oblika odgovora + critical/high scenariji). Vrti se s `npm run test:analyze`.
+Najnovije (agent / dokumentacija):
 
-### Gotovo nedavno (referenca za sync)
+- **HTTP za agente:** middleware `agentMetaHeaders` — na svakom `/v1/*` odgovoru `X-MedMCP-Schema-Version`, `X-MedMCP-Release`, opc. `X-MedMCP-Git-Revision` / `X-MedMCP-Data-Revision`; CORS `exposeHeaders` za browsere (`src/http/middleware/agentMetaHeaders.ts`, `src/http/server.ts`).
+- **`GET /v1/schema`:** blok `agent_tooling` — positioning za buildere (MCP `medmcp`, popis endpointa, ograničenja, značenje zaglavlja) (`src/http/routes/schema.ts`).
+- **MCP:** prefiks na svim tool `description` stringovima — tool-use / nije osobna klinička odluka (`src/index.ts`).
+- **`CHANGELOG.md` + README:** proces izdanja; `@types/node` **^22** u core-u i SDK-u usklađeno s CI `node-version: 22`; `sdk/tsconfig` i dalje `lib` uključuje `DOM` radi TS 6 + `fetch` tipova gdje Node tipovi sami ne pokriju sve.
 
-- SDK lab/waitlist, TS timeout/retry, SDK testovi, seed proširenje, symptom risk v1.1, `npm run test:analyze`, GitHub Actions CI.
+Ranije merging na `main` (sažeto):
+
+- **Deps / CI:** GitHub Actions v6; Hono/Zod **4.x** (+ `analyze` `z.record` dva argumenta); TypeScript **6.x** (`package.json`, `sdk/`, lockfileovi).
+- **Sadržaj / DX:** dodatni seed (npr. paracetamol, ibuprofen, interakcije, ICD `8A80`, `DB10`), još sinonima u text-normalizeru; **`npm run test:all`** (analyze + TS SDK + Python).
+- **SDK parity:** TS + Python timeout/retry; lab/waitlist metode i testovi; zero-dependency **`examples/`**.
+- **Testovi:** `npm run test:analyze` — risk-mapper unit + **`tests/analyze/symptom-engine.contract.test.mjs`** (privremeni `DB_PATH`, `seed()`, `analyzeSymptoms`).
+- **Runbook:** sekcija u ovom dokumentu (**Runbook (brza dijagnostika)**); **Medicinski review (Bruno)** mini-checklist.
 
 ---
 
