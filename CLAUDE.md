@@ -143,7 +143,7 @@ Koristi kao roadmap: što već imaš vs što diže povjerenje developera i klini
 - [x] CI: core build, analyze testovi, TS SDK test, Python SDK test
 - [x] Minimalni primjeri bez SDK builda: `examples/` (Node + Python, `analyze` + `lab`)
 - [ ] Dalje: use-case copy (scribe, intake, copilot) ili zasebni starter repo
-- [ ] Jedan `CHANGELOG.md` / release notes proces prije širenja korisnika
+- [x] Jedan `CHANGELOG.md` / release notes proces prije širenja korisnika — vidi `CHANGELOG.md` + README
 - [ ] Javni roadmap (što dolazi u 30/90 dana) usklađen s landingom (Lovable)
 
 ### 3) Dubina kliničkog sadržaja (perceived intelligence)
