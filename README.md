@@ -202,6 +202,7 @@ Converts clinical input into a structured risk signal.
   "risk_level": "low | medium | high | critical",
   "confidence": 0.0,
   "entities": [],
+  "signals": [],
   "source_type": "symptom | lab | vitals | medication",
   "interpretation": "string"
 }
