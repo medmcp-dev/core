@@ -29,6 +29,8 @@ CI runs the same checks on push and pull requests to `main` (see `.github/workfl
 
 **Release notes:** see [`CHANGELOG.md`](./CHANGELOG.md). Before a tagged release, update that file and bump `version` in the root `package.json` (and SDK package versions when you publish them).
 
+**Agent / HTTP clients:** every `/v1/*` response includes `X-MedMCP-Schema-Version`, `X-MedMCP-Release`, and optional `X-MedMCP-Git-Revision` / `X-MedMCP-Data-Revision` (see `GET /v1/schema` → `agent_tooling`). CORS exposes these headers to browsers.
+
 ---
 
 ## What it is

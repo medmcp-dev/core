@@ -13,6 +13,10 @@ import { getICD11Code } from "./tools/get_icd11_code.js";
 import { getDifferentialDiagnosis } from "./tools/get_differential_diagnosis.js";
 import { getLabValue, listLabCategories } from "./tools/get_lab_value.js";
 
+/** Prepended to MCP tool descriptions so hosts steer models toward tool-shaped use. */
+const MCP_AGENT_PREFIX =
+  "Structured medical facts for agent tool-calling (not individualized clinical decisions). ";
+
 initSchema();
 
 const server = new Server(
@@ -25,7 +29,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
     {
       name: "get_medical_concept",
       description:
-        "Retrieve a structured medical concept (physiology, anatomy, pharmacology, immunology). Returns mechanism of action, clinical relevance, and related concepts. Use list_categories or list_concepts first to discover what's available.",
+        `${MCP_AGENT_PREFIX}Retrieve a structured medical concept (physiology, anatomy, pharmacology, immunology). Returns mechanism of action, clinical relevance, and related concepts. Use list_categories or list_concepts first to discover what's available.`,
       inputSchema: {
         type: "object",
         properties: {
@@ -56,7 +60,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
     {
       name: "get_drug_info",
       description:
-        "Retrieve structured drug information: mechanism of action, indications, contraindications, dosing, side effects, and monitoring parameters. Searches by brand name, generic name, or drug class.",
+        `${MCP_AGENT_PREFIX}Retrieve structured drug information: mechanism of action, indications, contraindications, dosing, side effects, and monitoring parameters. Searches by brand name, generic name, or drug class.`,
       inputSchema: {
         type: "object",
         properties: {
@@ -82,7 +86,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
     {
       name: "get_drug_interactions",
       description:
-        "Check interactions between two or more drugs. Returns severity (mild/moderate/severe/contraindicated), pharmacological mechanism, clinical effect, and management recommendations for each drug pair.",
+        `${MCP_AGENT_PREFIX}Check interactions between two or more drugs. Returns severity (mild/moderate/severe/contraindicated), pharmacological mechanism, clinical effect, and management recommendations for each drug pair.`,
       inputSchema: {
         type: "object",
         properties: {
@@ -100,7 +104,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
     {
       name: "get_icd11_code",
       description:
-        "Look up ICD-11 diagnostic codes and their structured descriptions. Search by code (e.g. '5A11') or by condition name/keyword. Returns inclusion/exclusion terms and full clinical description.",
+        `${MCP_AGENT_PREFIX}Look up ICD-11 diagnostic codes and their structured descriptions. Search by code (e.g. '5A11') or by condition name/keyword. Returns inclusion/exclusion terms and full clinical description.`,
       inputSchema: {
         type: "object",
         properties: {
@@ -122,7 +126,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
     {
       name: "get_differential_diagnosis",
       description:
-        "Generate a ranked differential diagnosis list based on a set of symptoms. Returns matching diagnoses with distinguishing features, key investigations, and ICD-11 codes, ranked by symptom overlap score.",
+        `${MCP_AGENT_PREFIX}Generate a ranked differential diagnosis list based on a set of symptoms. Returns matching diagnoses with distinguishing features, key investigations, and ICD-11 codes, ranked by symptom overlap score. Use for differential exploration — not as a sole diagnostic endpoint for patient-facing decisions.`,
       inputSchema: {
         type: "object",
         properties: {
@@ -144,7 +148,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
     {
       name: "get_lab_value",
       description:
-        "Look up reference ranges, critical values, and clinical interpretation for common laboratory tests. Covers electrolytes (Na, K, Cl), renal function (urea, creatinine), metabolic (glucose), cardiac (troponin), inflammatory (CRP), and haematology (haemoglobin, WBC). Use action='list' to see all available lab tests.",
+        `${MCP_AGENT_PREFIX}Look up reference ranges, critical values, and clinical interpretation for common laboratory tests. Covers electrolytes (Na, K, Cl), renal function (urea, creatinine), metabolic (glucose), cardiac (troponin), inflammatory (CRP), and haematology (haemoglobin, WBC). Use action='list' to see all available lab tests.`,
       inputSchema: {
         type: "object",
         properties: {
