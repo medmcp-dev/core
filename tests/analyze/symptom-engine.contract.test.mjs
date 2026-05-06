@@ -24,6 +24,7 @@ function assertAnalyzeShape(out) {
   assert.equal(typeof out.confidence, "number");
   assert.ok(out.confidence >= 0 && out.confidence <= 1);
   assert.ok(Array.isArray(out.entities));
+  assert.ok(Array.isArray(out.signals));
   assert.equal(typeof out.interpretation, "string");
 }
 
@@ -48,6 +49,7 @@ test("analyzeSymptoms: chest pain + dyspnoea cluster is critical", () => {
   const out = analyzeSymptoms("chest pain and shortness of breath for 1 hour");
   assertAnalyzeShape(out);
   assert.equal(out.risk_level, "critical");
+  assert.ok(out.signals.some((s) => s.type === "risk_driver"));
   assert.ok(out.entities.some((e) => e.type === "symptom" && e.value === "chest pain"));
   assert.ok(out.entities.some((e) => e.type === "symptom" && e.value === "dyspnoea"));
   assert.match(out.interpretation, /risk drivers/i);
@@ -120,6 +122,7 @@ for (const c of NEW_HIGH_CLUSTER_CASES) {
     const out = analyzeSymptoms(c.text);
     assertAnalyzeShape(out);
     assert.ok(["high", "critical"].includes(out.risk_level));
+    assert.ok(out.signals.some((s) => s.type === "risk_driver"));
   });
 }
 

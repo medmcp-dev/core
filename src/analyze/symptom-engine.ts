@@ -8,10 +8,17 @@ export interface Entity {
   metadata?: Record<string, unknown>;
 }
 
+export interface Signal {
+  type: "risk_driver" | "differential" | "symptom_match";
+  label: string;
+  detail?: string;
+}
+
 export interface AnalyzeOutput {
   risk_level: RiskLevel;
   confidence: number;
   entities: Entity[];
+  signals: Signal[];
   source_type: "symptom" | "lab" | "vitals" | "medication";
   interpretation: string;
 }
@@ -24,6 +31,7 @@ export function analyzeSymptoms(text: string): AnalyzeOutput {
       risk_level: "low",
       confidence: 0,
       entities: [],
+      signals: [],
       source_type: "symptom",
       interpretation: "No recognizable symptoms extracted from input.",
     };
@@ -54,6 +62,33 @@ export function analyzeSymptoms(text: string): AnalyzeOutput {
     })),
   ];
 
+  const signals: Signal[] = [];
+
+  for (const reason of reasons) {
+    const match = reason.match(/^(.*)\s+\((.*)\)$/);
+    if (match) {
+      signals.push({
+        type: "risk_driver",
+        label: match[1].trim(),
+        detail: match[2].trim(),
+      });
+      continue;
+    }
+    signals.push({ type: "risk_driver", label: reason });
+  }
+
+  for (const d of result.differentials.slice(0, 3)) {
+    signals.push({
+      type: "differential",
+      label: d.name,
+      detail: `match_score: ${d.match_score}`,
+    });
+  }
+
+  for (const s of extractedSymptoms) {
+    signals.push({ type: "symptom_match", label: s });
+  }
+
   const topDx = result.differentials[0];
   const symptomList = extractedSymptoms.join(", ");
   const differentialSummary = topDx
@@ -67,5 +102,12 @@ export function analyzeSymptoms(text: string): AnalyzeOutput {
     differentialSummary +
     riskSummary;
 
-  return { risk_level, confidence, entities, source_type: "symptom", interpretation };
+  return {
+    risk_level,
+    confidence,
+    entities,
+    signals,
+    source_type: "symptom",
+    interpretation,
+  };
 }

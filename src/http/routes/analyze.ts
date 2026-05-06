@@ -44,6 +44,7 @@ export async function analyzeHandler(c: Context): Promise<Response> {
     );
   }
 
+  // v1 response keeps `interpretation` text and adds aditive `signals[]` for agent pipelines.
   const output = analyzeSymptoms(symptomParsed.data.text);
   return c.json(output, 200);
 }
