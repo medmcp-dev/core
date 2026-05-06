@@ -10,15 +10,29 @@ import { analyzeHandler } from "./routes/analyze.js";
 import { labHandler } from "./routes/lab.js";
 import { waitlistPostHandler, waitlistGetHandler } from "./routes/waitlist.js";
 import { requestTimingLog } from "./middleware/requestLog.js";
+import { agentMetaHeaders } from "./middleware/agentMetaHeaders.js";
 
 process.on("uncaughtException", (err) => { console.error("UNCAUGHT:", err); });
 process.on("unhandledRejection", (err) => { console.error("UNHANDLED:", err); });
 
 const app = new Hono();
 
-app.use("*", cors({ origin: "*", allowMethods: ["GET", "POST", "OPTIONS"] }));
+app.use(
+  "*",
+  cors({
+    origin: "*",
+    allowMethods: ["GET", "POST", "OPTIONS"],
+    exposeHeaders: [
+      "X-MedMCP-Schema-Version",
+      "X-MedMCP-Release",
+      "X-MedMCP-Git-Revision",
+      "X-MedMCP-Data-Revision",
+    ],
+  })
+);
 
 app.use("/v1/*", requestTimingLog);
+app.use("/v1/*", agentMetaHeaders);
 
 app.get("/v1/health", healthHandler);
 
