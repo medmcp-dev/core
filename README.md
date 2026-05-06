@@ -35,9 +35,13 @@ CI runs the same checks on push and pull requests to `main` (see `.github/workfl
 
 ## What it is
 
-MedMCP is a developer-first infrastructure layer that gives AI agents deterministic medical reasoning signals — no LLM in the pipeline, no hallucinations, no prompt engineering required.
+MedMCP is the deterministic medical reasoning layer for AI agents — structured clinical risk signals, drug interactions, and differential diagnosis without prompt drift or hallucination.
 
-Think of it as the medical data layer your agent stack is missing.
+**Scribe / documentation:** Feed patient notes into your agent and route on `risk_level: critical` — MedMCP handles the medical reasoning, you own the UX.
+
+**Intake / triage:** Replace ad-hoc symptom parsing with a shared output contract — same input always returns the same structured risk signal, regardless of which model powers your agent.
+
+**Clinical copilot:** Give your copilot deterministic answers on drug interactions and differentials — no prompting, no fine-tuning, no medical knowledge base to maintain.
 
 **Not a diagnosis tool. Not a consumer product. Infrastructure.**
 
@@ -118,7 +122,12 @@ Response:
     { "type": "diagnosis", "value": "pulmonary embolism", "metadata": { "match_score": 1, "icd11_code": "BB41" } }
   ],
   "source_type": "symptom",
-  "interpretation": "1 symptom(s) identified: chest pain. Top differential: pulmonary embolism (match score: 1)."
+  "interpretation": "1 symptom(s) identified: chest pain. Top differential: pulmonary embolism (match score: 1).",
+  "signals": [
+    { "type": "risk_driver", "label": "chest pain", "detail": "high-risk symptom" },
+    { "type": "differential", "label": "pulmonary embolism", "detail": "match_score: 1" },
+    { "type": "symptom_match", "label": "chest pain" }
+  ]
 }
 ```
 
@@ -203,6 +212,7 @@ Converts clinical input into a structured risk signal.
 | `risk_level` | Deterministic risk classification based on clinical red-flag criteria. |
 | `confidence` | Fraction of extracted symptoms matched by at least one differential (0–1). |
 | `entities` | Recognized symptoms, top differential diagnoses, ICD-11 codes. |
+| `signals` | Structured breakdown: `risk_driver`, `differential`, `symptom_match` entries for agent routing. |
 | `source_type` | Mirrors the input type. |
 | `interpretation` | Short structured reasoning for agent consumption. |
 
