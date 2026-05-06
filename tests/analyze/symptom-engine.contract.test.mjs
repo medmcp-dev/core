@@ -53,6 +53,76 @@ test("analyzeSymptoms: chest pain + dyspnoea cluster is critical", () => {
   assert.match(out.interpretation, /risk drivers/i);
 });
 
+const NEW_CRITICAL_CLUSTER_CASES = [
+  {
+    name: "chest pain + jaw pain",
+    text: "chest pain with jaw pain",
+  },
+  {
+    name: "chest pain + back pain",
+    text: "severe chest pain radiating to back pain",
+  },
+  {
+    name: "dyspnoea + hypoxia",
+    text: "dyspnoea and hypoxia",
+  },
+  {
+    name: "altered consciousness + fever",
+    text: "altered consciousness with fever",
+  },
+  {
+    name: "seizure + fever",
+    text: "seizure with fever",
+  },
+  {
+    name: "haemoptysis + dyspnoea",
+    text: "haemoptysis and dyspnoea",
+  },
+  {
+    name: "syncope + chest pain",
+    text: "syncope after sudden chest pain",
+  },
+];
+
+for (const c of NEW_CRITICAL_CLUSTER_CASES) {
+  test(`analyzeSymptoms: ${c.name} cluster is critical`, () => {
+    const out = analyzeSymptoms(c.text);
+    assertAnalyzeShape(out);
+    assert.equal(out.risk_level, "critical");
+  });
+}
+
+const NEW_HIGH_CLUSTER_CASES = [
+  {
+    name: "fever + rigors + oliguria",
+    text: "fever with rigors and oliguria",
+  },
+  {
+    name: "headache + visual disturbance",
+    text: "headache with visual disturbance",
+  },
+  {
+    name: "abdominal pain + rigors",
+    text: "abdominal pain and rigors",
+  },
+  {
+    name: "back pain + haematuria",
+    text: "back pain with haematuria",
+  },
+  {
+    name: "tachycardia + diaphoresis",
+    text: "tachycardia with diaphoresis",
+  },
+];
+
+for (const c of NEW_HIGH_CLUSTER_CASES) {
+  test(`analyzeSymptoms: ${c.name} cluster is at least high`, () => {
+    const out = analyzeSymptoms(c.text);
+    assertAnalyzeShape(out);
+    assert.ok(["high", "critical"].includes(out.risk_level));
+  });
+}
+
 test("analyzeSymptoms: chest pain alone is at least high", () => {
   const out = analyzeSymptoms("retrosternal chest pain");
   assertAnalyzeShape(out);

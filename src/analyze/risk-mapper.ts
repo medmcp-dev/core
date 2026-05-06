@@ -37,12 +37,32 @@ const MEDIUM_SYMPTOMS = new Set([
   "photophobia",
 ]);
 
-const CRITICAL_COMBINATIONS: string[][] = [
-  ["chest pain", "dyspnoea"],
-  ["chest pain", "diaphoresis"],
-  ["hemiplegia", "dysarthria"],
-  ["facial droop", "dysarthria"],
-  ["fever", "neck stiffness", "photophobia"],
+interface RiskCombination {
+  symptoms: string[];
+  reason: string;
+}
+
+const CRITICAL_COMBINATIONS: RiskCombination[] = [
+  { symptoms: ["chest pain", "dyspnoea"], reason: "Possible acute cardiopulmonary emergency" },
+  { symptoms: ["chest pain", "diaphoresis"], reason: "Possible acute coronary syndrome" },
+  { symptoms: ["hemiplegia", "dysarthria"], reason: "Possible acute stroke" },
+  { symptoms: ["facial droop", "dysarthria"], reason: "Possible acute stroke" },
+  { symptoms: ["fever", "neck stiffness", "photophobia"], reason: "Possible meningitis" },
+  { symptoms: ["chest pain", "jaw pain"], reason: "Possible ACS with jaw radiation" },
+  { symptoms: ["chest pain", "back pain"], reason: "Possible aortic dissection" },
+  { symptoms: ["dyspnoea", "hypoxia"], reason: "Possible respiratory failure" },
+  { symptoms: ["altered consciousness", "fever"], reason: "Possible septic encephalopathy" },
+  { symptoms: ["seizure", "fever"], reason: "Possible CNS infection" },
+  { symptoms: ["haemoptysis", "dyspnoea"], reason: "Possible pulmonary embolism with haemorrhage" },
+  { symptoms: ["syncope", "chest pain"], reason: "High-risk syncope (aortic, PE, dissection)" },
+];
+
+const HIGH_COMBINATIONS: RiskCombination[] = [
+  { symptoms: ["fever", "rigors", "oliguria"], reason: "Possible early sepsis" },
+  { symptoms: ["headache", "visual disturbance"], reason: "Possible hypertensive crisis or SAH" },
+  { symptoms: ["abdominal pain", "rigors"], reason: "Possible peritonitis or perforation" },
+  { symptoms: ["back pain", "haematuria"], reason: "Possible renal colic or aortic pathology" },
+  { symptoms: ["tachycardia", "diaphoresis"], reason: "Possible thyroid storm or shock" },
 ];
 
 export function mapRisk(
@@ -60,10 +80,20 @@ export function mapRisk(
   const extracted = new Set(extractedSymptoms);
 
   for (const combo of CRITICAL_COMBINATIONS) {
-    const hasAll = combo.every((sym) => extracted.has(sym));
+    const hasAll = combo.symptoms.every((sym) => extracted.has(sym));
     if (hasAll) {
-      reasons.push(`critical symptom cluster: ${combo.join(" + ")}`);
+      reasons.push(`critical symptom cluster: ${combo.symptoms.join(" + ")} (${combo.reason})`);
       risk_level = "critical";
+    }
+  }
+
+  if (risk_level !== "critical") {
+    for (const combo of HIGH_COMBINATIONS) {
+      const hasAll = combo.symptoms.every((sym) => extracted.has(sym));
+      if (hasAll) {
+        reasons.push(`high-risk symptom cluster: ${combo.symptoms.join(" + ")} (${combo.reason})`);
+        risk_level = "high";
+      }
     }
   }
 
