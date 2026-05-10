@@ -10,6 +10,8 @@ for the **core** package version in the repo root (`package.json`).
 
 ### Documentation
 
+- **`docs/roadmap-mcp-capabilities.md`** — capability surfaces (symptom, lab, imaging, oncology direction) + Clauda/Cursor checklists and product hints.
+
 - **`docs/risk-classification-draft.md`** — pragmatic risk policy (**implementation** in `risk-mapper` **v2:** see **Changed** below; still update this doc if wording drifts).
 
 - **`docs/gdpr.md`** — data categories, logging shapes, retention notes, controller / sub-processors (developer-facing summary); **Railway Amsterdam** + **~7 day** in-platform log retention documented for current production config.
