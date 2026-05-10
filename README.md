@@ -27,7 +27,7 @@ cd sdk-python && python -m unittest discover -s tests -p "test_*.py"
 
 CI runs the same checks on push and pull requests to `main` (see `.github/workflows/ci.yml`).
 
-**Medical content (`src/data/seed-*`, symptom rules in `src/analyze/`, clinical MCP tooling):** required review workflow and checklist — [`docs/medical-review.md`](./docs/medical-review.md).
+**Medical content (`src/data/seed-*`, symptom rules in `src/analyze/`, clinical MCP tooling):** required review workflow and checklist — [`docs/medical-review.md`](./docs/medical-review.md). **Risk heuristic policy (symptom tiers):** [`docs/risk-classification-draft.md`](./docs/risk-classification-draft.md) (mirror of `risk-mapper` intent; PRs that change rules still need **`medical: approved`**).
 
 **Usage policy — EN (canonical):** [`docs/policy.md`](./docs/policy.md). **HR summary (landing copy):** [`docs/policy-hr.md`](./docs/policy-hr.md). **Playbook za Lovable / footer:** [`docs/landing-lovable.md`](./docs/landing-lovable.md).
 

@@ -48,6 +48,10 @@ const SYNONYMS: Record<string, string[]> = {
     "tachycardia", "rapid heart rate", "fast pulse", "fast heart rate",
     "elevated heart rate", "rapid pulse",
   ],
+  "hypotension": [
+    "hypotension", "low blood pressure", "low bp", "blood pressure low", "bp low",
+    "hypotensive",
+  ],
   "bradycardia": [
     "bradycardia", "slow heart rate", "slow pulse",
   ],
@@ -76,8 +80,7 @@ const SYNONYMS: Record<string, string[]> = {
 
   // --- Neurological ---
   "headache": [
-    "headache", "head pain", "cephalalgia", "migraine", "thunderclap headache",
-    "worst headache of my life",
+    "headache", "head pain", "cephalalgia", "migraine",
   ],
   "neck stiffness": [
     "neck stiffness", "stiff neck", "nuchal rigidity", "meningism",
@@ -95,10 +98,14 @@ const SYNONYMS: Record<string, string[]> = {
     "facial droop", "facial weakness", "drooping face", "face drooping",
     "one side of face drooping", "asymmetric face",
   ],
+  "arm weakness": [
+    "arm weakness", "weak arm", "weakness in arm", "cannot lift arm", "can't lift arm",
+    "cannot move arm", "can't move arm",
+  ],
   "hemiplegia": [
-    "hemiplegia", "hemiparesis", "arm weakness", "leg weakness",
+    "hemiplegia", "hemiparesis", "leg weakness",
     "one-sided weakness", "unilateral weakness", "weakness on one side",
-    "cannot move arm", "cannot move leg",
+    "cannot move leg", "can't move leg",
   ],
   "dysarthria": [
     "dysarthria", "slurred speech", "difficulty speaking", "speech slurred",
@@ -107,6 +114,10 @@ const SYNONYMS: Record<string, string[]> = {
   "dysphasia": [
     "dysphasia", "aphasia", "difficulty finding words", "speech problems",
     "cannot find words", "word finding difficulty", "cannot understand speech",
+  ],
+  "sudden vision loss": [
+    "sudden vision loss", "sudden loss of vision", "lost vision suddenly",
+    "acute vision loss", "amaurosis",
   ],
   "visual disturbance": [
     "visual disturbance", "blurred vision", "vision problems", "double vision",

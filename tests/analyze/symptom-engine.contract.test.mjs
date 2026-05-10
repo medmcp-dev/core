@@ -139,3 +139,39 @@ test("analyzeSymptoms: mild fatigue may stay low or medium with DB matches", () 
   assert.ok(["low", "medium"].includes(out.risk_level));
   assert.ok(out.entities.some((e) => e.type === "symptom"));
 });
+
+test("analyzeSymptoms: haemoptysis alone is high, not critical", () => {
+  const out = analyzeSymptoms("coughing up blood this morning");
+  assertAnalyzeShape(out);
+  assert.equal(out.risk_level, "high");
+  assert.ok(out.entities.some((e) => e.type === "symptom" && e.value === "haemoptysis"));
+});
+
+test("analyzeSymptoms: palpitations alone is medium", () => {
+  const out = analyzeSymptoms("heart racing and pounding");
+  assertAnalyzeShape(out);
+  assert.equal(out.risk_level, "medium");
+});
+
+test("analyzeSymptoms: seizure includes explanatory seizure context signal", () => {
+  const out = analyzeSymptoms("had a seizure today");
+  assertAnalyzeShape(out);
+  assert.ok(
+    out.signals.some(
+      (s) =>
+        s.type === "risk_driver" &&
+        s.detail &&
+        /known epilepsy/i.test(s.detail) &&
+        /patient history/i.test(s.detail)
+    )
+  );
+});
+
+test("analyzeSymptoms: five moderate-only extracts stay medium-tier risk", () => {
+  // Avoid fever+rigors+oliguria (clustered as early sepsis → HIGH in mapper).
+  const out = analyzeSymptoms(
+    "low blood pressure, barely urinating, blood in urine, sensitivity to light, heart racing"
+  );
+  assertAnalyzeShape(out);
+  assert.equal(out.risk_level, "medium");
+});
