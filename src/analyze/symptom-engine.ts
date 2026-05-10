@@ -89,6 +89,17 @@ export function analyzeSymptoms(text: string): AnalyzeOutput {
     signals.push({ type: "symptom_match", label: s });
   }
 
+  if (extractedSymptoms.includes("seizure")) {
+    signals.unshift({
+      type: "risk_driver",
+      label: "Seizure context",
+      detail:
+        "Seizure flagged as high-risk by default. In patients with known epilepsy " +
+        "and a typical seizure pattern, risk should be evaluated per individual " +
+        "management plan — this engine does not have access to patient history.",
+    });
+  }
+
   const topDx = result.differentials[0];
   const symptomList = extractedSymptoms.join(", ");
   const differentialSummary = topDx
