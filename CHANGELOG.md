@@ -10,7 +10,7 @@ for the **core** package version in the repo root (`package.json`).
 
 ### Added
 
-- HTTP observability: optional JSON request logs (`LOG_HTTP_JSON=true`) and rolling-window **`[http-metrics]`** summaries with per-route **p50 / p95** latency plus **429 / 5xx / 4xx** counts (`MEDDATA_HTTP_METRICS_INTERVAL_SEC`, e.g. `60`).
+- HTTP observability: optional JSON request logs (`LOG_HTTP_JSON=true`) and rolling-window **`[http-metrics]`** summaries with per-route **p50 / p95** latency plus **429 / 5xx / 4xx** counts (period controlled by **`MEDDATA_HTTP_METRICS_INTERVAL_SEC`**).
 - HTTP middleware adds `X-MedMCP-*` response headers on all `/v1/*` routes (schema version, release, optional git/data revision); CORS `exposeHeaders` for browser clients.
 - `GET /v1/schema` includes `agent_tooling` (positioning, MCP name, endpoint index, limitations, header meanings).
 - MCP tool descriptions prefixed for agent hosts: structured facts for tool-calling, not individualized clinical decisions.
@@ -21,6 +21,7 @@ for the **core** package version in the repo root (`package.json`).
 
 ### Changed
 
+- HTTP rollup metrics run **every 60 seconds by default** when **`NODE_ENV=production`** (e.g. Railway / production Docker images) unless **`MEDDATA_HTTP_METRICS_INTERVAL_SEC`** is set; set it to **`0`** to disable.
 - DevDependency `@types/node` set to `^22` in the core package and in `sdk/` so typings match CI (`node-version: "22"`).
 
 ## [0.1.0] — 2026-05-06
