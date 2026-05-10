@@ -120,14 +120,31 @@ export function flushHttpMetricsSnapshot(): void {
   );
 }
 
-/** Start periodic snapshot logs. Idempotent enough for tests (single worker). */
+const MAX_REPORT_INTERVAL_SEC = 86_400;
+
+function resolveMetricsIntervalSec(): number {
+  const raw = process.env.MEDDATA_HTTP_METRICS_INTERVAL_SEC;
+  if (raw !== undefined) {
+    const trimmed = raw.trim();
+    /** Explicit `0` or empty disables rollup even in production (default-on). */
+    if (trimmed === "" || trimmed === "0") return 0;
+    const parsed = Number(trimmed);
+    if (!(parsed > 0) || !Number.isFinite(parsed)) return 0;
+    return Math.min(parsed, MAX_REPORT_INTERVAL_SEC);
+  }
+  /** Ready for pilots: rollup every minute when `NODE_ENV=production`, no Dashboard var needed. */
+  if (process.env.NODE_ENV === "production") return 60;
+  return 0;
+}
+
+/** Start periodic snapshot logs (`[http-metrics]`). Idempotent enough for tests (single worker). */
 export function startHttpMetricsReporterIfConfigured(): void {
-  const raw = process.env.MEDDATA_HTTP_METRICS_INTERVAL_SEC?.trim();
-  if (!raw) return;
+  const sec = resolveMetricsIntervalSec();
+  if (sec <= 0) return;
 
-  const sec = Number(raw);
-  if (!(sec > 0) || !Number.isFinite(sec)) return;
-
-  const ms = Math.min(Math.round(sec * 1000), 86_400_000);
+  const ms = Math.round(sec * 1000);
+  console.info(
+    `[http] metrics rollup enabled: every ${sec}s (override with MEDDATA_HTTP_METRICS_INTERVAL_SEC, disable with =0)`
+  );
   setInterval(() => flushHttpMetricsSnapshot(), ms).unref();
 }

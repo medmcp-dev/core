@@ -51,7 +51,7 @@ Auth: `X-API-Key` header. Key se generira automatski pri prvom pokretanju ako `M
 
 - **URL:** `https://core-production-389e.up.railway.app`
 - **Volume:** montiran na `/data`, DB na `/data/meddata.db`
-- **Env vars:** `DB_PATH=/data/meddata.db`, `PORT` (Railway injektira), `MEDDATA_API_KEY` (opcionalno)
+- **Env vars:** `DB_PATH=/data/meddata.db`, `PORT` (Railway injektira), `MEDDATA_API_KEY` (opcionalno); **`MEDDATA_HTTP_METRICS_INTERVAL_SEC`** opcionalno (default rollup u produkciji vidi „Logovi“); **`LOG_HTTP_JSON`** strukturiran request log.
 - Opcionalno observability/revizija u `/v1/health`: `MEDDATA_DATA_REVISION`, `MEDDATA_GIT_REVISION` (Railway često ima `RAILWAY_GIT_COMMIT_SHA` — već čitamo kao fallback). Za log health checkova: `LOG_HTTP_HEALTH=true`.
 - **Auto-deploy:** svaki push na `main` → Railway automatski builda i deploya
 - **Health check:** `/v1/health`, timeout 30s
@@ -84,7 +84,7 @@ node dist/http/server.js
 ### Logovi
 - Za `/v1/*` (osim zadanog **GET `/v1/health`**) vide se linije `[http] METHOD path status …ms`. Za health ping u log postavi **`LOG_HTTP_HEALTH=true`**.
 - **Strukturiran request log (Log drain / SIEM):** `LOG_HTTP_JSON=true` — jedan JSON po requestu (`msg:http_request`, `duration_ms`, `status_class`).
-- **Periodički sažetak (bez APM-a):** `MEDDATA_HTTP_METRICS_INTERVAL_SEC=60` — svakih N sekundi linija **`[http-metrics]`** s **`totals`** (ukupni requesti, **429**, **5xx**, ostali **4xx**) i po ruti **p50 / p95 / avg ms** za prošli prozor.
+- **Periodički sažetak (bez APM-a):** u **`NODE_ENV=production`** (Railway/Docker image) rollup je **zadano svakih 60 s** — linija **`[http-metrics]`** s **`totals`** i po ruti **p50 / p95 / avg ms**. Na startu će se vidjeti poruka `metrics rollup enabled`. Drugače: postavi **`MEDDATA_HTTP_METRICS_INTERVAL_SEC`** (sekunde); **`=0`** ga gasi čak i u produkciji.
 
 ### Lokalna provjera
 ```bash
