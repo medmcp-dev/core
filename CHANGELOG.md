@@ -13,6 +13,10 @@ for the **core** package version in the repo root (`package.json`).
 - HTTP middleware adds `X-MedMCP-*` response headers on all `/v1/*` routes (schema version, release, optional git/data revision); CORS `exposeHeaders` for browser clients.
 - `GET /v1/schema` includes `agent_tooling` (positioning, MCP name, endpoint index, limitations, header meanings).
 - MCP tool descriptions prefixed for agent hosts: structured facts for tool-calling, not individualized clinical decisions.
+- Symptom **risk mapper** expanded with additional **critical** and **high** symptom clusters (`src/analyze/risk-mapper.ts`).
+- **`POST /v1/analyze` response (`type=symptom`)**: additive `signals[]` field (`risk_driver`, `differential`, `symptom_match`) alongside `interpretation` (`src/analyze/symptom-engine.ts`).
+- **`GET /v1/schema`** `output` JSON schema documents `signals`.
+- SDK parity: **`AnalyzeResult.signals`** in TypeScript (`sdk/src/types.ts`) and Python (`sdk-python/medmcp/types.py`), with Python client parsing when present (defaults to `[]` against older cores).
 
 ### Changed
 

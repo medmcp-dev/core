@@ -4,6 +4,7 @@ from typing import Any, Literal
 RiskLevel = Literal["low", "medium", "high", "critical"]
 SourceType = Literal["symptom", "lab", "vitals", "medication"]
 EntityType = Literal["symptom", "diagnosis", "icd_code"]
+SignalType = Literal["risk_driver", "differential", "symptom_match"]
 
 
 @dataclass
@@ -14,10 +15,18 @@ class Entity:
 
 
 @dataclass
+class Signal:
+    type: SignalType
+    label: str
+    detail: str | None = None
+
+
+@dataclass
 class AnalyzeResult:
     risk_level: RiskLevel
     confidence: float
     entities: list[Entity]
+    signals: list[Signal]
     source_type: SourceType
     interpretation: str
 

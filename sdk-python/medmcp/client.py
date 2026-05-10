@@ -6,7 +6,7 @@ import socket
 import time
 from typing import Any
 
-from .types import AnalyzeResult, Entity, HealthResult, LabListItem, LabValue, WaitlistEntry
+from .types import AnalyzeResult, Entity, HealthResult, LabListItem, LabValue, Signal, WaitlistEntry
 
 DEFAULT_BASE_URL = "https://core-production-389e.up.railway.app"
 DEFAULT_TIMEOUT_MS = 10_000
@@ -49,6 +49,10 @@ class MedMCP:
                     metadata=e.get("metadata") or {},
                 )
                 for e in data.get("entities", [])
+            ],
+            signals=[
+                Signal(type=s["type"], label=s["label"], detail=s.get("detail"))
+                for s in data.get("signals", [])
             ],
             source_type=data["source_type"],
             interpretation=data["interpretation"],
