@@ -58,6 +58,23 @@ const OUTPUT_SCHEMA = {
         },
       },
     },
+    signals: {
+      type: "array",
+      description:
+        "Structured signals for agents: risk drivers from rules, top differentials with match scores, and extracted symptom tokens.",
+      items: {
+        type: "object",
+        required: ["type", "label"],
+        properties: {
+          type: {
+            type: "string",
+            enum: ["risk_driver", "differential", "symptom_match"],
+          },
+          label: { type: "string" },
+          detail: { type: "string" },
+        },
+      },
+    },
     source_type: {
       type: "string",
       enum: ["symptom", "lab", "vitals", "medication"],

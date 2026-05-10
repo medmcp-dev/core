@@ -5,7 +5,7 @@ from unittest.mock import patch
 import urllib.error
 
 from medmcp.client import MedMCP, MedMCPError
-from medmcp.types import LabListItem, WaitlistEntry
+from medmcp.types import AnalyzeResult, LabListItem, WaitlistEntry
 
 
 class FakeResponse:
@@ -23,6 +23,34 @@ class FakeResponse:
 
 
 class TestMedMCPClient(unittest.TestCase):
+    @patch("urllib.request.urlopen")
+    def test_analyze_parses_signals(self, mock_urlopen):
+        mock_urlopen.return_value = FakeResponse(
+            {
+                "risk_level": "high",
+                "confidence": 1.0,
+                "entities": [
+                    {"type": "symptom", "value": "chest pain"},
+                    {"type": "diagnosis", "value": "pulmonary embolism", "metadata": {"match_score": 1}},
+                ],
+                "signals": [
+                    {"type": "risk_driver", "label": "chest pain", "detail": "high-risk symptom"},
+                    {"type": "differential", "label": "pulmonary embolism", "detail": "match_score: 1"},
+                    {"type": "symptom_match", "label": "chest pain"},
+                ],
+                "source_type": "symptom",
+                "interpretation": "1 symptom(s) identified: chest pain.",
+            }
+        )
+
+        client = MedMCP(api_key="test_key", base_url="https://example.com")
+        result = client.analyze("chest pain")
+
+        self.assertIsInstance(result, AnalyzeResult)
+        self.assertEqual(len(result.signals), 3)
+        self.assertEqual(result.signals[0].type, "risk_driver")
+        self.assertEqual(result.signals[0].detail, "high-risk symptom")
+
     @patch("urllib.request.urlopen")
     def test_lab_list_smoke(self, mock_urlopen):
         mock_urlopen.return_value = FakeResponse(

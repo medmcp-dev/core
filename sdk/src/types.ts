@@ -8,10 +8,19 @@ export interface Entity {
   metadata?: Record<string, unknown>;
 }
 
+export type SignalType = "risk_driver" | "differential" | "symptom_match";
+
+export interface Signal {
+  type: SignalType;
+  label: string;
+  detail?: string;
+}
+
 export interface AnalyzeResult {
   risk_level: RiskLevel;
   confidence: number;
   entities: Entity[];
+  signals: Signal[];
   source_type: SourceType;
   interpretation: string;
 }

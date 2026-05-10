@@ -11,6 +11,8 @@ export type {
   LabValue,
   MedMCPOptions,
   RiskLevel,
+  Signal,
+  SignalType,
   SourceType,
   WaitlistEntry,
   WaitlistJoinResult,
