@@ -133,8 +133,8 @@ Koristi kao roadmap: što već imaš vs što diže povjerenje developera i klini
 
 - [x] Deterministički put (rule-based symptom engine bez LLM-a u jezgri `/v1/analyze`)
 - [x] Jasna klasifikacija rizika + cluster pravila + „Risk drivers” u tekstu (uz medicinski review)
-- [ ] Formalni medicinski review ciklus (tko odobrava nove seed/rule promjene, minimalni checklist po PR-u) — vidi **Medicinski review (Bruno)** ispod
-- [ ] Jedna policy stranica: što proizvod **nije** (nije dijagnoza, nije osobni savjet bez konteksta)
+- [x] Formalni medicinski review ciklus — puni proces u **[`docs/medical-review.md`](./docs/medical-review.md)**; dolje je kraći podsjetnik u ovom dokumentu
+- [x] Jedna policy stranica: što proizvod **nije** — **[`docs/policy.md`](./docs/policy.md)** (kopirati na landing po potrebi)
 - [x] Verzioniranje znanja — u `/v1/health`: `release` (semver), opc. `git_revision`, opc. **`MEDDATA_DATA_REVISION`** (postavi na Railwayu kad mijenjaš seed/pravila)
 
 ### 2) Developer experience (da te startupi biraju kao default)
@@ -165,7 +165,7 @@ Koristi kao roadmap: što već imaš vs što diže povjerenje developera i klini
 - [x] Runbook: vidi sekciju **Runbook (brza dijagnostika)** u ovom fileu
 - [x] Dependabot (npm core + sdk, pip sdk-python, github-actions)
 - [ ] Secret scanning (GitHub u postavkama repoa); ručni pregled prije širenje repoa
-- [ ] GDPR flow (što se logira, retention) — kratki doc, ne roman
+- [x] GDPR flow (što se logira, retention) — kratki doc: **[`docs/gdpr.md`](./docs/gdpr.md)**
 
 ### 5) Tržište i „moat” (zašto baš ti)
 
@@ -222,7 +222,9 @@ Ranije merging na `main` (sažeto):
 
 ## Medicinski review (Bruno) — mini-checklist po PR-u
 
-Koristi kad PR dira **`src/data/seed-*`**, **`src/analyze/`**, ili značajno **`src/tools/`** medicinski sadržaj:
+Puni tijek (`medical: approved`, label, što proces ne pokriva): **[`docs/medical-review.md`](./docs/medical-review.md)**.
+
+Podsjetnik — koristi kad PR dira **`src/data/seed-*`**, **`src/analyze/`**, ili značajno **`src/tools/`** medicinski sadržaj:
 
 - [ ] Jesu li kliničke tvrdnje u skladu s onim što želiš javno stajati iza (seed ≠ sveobuhvatna medicina)?
 - [ ] Jesu li **severity** kod interakcija (mild/moderate/severe) i parovi lijekova smisleni?
@@ -236,4 +238,4 @@ Koristi kad PR dira **`src/data/seed-*`**, **`src/analyze/`**, ili značajno **`
 - Vlasnik medicinskih podataka je Bruno (med student) — uvijek potvrdi s njim točnost dijagnoza/lijekova
 - Architekturalne odluke: Claude
 - Komunikacija: hrvatski
-- Landing page/website je napravljen preko Lovable (koristiti kao source-of-truth za web copy/branding dok se docs usklađuju).
+- Landing page/website je napravljen preko Lovable (koristiti kao source-of-truth za web copy/branding dok se docs usklađuju). **Usage policy na webu bez duplog EN:** vidi **[`docs/landing-lovable.md`](./docs/landing-lovable.md)** (`policy-hr.md` za pasted HR odlomak, footer link na `policy.md` na GitHubu).

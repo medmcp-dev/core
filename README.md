@@ -27,6 +27,12 @@ cd sdk-python && python -m unittest discover -s tests -p "test_*.py"
 
 CI runs the same checks on push and pull requests to `main` (see `.github/workflows/ci.yml`).
 
+**Medical content (`src/data/seed-*`, symptom rules in `src/analyze/`, clinical MCP tooling):** required review workflow and checklist — [`docs/medical-review.md`](./docs/medical-review.md).
+
+**Usage policy — EN (canonical):** [`docs/policy.md`](./docs/policy.md). **HR summary (landing copy):** [`docs/policy-hr.md`](./docs/policy-hr.md). **Playbook za Lovable / footer:** [`docs/landing-lovable.md`](./docs/landing-lovable.md).
+
+**Data / logging / GDPR (developer summary):** [`docs/gdpr.md`](./docs/gdpr.md).
+
 **Release notes:** see [`CHANGELOG.md`](./CHANGELOG.md). Before a tagged release, update that file and bump `version` in the root `package.json` (and SDK package versions when you publish them).
 
 **Agent / HTTP clients:** every `/v1/*` response includes `X-MedMCP-Schema-Version`, `X-MedMCP-Release`, and optional `X-MedMCP-Git-Revision` / `X-MedMCP-Data-Revision` (see `GET /v1/schema` → `agent_tooling`). CORS exposes these headers to browsers.
