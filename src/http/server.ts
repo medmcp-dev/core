@@ -11,6 +11,7 @@ import { labHandler } from "./routes/lab.js";
 import { waitlistPostHandler, waitlistGetHandler } from "./routes/waitlist.js";
 import { requestTimingLog } from "./middleware/requestLog.js";
 import { agentMetaHeaders } from "./middleware/agentMetaHeaders.js";
+import { startHttpMetricsReporterIfConfigured } from "./metrics-http.js";
 
 process.on("uncaughtException", (err) => { console.error("UNCAUGHT:", err); });
 process.on("unhandledRejection", (err) => { console.error("UNHANDLED:", err); });
@@ -59,6 +60,7 @@ app.notFound((c) => c.json({ error: "Not found" }, 404));
 const PORT = Number(process.env.PORT ?? 3000);
 
 console.log(`Starting server on port ${PORT}...`);
+startHttpMetricsReporterIfConfigured();
 serve({ fetch: app.fetch, port: PORT, hostname: "0.0.0.0" });
 console.log(`MedMCP HTTP server running on http://0.0.0.0:${PORT}`);
 

@@ -83,6 +83,8 @@ node dist/http/server.js
 
 ### Logovi
 - Za `/v1/*` (osim zadanog **GET `/v1/health`**) vide se linije `[http] METHOD path status …ms`. Za health ping u log postavi **`LOG_HTTP_HEALTH=true`**.
+- **Strukturiran request log (Log drain / SIEM):** `LOG_HTTP_JSON=true` — jedan JSON po requestu (`msg:http_request`, `duration_ms`, `status_class`).
+- **Periodički sažetak (bez APM-a):** `MEDDATA_HTTP_METRICS_INTERVAL_SEC=60` — svakih N sekundi linija **`[http-metrics]`** s **`totals`** (ukupni requesti, **429**, **5xx**, ostali **4xx**) i po ruti **p50 / p95 / avg ms** za prošli prozor.
 
 ### Lokalna provjera
 ```bash
