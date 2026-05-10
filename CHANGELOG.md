@@ -8,6 +8,11 @@ for the **core** package version in the repo root (`package.json`).
 
 ## [Unreleased]
 
+### Documentation
+
+- **`docs/gdpr.md`** — data categories, logging shapes, retention notes, controller / sub-processors (developer-facing summary); **Railway Amsterdam** + **~7 day** in-platform log retention documented for current production config.
+- **`docs/policy.md`** — usage policy (ENG); Croatian summary moved to **`docs/policy-hr.md`**; playbook for Vercel/Lovable (**footer link**, HR paste) — **`docs/landing-lovable.md`**.
+
 ### Added
 
 - HTTP observability: optional JSON request logs (`LOG_HTTP_JSON=true`) and rolling-window **`[http-metrics]`** summaries with per-route **p50 / p95** latency plus **429 / 5xx / 4xx** counts (period controlled by **`MEDDATA_HTTP_METRICS_INTERVAL_SEC`**).
