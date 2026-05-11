@@ -19,6 +19,8 @@ for the **core** package version in the repo root (`package.json`).
 
 ### Added
 
+- **`npm run api-keys`** — SQLite admin za **create / list / revoke** HTTP ključeva (`src/scripts/api-keys-admin.ts`).
+- **`docs/profesor-quickstart.md`** — copy/paste **PowerShell / curl** za `POST /v1/analyze` + napomena za zaseban ključ i rotaciju.
 - HTTP observability: optional JSON request logs (`LOG_HTTP_JSON=true`) and rolling-window **`[http-metrics]`** summaries with per-route **p50 / p95** latency plus **429 / 5xx / 4xx** counts (period controlled by **`MEDDATA_HTTP_METRICS_INTERVAL_SEC`**).
 - HTTP middleware adds `X-MedMCP-*` response headers on all `/v1/*` routes (schema version, release, optional git/data revision); CORS `exposeHeaders` for browser clients.
 - `GET /v1/schema` includes `agent_tooling` (positioning, MCP name, endpoint index, limitations, header meanings).
