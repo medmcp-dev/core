@@ -140,6 +140,16 @@ test("analyzeSymptoms: mild fatigue may stay low or medium with DB matches", () 
   assert.ok(out.entities.some((e) => e.type === "symptom"));
 });
 
+test("analyzeSymptoms: negated chest pain and dyspnoea do not trigger high-risk mapping", () => {
+  const out = analyzeSymptoms(
+    "runny nose and sneezing for 1 day, no fever, no chest pain, no shortness of breath"
+  );
+  assertAnalyzeShape(out);
+  assert.ok(["low", "medium"].includes(out.risk_level));
+  assert.ok(!out.entities.some((e) => e.type === "symptom" && e.value === "chest pain"));
+  assert.ok(!out.entities.some((e) => e.type === "symptom" && e.value === "dyspnoea"));
+});
+
 test("analyzeSymptoms: haemoptysis alone is high, not critical", () => {
   const out = analyzeSymptoms("coughing up blood this morning");
   assertAnalyzeShape(out);
