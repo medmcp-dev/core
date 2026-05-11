@@ -1,0 +1,13 @@
+---
+description: Branch protection — nikad direktan push na main; uvijek PR link
+alwaysApply: true
+---
+
+# Git / merge workflow (medmcp-dev/core)
+
+- **`main` je zaštićen:** nemoj `git push origin main`. Nemoj commitati direktno na `main`.
+- Kad imaš izmjene u kodu: **`git checkout main && git pull origin main`**, zatim **`git checkout -b feat/<kratko-ime>`** (ili `fix/...`), **`git add` / `git commit`**, **`git push -u origin HEAD`** (ili puno ime grane).
+- Nakon pusha **uvijek** daj korisniku link za PR prema `main`:
+  - `https://github.com/medmcp-dev/core/compare/main...<branch>?expand=1`
+  - ili `https://github.com/medmcp-dev/core/pull/new/<branch>`
+- Ako `checkout main` blokira zbog lokalnih izmjena: **`git stash`** (ili commit na trenutnoj grani), pa sink, pa nova grana + **`git stash pop`** ako treba.

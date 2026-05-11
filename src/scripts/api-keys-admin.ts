@@ -5,6 +5,7 @@
  *   npm run build && npm run api-keys -- create <name>
  *   npm run build && npm run api-keys -- list
  *   npm run build && npm run api-keys -- revoke <key>
+ *   npm run build && npm run api-keys -- set-plan <key> default|full|custom
  *
  * Env: DB_PATH — same database as HTTP server / seed (Railway volume path in production).
  */
@@ -15,10 +16,12 @@ import {
   createApiKey,
   listApiKeys,
   deleteApiKey,
+  getApiKeyPlan,
   getCapabilitiesForKey,
   setCapabilitiesForKey,
+  setPlanForKey,
 } from "../db/database.js";
-import { KNOWN_CAPABILITIES, type Capability } from "../http/capabilities.js";
+import { API_KEY_PLANS, KNOWN_CAPABILITIES, type ApiKeyPlan, type Capability } from "../http/capabilities.js";
 
 function printHelp(): void {
   console.log(`api-keys-admin — manage MEDDATA SQLite API keys
@@ -29,7 +32,13 @@ Commands:
   revoke <key>          Delete one row by exact key string
   capabilities <key>    Show explicit capability list for key
   set-capabilities <key> <csv|all|clear>
-                        Examples: symptoms,labs / all / clear
+                        csv: custom plan with that capability set
+                        all: plan full (all capabilities; clears capability rows)
+                        clear: same as all (full access)
+  set-plan <key> <default|full|custom>
+                        default: starter tier (symptoms, labs, schema)
+                        full: all capabilities (clears capability rows)
+                        custom: use rows from set-capabilities (custom with no rows = no caps)
 
 Environment:
   DB_PATH               Path to meddata.sqlite (defaults match core server)
@@ -39,14 +48,14 @@ Examples:
   npm run api-keys -- revoke mk_abc123...
   npm run api-keys -- set-capabilities mk_abc123... symptoms,labs
   npm run api-keys -- set-capabilities mk_abc123... clear
+  npm run api-keys -- set-plan mk_abc123... default
 `);
 }
 
 function parseCapabilities(input: string): Capability[] {
-  const raw = input.trim().toLowerCase();
-  if (raw === "all") return [...KNOWN_CAPABILITIES];
-  if (raw === "clear") return [];
-  const parts = raw
+  const parts = input
+    .trim()
+    .toLowerCase()
     .split(",")
     .map((p) => p.trim())
     .filter(Boolean);
@@ -99,10 +108,10 @@ function main(): void {
       for (const r of rows) {
         const last = r.last_used_at ?? "never";
         const caps = getCapabilitiesForKey(r.key);
-        const capLabel = caps.length === 0 ? "all (legacy default)" : caps.join(",");
-        console.log(`${r.name}\tcreated ${r.created_at}\tlast_used ${last}`);
+        const capLabel = caps.join(",");
+        console.log(`${r.name}\tplan ${r.plan}\tcreated ${r.created_at}\tlast_used ${last}`);
         console.log(`  ${r.key}`);
-        console.log(`  capabilities: ${capLabel}`);
+        console.log(`  effective capabilities: ${capLabel}`);
       }
       break;
     }
@@ -122,11 +131,29 @@ function main(): void {
         console.error("Usage: npm run api-keys -- capabilities <exact-key>");
         process.exit(1);
       }
+      const plan = getApiKeyPlan(key.trim());
       const caps = getCapabilitiesForKey(key.trim());
-      if (caps.length === 0) {
-        console.log("(no explicit capabilities set -> legacy/full-access behavior)");
-      } else {
-        console.log(caps.join(","));
+      console.log(`plan: ${plan ?? "(unknown)"}`);
+      console.log(caps.length === 0 ? "(none)" : caps.join(","));
+      break;
+    }
+    case "set-plan": {
+      const key = argv[1];
+      const planArg = argv[2]?.trim().toLowerCase();
+      if (!key?.trim() || !planArg) {
+        console.error("Usage: npm run api-keys -- set-plan <exact-key> <default|full|custom>");
+        process.exit(1);
+      }
+      if (!(API_KEY_PLANS as readonly string[]).includes(planArg)) {
+        console.error(`Invalid plan. Use one of: ${API_KEY_PLANS.join(", ")}`);
+        process.exit(1);
+      }
+      try {
+        setPlanForKey(key.trim(), planArg as ApiKeyPlan);
+        console.log(`Set plan to "${planArg}" for key.`);
+      } catch (e) {
+        console.error("set-plan failed:", e);
+        process.exit(1);
       }
       break;
     }
@@ -138,13 +165,15 @@ function main(): void {
         process.exit(1);
       }
       try {
+        const raw = set.trim().toLowerCase();
+        if (raw === "all" || raw === "clear") {
+          setPlanForKey(key.trim(), "full");
+          console.log("Set plan full (all capabilities).");
+          break;
+        }
         const caps = parseCapabilities(set);
         setCapabilitiesForKey(key.trim(), caps);
-        console.log(
-          caps.length === 0
-            ? "Cleared explicit capabilities (legacy/full-access behavior restored)."
-            : `Set capabilities: ${caps.join(",")}`
-        );
+        console.log(`Set plan custom with capabilities: ${caps.join(",")}`);
       } catch (e) {
         console.error("set-capabilities failed:", e);
         process.exit(1);

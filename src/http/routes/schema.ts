@@ -4,7 +4,11 @@ import {
   MEDDATA_DATA_REVISION,
   MEDDATA_GIT_REVISION,
 } from "../build-info.js";
-import { KNOWN_CAPABILITIES } from "../capabilities.js";
+import {
+  CAPABILITY_DESCRIPTIONS,
+  DEFAULT_PLAN_CAPABILITIES,
+  KNOWN_CAPABILITIES,
+} from "../capabilities.js";
 
 const INPUT_SCHEMA = {
   type: "object",
@@ -91,12 +95,18 @@ export async function schemaHandler(c: Context) {
   const dataRevision = MEDDATA_DATA_REVISION?.trim() || null;
   const gitRevision = MEDDATA_GIT_REVISION?.trim() || null;
   const apiKey = c.get("apiKey") as string | undefined;
+  let keyPlan: string | null = null;
   let keyCapabilities: string[] | null = null;
   if (apiKey) {
     try {
       const db = await import("../../db/database.js");
-      keyCapabilities = db.getCapabilitiesForKey(apiKey);
+      const plan = db.getApiKeyPlan(apiKey);
+      if (plan) {
+        keyPlan = plan;
+        keyCapabilities = db.getCapabilitiesForKey(apiKey);
+      }
     } catch {
+      keyPlan = null;
       keyCapabilities = null;
     }
   }
@@ -109,7 +119,9 @@ export async function schemaHandler(c: Context) {
     ...(gitRevision ? { git_revision: gitRevision } : {}),
     supported_types: ["symptom"],
     known_capabilities: KNOWN_CAPABILITIES,
-    ...(keyCapabilities ? { key_capabilities: keyCapabilities } : {}),
+    default_plan_capabilities: [...DEFAULT_PLAN_CAPABILITIES],
+    capability_descriptions: CAPABILITY_DESCRIPTIONS,
+    ...(keyPlan !== null ? { key_plan: keyPlan, key_capabilities: keyCapabilities ?? [] } : {}),
     input: INPUT_SCHEMA,
     output: OUTPUT_SCHEMA,
     /** How to position MedMCP for agent builders (HTTP + MCP) */
@@ -142,6 +154,7 @@ export async function schemaHandler(c: Context) {
         "Not a consumer-facing diagnosis or triage product; outputs are decision-support signals for developers.",
         "Knowledge is seeded and bounded — validate with your SME before treating as universal clinical truth.",
         "Only type=symptom is implemented on POST /v1/analyze in v1; other types return HTTP 501 with supported_types.",
+        "Each API key has a plan (default | full | custom) stored in SQLite for audit; this response includes key_plan and effective key_capabilities when authenticated.",
       ],
       endpoints: [
         { method: "GET", path: "/v1/health", auth: false, summary: "Liveness + release metadata" },
