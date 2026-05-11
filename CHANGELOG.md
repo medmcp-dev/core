@@ -30,6 +30,8 @@ for the **core** package version in the repo root (`package.json`).
 
 ### Changed
 
+- **HTTP `GET /`** — returns a small JSON index (links to `/v1/health`, `/v1/schema`, `/v1/analyze`) so opening only the Railway host in a browser is not a bare `Not found`.
+
 - **`feat(analyze): risk-mapper v2`** — calibrated `critical`/`high`/`medium` heuristics aligned with B2B infra positioning (solo reclassifications: **haemoptysis** HIGH, **FAST** signs + **arm weakness**/**sudden vision loss**/**seizure** HIGH, **palpitations**/**hypotension** medium tier; new stroke/PE/septic/focal clusters; **aggregate point HIGH** requires anchoring HIGH/CRITICAL source; **generic headache** strings no longer inflate risk via removed thunderclap/WOL synonyms on `headache`). Seizure explanatory copy in **`signals[]`**. See PR body + **`docs/risk-classification-draft.md`**.
 - HTTP rollup metrics run **every 60 seconds by default** when **`NODE_ENV=production`** (e.g. Railway / production Docker images) unless **`MEDDATA_HTTP_METRICS_INTERVAL_SEC`** is set; set it to **`0`** to disable.
 - DevDependency `@types/node` set to `^22` in the core package and in `sdk/` so typings match CI (`node-version: "22"`).

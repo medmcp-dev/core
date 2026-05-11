@@ -18,6 +18,16 @@ process.on("unhandledRejection", (err) => { console.error("UNHANDLED:", err); })
 
 const app = new Hono();
 
+/** Root URL is not a SPA; browsers hitting only the host otherwise get 404 JSON. */
+app.get("/", (c) =>
+  c.json({
+    service: "MedMCP HTTP API",
+    health: "GET /v1/health",
+    schema: "GET /v1/schema (header X-API-Key required)",
+    analyze: "POST /v1/analyze (header X-API-Key required)",
+  })
+);
+
 app.use(
   "*",
   cors({
