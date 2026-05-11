@@ -8,6 +8,10 @@ for the **core** package version in the repo root (`package.json`).
 
 ## [Unreleased]
 
+### Changed
+
+- **Docker / Railway:** container start runs **`node dist/db/seed.js`** before **`node dist/http/server.js`** (idempotent `INSERT OR IGNORE`) so production SQLite on the volume receives new seed rows (e.g. expanded `lab_values`) after deploy without a manual one-off seed.
+
 ### Added
 
 - **Lab seed data:** 33 additional `lab_values` entries in `src/data/seed-labs.ts` (electrolytes, metabolic, hepatic, haematology, cardiac, thyroid, coagulation) — reference-style copy intended from Harrison's Principles of Internal Medicine, 21st ed.; confirm with SME before treating as clinical truth.
