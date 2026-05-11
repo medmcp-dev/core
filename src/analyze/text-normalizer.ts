@@ -256,10 +256,86 @@ export function normalizeText(text: string): string[] {
   const found = new Set<string>();
 
   for (const [syn, canonical] of REVERSE_MAP) {
-    if (lower.includes(syn)) {
+    if (hasAffirmedMention(lower, syn)) {
       found.add(canonical);
     }
   }
 
   return Array.from(found);
+}
+
+const NEGATION_CUE_RE =
+  /\b(?:no|not|without|denies(?:\s+any)?|denied|negative for|no evidence of|free of)\b/g;
+const NEGATION_BREAK_RE = /\b(?:but|however|although|though|except)\b/g;
+const SENTENCE_BREAK_RE = /[.!?;\n]/g;
+const MAX_NEGATION_SCOPE_WORDS = 14;
+
+function hasAffirmedMention(lowerText: string, synonym: string): boolean {
+  let fromIndex = 0;
+
+  while (fromIndex < lowerText.length) {
+    const hit = lowerText.indexOf(synonym, fromIndex);
+    if (hit === -1) return false;
+
+    const end = hit + synonym.length;
+    if (isTermBoundaryMatch(lowerText, hit, end) && !isNegatedAt(lowerText, hit)) {
+      return true;
+    }
+
+    fromIndex = hit + 1;
+  }
+
+  return false;
+}
+
+function isNegatedAt(lowerText: string, startIndex: number): boolean {
+  const sentenceStart = lastRegexIndexBefore(SENTENCE_BREAK_RE, lowerText, startIndex) + 1;
+  const chunk = lowerText.slice(sentenceStart, startIndex);
+  const negCue = lastRegexMatchBefore(NEGATION_CUE_RE, chunk, chunk.length);
+  if (!negCue) return false;
+
+  const breaker = lastRegexMatchBefore(NEGATION_BREAK_RE, chunk, chunk.length);
+  if (breaker && breaker.index > negCue.index) return false;
+
+  const sinceCue = chunk.slice(negCue.index + negCue[0].length).trim();
+  if (sinceCue.length === 0) return true;
+
+  const wordsSinceCue = sinceCue.split(/\s+/).filter(Boolean).length;
+  return wordsSinceCue <= MAX_NEGATION_SCOPE_WORDS;
+}
+
+function lastRegexIndexBefore(regex: RegExp, text: string, endExclusive: number): number {
+  let last = -1;
+  regex.lastIndex = 0;
+  let match: RegExpExecArray | null = regex.exec(text);
+  while (match) {
+    if (match.index >= endExclusive) break;
+    last = match.index;
+    match = regex.exec(text);
+  }
+  regex.lastIndex = 0;
+  return last;
+}
+
+function lastRegexMatchBefore(regex: RegExp, text: string, endExclusive: number): RegExpExecArray | null {
+  let last: RegExpExecArray | null = null;
+  regex.lastIndex = 0;
+  let match: RegExpExecArray | null = regex.exec(text);
+  while (match) {
+    if (match.index >= endExclusive) break;
+    last = match;
+    match = regex.exec(text);
+  }
+  regex.lastIndex = 0;
+  return last;
+}
+
+function isTermBoundaryMatch(text: string, start: number, end: number): boolean {
+  const before = start > 0 ? text[start - 1] : " ";
+  const after = end < text.length ? text[end] : " ";
+  return !isWordish(before) && !isWordish(after);
+}
+
+function isWordish(ch: string): boolean {
+  return /[a-z0-9]/i.test(ch);
 }
