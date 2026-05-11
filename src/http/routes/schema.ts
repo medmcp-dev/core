@@ -4,6 +4,7 @@ import {
   MEDDATA_DATA_REVISION,
   MEDDATA_GIT_REVISION,
 } from "../build-info.js";
+import { KNOWN_CAPABILITIES } from "../capabilities.js";
 
 const INPUT_SCHEMA = {
   type: "object",
@@ -86,9 +87,19 @@ const OUTPUT_SCHEMA = {
   },
 };
 
-export function schemaHandler(c: Context) {
+export async function schemaHandler(c: Context) {
   const dataRevision = MEDDATA_DATA_REVISION?.trim() || null;
   const gitRevision = MEDDATA_GIT_REVISION?.trim() || null;
+  const apiKey = c.get("apiKey") as string | undefined;
+  let keyCapabilities: string[] | null = null;
+  if (apiKey) {
+    try {
+      const db = await import("../../db/database.js");
+      keyCapabilities = db.getCapabilitiesForKey(apiKey);
+    } catch {
+      keyCapabilities = null;
+    }
+  }
 
   return c.json({
     version: "1.0.0",
@@ -97,6 +108,8 @@ export function schemaHandler(c: Context) {
     ...(dataRevision ? { data_revision: dataRevision } : {}),
     ...(gitRevision ? { git_revision: gitRevision } : {}),
     supported_types: ["symptom"],
+    known_capabilities: KNOWN_CAPABILITIES,
+    ...(keyCapabilities ? { key_capabilities: keyCapabilities } : {}),
     input: INPUT_SCHEMA,
     output: OUTPUT_SCHEMA,
     /** How to position MedMCP for agent builders (HTTP + MCP) */

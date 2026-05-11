@@ -8,8 +8,14 @@ for the **core** package version in the repo root (`package.json`).
 
 ## [Unreleased]
 
+### Added
+
+- **Lab seed data:** 33 additional `lab_values` entries in `src/data/seed-labs.ts` (electrolytes, metabolic, hepatic, haematology, cardiac, thyroid, coagulation) — reference-style copy intended from Harrison's Principles of Internal Medicine, 21st ed.; confirm with SME before treating as clinical truth.
+- **Lab seed data:** 6 more entries — lipids (total cholesterol, LDL-C, HDL-C, triglycerides) and inflammatory (ESR, procalcitonin); same Harrison's 21e / SME review caveat.
+
 ### Documentation
 
+- **README (Self-hosting → MCP)** — Claude Desktop / Cursor paths, `cwd` + `DB_PATH` example, HTTP vs MCP clarification, GitHub topic hints; **`examples/mcp-claude-desktop.snippet.json`** template and cross-link from **`examples/README.md`**.
 - **`docs/roadmap-mcp-capabilities.md`** — capability surfaces (symptom, lab, imaging, oncology direction) + Clauda/Cursor checklists and product hints.
 
 - **`docs/risk-classification-draft.md`** — pragmatic risk policy (**implementation** in `risk-mapper` **v2:** see **Changed** below; still update this doc if wording drifts).
@@ -19,6 +25,8 @@ for the **core** package version in the repo root (`package.json`).
 
 ### Added
 
+- Capability scaffolding for API-key segmentation: `api_key_capabilities` table, route-level capability middleware (`symptoms`, `labs`, `schema`, `waitlist_read`) and explicit `403 capability_not_enabled` contract.
+- `api-keys` admin CLI commands for capability management: `capabilities` and `set-capabilities <csv|all|clear>`.
 - **`npm run api-keys`** — SQLite admin za **create / list / revoke** HTTP ključeva (`src/scripts/api-keys-admin.ts`).
 - **`docs/profesor-quickstart.md`** — copy/paste **PowerShell / curl** za `POST /v1/analyze` + napomena za zaseban ključ i rotaciju.
 - HTTP observability: optional JSON request logs (`LOG_HTTP_JSON=true`) and rolling-window **`[http-metrics]`** summaries with per-route **p50 / p95** latency plus **429 / 5xx / 4xx** counts (period controlled by **`MEDDATA_HTTP_METRICS_INTERVAL_SEC`**).

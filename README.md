@@ -334,27 +334,73 @@ Set `MEDDATA_API_KEY` in your environment to use a fixed key instead of auto-gen
 
 ### MCP Server (stdio)
 
-For direct AI agent integration via Model Context Protocol:
+For **Claude Desktop**, **Cursor**, and other MCP hosts: run the same server as `npm start` (stdio transport). It reads the **local seeded SQLite** from this repo (not the Railway HTTP API).
+
+**1. Build and seed once**
 
 ```bash
-npm run setup
-npm start
+git clone https://github.com/medmcp-dev/core.git
+cd core
+npm ci
+npm run setup   # build + seed meddata.db at repo root
 ```
 
-Add to your MCP client config:
+**2. Configure the host**
+
+- **Claude Desktop** merges MCP servers into `claude_desktop_config.json`:
+  - macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
+  - Windows: `%APPDATA%\Claude\claude_desktop_config.json`
+- **Cursor:** Project MCP file `.cursor/mcp.json`, or **Settings → MCP** (global). Format is the same `mcpServers` object.
+
+Use **absolute** paths to `dist/index.js` *or* set `"cwd"` to the repo root and pass `"args": ["dist/index.js"]`.
+
+Minimal example (replace the path with your clone):
 
 ```json
 {
   "mcpServers": {
     "medmcp": {
       "command": "node",
-      "args": ["/path/to/core/dist/index.js"]
+      "args": ["C:/dev/core/dist/index.js"]
     }
   }
 }
 ```
 
-**MCP tools available:** `get_medical_concept`, `get_drug_info`, `get_drug_interactions`, `get_icd11_code`, `get_differential_diagnosis`, `get_lab_value`
+Same layout with `cwd` (often easier on Windows):
+
+```json
+{
+  "mcpServers": {
+    "medmcp": {
+      "command": "node",
+      "args": ["dist/index.js"],
+      "cwd": "C:/dev/core",
+      "env": {
+        "DB_PATH": "C:/dev/core/meddata.db"
+      }
+    }
+  }
+}
+```
+
+`DB_PATH` is optional if the default database at the repo root is fine. Drop `env` entirely unless you keep the DB elsewhere.
+
+Copy-paste template (placeholders): [`examples/mcp-claude-desktop.snippet.json`](examples/mcp-claude-desktop.snippet.json).
+
+**3. Verify**
+
+```bash
+npm start
+```
+
+(Should block on stdio; stop with Ctrl+C — the desktop app launches it for you.)
+
+**MCP tools:** `get_medical_concept`, `get_drug_info`, `get_drug_interactions`, `get_icd11_code`, `get_differential_diagnosis`, `get_lab_value`
+
+> **HTTP vs MCP:** Symptom analysis with `risk_level` / `signals` is on **`POST /v1/analyze`** (SDK or curl). The MCP server exposes the clinical **lookup** tools above; wire HTTP separately if your agent needs analyze.
+
+**Repo discoverability (maintainers):** GitHub topics help developers find the server — e.g. `mcp`, `mcp-server`, `model-context-protocol`, `medical-ai`, `clinical-decision-support`, `healthcare`, `typescript`, `sqlite`.
 
 ---
 
@@ -368,6 +414,8 @@ Add to your MCP client config:
 | Medication context | Planned |
 | JS SDK (`@medmcp/sdk`) | ✅ v1 |
 | Python SDK (`medmcp`) | ✅ v1 |
+
+Deeper capability roadmap (MCP surfaces, future tools): [`docs/roadmap-mcp-capabilities.md`](docs/roadmap-mcp-capabilities.md).
 
 ---
 
