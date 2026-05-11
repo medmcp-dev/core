@@ -8,10 +8,16 @@ for the **core** package version in the repo root (`package.json`).
 
 ## [Unreleased]
 
+### Added
+
+- **`api_keys.plan`** (`default` \| `full` \| `custom`) with additive migration: legacy keys without `api_key_capabilities` rows stay **`full`** (unchanged access); keys that already had explicit capability rows become **`custom`**; **`createApiKey`** (including first bootstrapped dev key) uses **`default`** = `symptoms` + `labs` + `schema` only (`DEFAULT_PLAN_CAPABILITIES` in `src/http/capabilities.ts`).
+- Admin CLI **`set-plan <key> default|full|custom`** (`src/scripts/api-keys-admin.ts`).
+- **`GET /v1/schema`:** `default_plan_capabilities`, `capability_descriptions`, and when authenticated `key_plan` plus effective `key_capabilities`.
+
 ### Changed
 
+- **`set-capabilities <key> all|clear`** now sets **plan `full`** and clears junction rows (same net access as before for `all`); a CSV still sets **plan `custom`** with that exact capability set.
 - **`src/data/seed-labs.ts`:** normalised long `interpretation` / `clinical_notes` strings to **ASCII** (dashes, `>=`, `->`, `increased`/`decreased`/`low if`, `umol/L`, etc.) so JSON displays correctly in **Windows PowerShell 5** and other non-UTF-8 consoles; medical meaning preserved, wording slightly simplified in a few lipid statin lines.
-
 - **Docker / Railway:** container start runs **`node dist/db/seed.js`** before **`node dist/http/server.js`** (idempotent `INSERT OR IGNORE`) so production SQLite on the volume receives new seed rows (e.g. expanded `lab_values`) after deploy without a manual one-off seed.
 
 ### Added

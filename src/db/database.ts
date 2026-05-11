@@ -1,7 +1,13 @@
 import Database from "better-sqlite3";
 import path from "path";
 import { fileURLToPath } from "url";
-import { KNOWN_CAPABILITIES, type Capability } from "../http/capabilities.js";
+import {
+  API_KEY_PLANS,
+  DEFAULT_PLAN_CAPABILITIES,
+  KNOWN_CAPABILITIES,
+  type ApiKeyPlan,
+  type Capability,
+} from "../http/capabilities.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DB_PATH = process.env.DB_PATH ?? path.join(__dirname, "..", "..", "meddata.db");
@@ -114,6 +120,7 @@ export function initSchema(): void {
     CREATE TABLE IF NOT EXISTS api_keys (
       key TEXT PRIMARY KEY,
       name TEXT NOT NULL,
+      plan TEXT NOT NULL DEFAULT 'full' CHECK(plan IN ('default', 'full', 'custom')),
       created_at TEXT DEFAULT (datetime('now')),
       last_used_at TEXT
     );
@@ -138,6 +145,27 @@ export function initSchema(): void {
   addColumnIfMissing(db, "drugs", "updated_at", "TEXT");
   addColumnIfMissing(db, "icd11_codes", "source", "TEXT DEFAULT 'seed'");
   addColumnIfMissing(db, "icd11_codes", "updated_at", "TEXT");
+  migrateApiKeysPlanColumn(db);
+}
+
+const _defaultPlanSet = new Set<string>(DEFAULT_PLAN_CAPABILITIES);
+
+/**
+ * Adds `api_keys.plan` on legacy DBs, then marks keys that already had explicit
+ * `api_key_capabilities` rows as `custom` so behaviour stays the same as pre-plan.
+ */
+function migrateApiKeysPlanColumn(db: Database.Database): void {
+  addColumnIfMissing(
+    db,
+    "api_keys",
+    "plan",
+    "TEXT NOT NULL DEFAULT 'full' CHECK(plan IN ('default', 'full', 'custom'))",
+  );
+  db.exec(`
+    UPDATE api_keys
+    SET plan = 'custom'
+    WHERE key IN (SELECT DISTINCT key FROM api_key_capabilities)
+  `);
 }
 
 export function validateApiKey(key: string): boolean {
@@ -155,12 +183,13 @@ export function hasApiKeys(): boolean {
 
 export function createApiKey(name: string, key: string): void {
   const db = getDb();
-  db.prepare("INSERT INTO api_keys (key, name) VALUES (?, ?)").run(key, name);
+  db.prepare("INSERT INTO api_keys (key, name, plan) VALUES (?, ?, 'default')").run(key, name);
 }
 
 export type ApiKeyRow = {
   key: string;
   name: string;
+  plan: ApiKeyPlan;
   created_at: string;
   last_used_at: string | null;
 };
@@ -170,7 +199,7 @@ export function listApiKeys(): ApiKeyRow[] {
   const db = getDb();
   return db
     .prepare(
-      `SELECT key, name, created_at, last_used_at FROM api_keys ORDER BY datetime(created_at) DESC`,
+      `SELECT key, name, COALESCE(plan, 'full') AS plan, created_at, last_used_at FROM api_keys ORDER BY datetime(created_at) DESC`,
     )
     .all() as ApiKeyRow[];
 }
@@ -183,19 +212,20 @@ export function deleteApiKey(key: string): boolean {
 }
 
 /**
- * Capability rules:
- * - If a key has zero explicit capabilities rows -> legacy/full-access (backward compatible).
- * - If rows exist, the key can call only listed capabilities.
+ * Capability rules (see `api_keys.plan`):
+ * - `full` — all known capabilities (legacy default after migration).
+ * - `default` — `DEFAULT_PLAN_CAPABILITIES` only (new keys from `createApiKey`).
+ * - `custom` — exactly the rows in `api_key_capabilities` (empty list = no HTTP capabilities).
  */
 export function hasCapabilityForKey(key: string, capability: Capability): boolean {
   const db = getDb();
-  const keyRow = db.prepare("SELECT key FROM api_keys WHERE key = ?").get(key);
+  const keyRow = db.prepare("SELECT key, COALESCE(plan, 'full') AS plan FROM api_keys WHERE key = ?").get(key) as
+    | { key: string; plan: ApiKeyPlan }
+    | undefined;
   if (!keyRow) return false;
 
-  const count = db.prepare("SELECT COUNT(*) as count FROM api_key_capabilities WHERE key = ?").get(key) as {
-    count: number;
-  };
-  if (count.count === 0) return true;
+  if (keyRow.plan === "full") return true;
+  if (keyRow.plan === "default") return _defaultPlanSet.has(capability);
 
   const row = db
     .prepare("SELECT capability FROM api_key_capabilities WHERE key = ? AND capability = ?")
@@ -205,12 +235,47 @@ export function hasCapabilityForKey(key: string, capability: Capability): boolea
 
 export function getCapabilitiesForKey(key: string): Capability[] {
   const db = getDb();
+  const keyRow = db.prepare("SELECT COALESCE(plan, 'full') AS plan FROM api_keys WHERE key = ?").get(key) as
+    | { plan: ApiKeyPlan }
+    | undefined;
+  if (!keyRow) return [];
+
+  if (keyRow.plan === "full") return [...KNOWN_CAPABILITIES];
+  if (keyRow.plan === "default") return [...DEFAULT_PLAN_CAPABILITIES];
+
   const rows = db
     .prepare("SELECT capability FROM api_key_capabilities WHERE key = ? ORDER BY capability ASC")
     .all(key) as { capability: string }[];
   return rows
     .map((r) => r.capability)
     .filter((c): c is Capability => (KNOWN_CAPABILITIES as readonly string[]).includes(c));
+}
+
+export function getApiKeyPlan(key: string): ApiKeyPlan | null {
+  const db = getDb();
+  const row = db.prepare("SELECT COALESCE(plan, 'full') AS plan FROM api_keys WHERE key = ?").get(key) as
+    | { plan: ApiKeyPlan }
+    | undefined;
+  return row?.plan ?? null;
+}
+
+export function setPlanForKey(key: string, plan: ApiKeyPlan): void {
+  const db = getDb();
+  const keyRow = db.prepare("SELECT key FROM api_keys WHERE key = ?").get(key);
+  if (!keyRow) {
+    throw new Error(`API key not found: ${key}`);
+  }
+  if (!(API_KEY_PLANS as readonly string[]).includes(plan)) {
+    throw new Error(`Invalid plan: ${plan}. Expected one of: ${API_KEY_PLANS.join(", ")}`);
+  }
+
+  const tx = db.transaction(() => {
+    db.prepare("UPDATE api_keys SET plan = ? WHERE key = ?").run(plan, key);
+    if (plan === "full" || plan === "default") {
+      db.prepare("DELETE FROM api_key_capabilities WHERE key = ?").run(key);
+    }
+  });
+  tx();
 }
 
 export function setCapabilitiesForKey(key: string, capabilities: Capability[]): void {
@@ -228,6 +293,12 @@ export function setCapabilitiesForKey(key: string, capabilities: Capability[]): 
   }
 
   const tx = db.transaction(() => {
+    if (capabilities.length === 0) {
+      db.prepare("UPDATE api_keys SET plan = 'full' WHERE key = ?").run(key);
+      db.prepare("DELETE FROM api_key_capabilities WHERE key = ?").run(key);
+      return;
+    }
+    db.prepare("UPDATE api_keys SET plan = 'custom' WHERE key = ?").run(key);
     db.prepare("DELETE FROM api_key_capabilities WHERE key = ?").run(key);
     const insert = db.prepare("INSERT INTO api_key_capabilities (key, capability) VALUES (?, ?)");
     for (const c of capabilities) {

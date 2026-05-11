@@ -110,6 +110,10 @@ async function seedFirstApiKey(): Promise<void> {
 │                                                   │
 │  X-API-Key: ${key}  │
 │                                                   │
+│  Plan: default (symptoms, labs, schema only).    │
+│  Need waitlist GET or full access?              │
+│    npm run api-keys -- set-plan ${key} full     │
+│                                                   │
 │  Set MEDDATA_API_KEY in your env to use your own. │
 └─────────────────────────────────────────────────┘
 `);
