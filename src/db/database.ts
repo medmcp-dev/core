@@ -149,6 +149,30 @@ export function createApiKey(name: string, key: string): void {
   db.prepare("INSERT INTO api_keys (key, name) VALUES (?, ?)").run(key, name);
 }
 
+export type ApiKeyRow = {
+  key: string;
+  name: string;
+  created_at: string;
+  last_used_at: string | null;
+};
+
+/** Admin / ops — lists keys from `api_keys` (treat terminal output like a secret vault). */
+export function listApiKeys(): ApiKeyRow[] {
+  const db = getDb();
+  return db
+    .prepare(
+      `SELECT key, name, created_at, last_used_at FROM api_keys ORDER BY datetime(created_at) DESC`,
+    )
+    .all() as ApiKeyRow[];
+}
+
+/** Removes one key row. Returns whether a row existed. */
+export function deleteApiKey(key: string): boolean {
+  const db = getDb();
+  const info = db.prepare("DELETE FROM api_keys WHERE key = ?").run(key);
+  return info.changes > 0;
+}
+
 export function addToWaitlist(email: string): { ok: boolean; already_exists: boolean } {
   const db = getDb();
   const result = db.prepare("INSERT OR IGNORE INTO waitlist (email) VALUES (?)").run(email);

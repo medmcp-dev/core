@@ -16,7 +16,8 @@
     "setup": "npm run build && npm run seed",
     "sync:drugs": "node dist/sync/sync-drugs.js",
     "sync:icd11": "node dist/sync/sync-icd11.js",
-    "sync": "npm run sync:drugs && npm run sync:icd11"
+    "sync": "npm run sync:drugs && npm run sync:icd11",
+    "api-keys": "node dist/scripts/api-keys-admin.js"
   },
   "dependencies": {
     "@hono/node-server": "^2.0.1",
