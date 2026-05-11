@@ -15,4 +15,5 @@ ENV PORT=3000
 
 EXPOSE 3000
 
-CMD ["node", "dist/http/server.js"]
+# Idempotent seed before HTTP (INSERT OR IGNORE) so production DB picks up new lab_values etc. after image updates.
+CMD ["sh", "-c", "node dist/db/seed.js && exec node dist/http/server.js"]
