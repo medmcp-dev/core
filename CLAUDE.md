@@ -190,6 +190,21 @@ Koristi kao roadmap: što već imaš vs što diže povjerenje developera i klini
 - **Ne raditi paralelno** isti file bez dogovora; jedna strana definira cilj → druga merga.
 - Nakon svake veće cjeline: sink `main`, ažuriraj ovaj podlist ako se prioriteti promijene.
 
+### Cursor agent — Git i PR (obavezno; ne tražiti od Bruna da ponavlja)
+
+Repozitorij: **`medmcp-dev/core`**. Grana **`main` je zaštićena** na GitHubu — **nikad** direktan `git push origin main` niti commit isključivo na lokalni `main` kao način isporuke.
+
+Kad agent završi izmjene u kodu ili docsima u ovom workspaceu:
+
+1. **Lokalno riješi git** (bez pitanja „želiš li stash“ ako je očito): `git fetch` / `git checkout main && git pull origin main`; novi rad na **`feat/<kratko>`** ili **`fix/<kratko>`**; `git add` + `git commit`; ako `checkout` blokira zbog dirty working treea → **`git stash`**, sink, nova grana, **`git stash pop`**, riješi konflikte.
+2. **Push** s te grane: `git push -u origin <ime-grane>`.
+3. **Uvijek** u odgovoru koji isporučuje taj rad napiši **puni GitHub link za merge** (otvaranje PR-a prema `main`), npr.  
+   `https://github.com/medmcp-dev/core/compare/main...<ime-grane>?expand=1`  
+   ili `https://github.com/medmcp-dev/core/pull/new/<ime-grane>`.  
+   Bruno merga na GitHubu; agent ne pretpostavlja merge dok nije potvrđen ili vidljiv nakon pulla.
+
+Podsjetnik u repou: **`.cursor/rules/git-pr-workflow.mdc`** (`alwaysApply`). Izvor istine za ovaj workflow je **ovaj odlomak u `CLAUDE.md`** (uvijek učitan kao workspace kontekst za agenta).
+
 ### Sljedeći zadaci za **Claude** (čitati i držati se redoslijeda ako nije drugačije dogovoreno)
 
 1. **Symptom / risk pravila:** Definiraj sljedeći set (prioritet + opravdanje): koje još “cluster” kombinacije ulaze u `critical` / `high`, što ostaje izvan automatike.
