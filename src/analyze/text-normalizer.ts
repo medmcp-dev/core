@@ -267,6 +267,8 @@ export function normalizeText(text: string): string[] {
 const NEGATION_CUE_RE =
   /\b(?:no|not|without|denies(?:\s+any)?|denied|negative for|no evidence of|free of)\b/g;
 const NEGATION_BREAK_RE = /\b(?:but|however|although|though|except)\b/g;
+const AFFIRMATIVE_BREAK_RE =
+  /\b(?:present|reports?|reporting|with|has|have|had|complains? of|endorses)\b/g;
 const SENTENCE_BREAK_RE = /[.!?;\n]/g;
 const MAX_NEGATION_SCOPE_WORDS = 14;
 
@@ -297,8 +299,12 @@ function isNegatedAt(lowerText: string, startIndex: number): boolean {
   const breaker = lastRegexMatchBefore(NEGATION_BREAK_RE, chunk, chunk.length);
   if (breaker && breaker.index > negCue.index) return false;
 
+  const affirmative = lastRegexMatchBefore(AFFIRMATIVE_BREAK_RE, chunk, chunk.length);
+  if (affirmative && affirmative.index > negCue.index) return false;
+
   const sinceCue = chunk.slice(negCue.index + negCue[0].length).trim();
   if (sinceCue.length === 0) return true;
+  if (sinceCue.includes(",")) return false;
 
   const wordsSinceCue = sinceCue.split(/\s+/).filter(Boolean).length;
   return wordsSinceCue <= MAX_NEGATION_SCOPE_WORDS;

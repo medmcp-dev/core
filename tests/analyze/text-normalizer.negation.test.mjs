@@ -56,3 +56,8 @@ test("negation scope: sentence/semicolon break restores affirmative symptom", ()
   assert.ok(out.includes("dyspnoea"));
 });
 
+test("negation scope: affirmative cue after comma restores positive symptom", () => {
+  const out = normalizeText("no cough, productive cough present");
+  assert.ok(out.includes("productive cough"));
+});
+
