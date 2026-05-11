@@ -20,6 +20,19 @@ test("negation: without/denies/negative for cues suppress mapped symptom", () =>
   assert.ok(!out.includes("chest pain"));
 });
 
+test("negation: extended cues suppress list-style symptom mentions", () => {
+  const out = normalizeText("denies any chest pain or shortness of breath and is free of fever");
+  assert.ok(!out.includes("chest pain"));
+  assert.ok(!out.includes("dyspnoea"));
+  assert.ok(!out.includes("fever"));
+});
+
+test("negation: no evidence of suppresses downstream symptom", () => {
+  const out = normalizeText("exam: no evidence of neck stiffness or photophobia");
+  assert.ok(!out.includes("neck stiffness"));
+  assert.ok(!out.includes("photophobia"));
+});
+
 test("negation scope ends at contrast term", () => {
   const out = normalizeText("no chest pain but shortness of breath and tachycardia");
   assert.ok(!out.includes("chest pain"));
@@ -35,5 +48,11 @@ test("term boundaries: do not match substring inside larger word", () => {
 test("term boundaries: still match proper symptom phrase", () => {
   const out = normalizeText("developed a skin rash today");
   assert.ok(out.includes("rash"));
+});
+
+test("negation scope: sentence/semicolon break restores affirmative symptom", () => {
+  const out = normalizeText("negative for chest pain; reports shortness of breath");
+  assert.ok(!out.includes("chest pain"));
+  assert.ok(out.includes("dyspnoea"));
 });
 

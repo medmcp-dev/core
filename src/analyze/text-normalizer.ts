@@ -264,10 +264,11 @@ export function normalizeText(text: string): string[] {
   return Array.from(found);
 }
 
-const NEGATION_CUE_RE = /\b(?:no|not|without|denies|denied|negative for)\b/g;
+const NEGATION_CUE_RE =
+  /\b(?:no|not|without|denies(?:\s+any)?|denied|negative for|no evidence of|free of)\b/g;
 const NEGATION_BREAK_RE = /\b(?:but|however|although|though|except)\b/g;
 const SENTENCE_BREAK_RE = /[.!?;\n]/g;
-const MAX_NEGATION_SCOPE_WORDS = 10;
+const MAX_NEGATION_SCOPE_WORDS = 14;
 
 function hasAffirmedMention(lowerText: string, synonym: string): boolean {
   let fromIndex = 0;
