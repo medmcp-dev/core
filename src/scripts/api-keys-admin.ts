@@ -15,7 +15,10 @@ import {
   createApiKey,
   listApiKeys,
   deleteApiKey,
+  getCapabilitiesForKey,
+  setCapabilitiesForKey,
 } from "../db/database.js";
+import { KNOWN_CAPABILITIES, type Capability } from "../http/capabilities.js";
 
 function printHelp(): void {
   console.log(`api-keys-admin — manage MEDDATA SQLite API keys
@@ -24,6 +27,9 @@ Commands:
   create <name> [key]   Insert a key (optional explicit key; else mk_<uuid-without-dashes>)
   list                  Print all rows (secrets — use only on your machine)
   revoke <key>          Delete one row by exact key string
+  capabilities <key>    Show explicit capability list for key
+  set-capabilities <key> <csv|all|clear>
+                        Examples: symptoms,labs / all / clear
 
 Environment:
   DB_PATH               Path to meddata.sqlite (defaults match core server)
@@ -31,7 +37,24 @@ Environment:
 Examples:
   npm run api-keys -- create professor-demo
   npm run api-keys -- revoke mk_abc123...
+  npm run api-keys -- set-capabilities mk_abc123... symptoms,labs
+  npm run api-keys -- set-capabilities mk_abc123... clear
 `);
+}
+
+function parseCapabilities(input: string): Capability[] {
+  const raw = input.trim().toLowerCase();
+  if (raw === "all") return [...KNOWN_CAPABILITIES];
+  if (raw === "clear") return [];
+  const parts = raw
+    .split(",")
+    .map((p) => p.trim())
+    .filter(Boolean);
+  const invalid = parts.filter((p) => !(KNOWN_CAPABILITIES as readonly string[]).includes(p));
+  if (invalid.length > 0) {
+    throw new Error(`Unknown capabilities: ${invalid.join(", ")}. Known: ${KNOWN_CAPABILITIES.join(", ")}`);
+  }
+  return parts as Capability[];
 }
 
 function main(): void {
@@ -75,8 +98,11 @@ function main(): void {
       }
       for (const r of rows) {
         const last = r.last_used_at ?? "never";
+        const caps = getCapabilitiesForKey(r.key);
+        const capLabel = caps.length === 0 ? "all (legacy default)" : caps.join(",");
         console.log(`${r.name}\tcreated ${r.created_at}\tlast_used ${last}`);
         console.log(`  ${r.key}`);
+        console.log(`  capabilities: ${capLabel}`);
       }
       break;
     }
@@ -89,6 +115,41 @@ function main(): void {
       const ok = deleteApiKey(key.trim());
       console.log(ok ? "Revoked (deleted row)." : "No row matched that key.");
       process.exit(ok ? 0 : 1);
+    }
+    case "capabilities": {
+      const key = argv[1];
+      if (!key?.trim()) {
+        console.error("Usage: npm run api-keys -- capabilities <exact-key>");
+        process.exit(1);
+      }
+      const caps = getCapabilitiesForKey(key.trim());
+      if (caps.length === 0) {
+        console.log("(no explicit capabilities set -> legacy/full-access behavior)");
+      } else {
+        console.log(caps.join(","));
+      }
+      break;
+    }
+    case "set-capabilities": {
+      const key = argv[1];
+      const set = argv[2];
+      if (!key?.trim() || !set?.trim()) {
+        console.error("Usage: npm run api-keys -- set-capabilities <exact-key> <csv|all|clear>");
+        process.exit(1);
+      }
+      try {
+        const caps = parseCapabilities(set);
+        setCapabilitiesForKey(key.trim(), caps);
+        console.log(
+          caps.length === 0
+            ? "Cleared explicit capabilities (legacy/full-access behavior restored)."
+            : `Set capabilities: ${caps.join(",")}`
+        );
+      } catch (e) {
+        console.error("set-capabilities failed:", e);
+        process.exit(1);
+      }
+      break;
     }
     default:
       console.error(`Unknown command: ${cmd}`);

@@ -2,7 +2,7 @@ import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { serve } from "@hono/node-server";
 import { randomUUID } from "crypto";
-import { authMiddleware } from "./middleware/auth.js";
+import { authMiddleware, requireCapability } from "./middleware/auth.js";
 import { rateLimit } from "./middleware/rateLimit.js";
 import { healthHandler } from "./routes/health.js";
 import { schemaHandler } from "./routes/schema.js";
@@ -12,6 +12,7 @@ import { waitlistPostHandler, waitlistGetHandler } from "./routes/waitlist.js";
 import { requestTimingLog } from "./middleware/requestLog.js";
 import { agentMetaHeaders } from "./middleware/agentMetaHeaders.js";
 import { startHttpMetricsReporterIfConfigured } from "./metrics-http.js";
+import { CAPABILITY } from "./capabilities.js";
 
 process.on("uncaughtException", (err) => { console.error("UNCAUGHT:", err); });
 process.on("unhandledRejection", (err) => { console.error("UNHANDLED:", err); });
@@ -57,6 +58,13 @@ app.use("/v1/lab", authMiddleware);
 app.use("/v1/waitlist", async (c, next) => {
   if (c.req.method === "GET") return authMiddleware(c, next);
   return next();
+});
+app.use("/v1/schema", requireCapability(CAPABILITY.SCHEMA));
+app.use("/v1/analyze", requireCapability(CAPABILITY.SYMPTOMS));
+app.use("/v1/lab", requireCapability(CAPABILITY.LABS));
+app.use("/v1/waitlist", async (c, next) => {
+  if (c.req.method !== "GET") return next();
+  return requireCapability(CAPABILITY.WAITLIST_READ)(c, next);
 });
 
 app.get("/v1/schema", schemaHandler);

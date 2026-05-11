@@ -1,6 +1,7 @@
 import Database from "better-sqlite3";
 import path from "path";
 import { fileURLToPath } from "url";
+import { KNOWN_CAPABILITIES, type Capability } from "../http/capabilities.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DB_PATH = process.env.DB_PATH ?? path.join(__dirname, "..", "..", "meddata.db");
@@ -117,6 +118,14 @@ export function initSchema(): void {
       last_used_at TEXT
     );
 
+    CREATE TABLE IF NOT EXISTS api_key_capabilities (
+      key TEXT NOT NULL,
+      capability TEXT NOT NULL,
+      created_at TEXT DEFAULT (datetime('now')),
+      PRIMARY KEY (key, capability),
+      FOREIGN KEY (key) REFERENCES api_keys(key) ON DELETE CASCADE
+    );
+
     CREATE TABLE IF NOT EXISTS waitlist (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       email TEXT NOT NULL UNIQUE,
@@ -171,6 +180,61 @@ export function deleteApiKey(key: string): boolean {
   const db = getDb();
   const info = db.prepare("DELETE FROM api_keys WHERE key = ?").run(key);
   return info.changes > 0;
+}
+
+/**
+ * Capability rules:
+ * - If a key has zero explicit capabilities rows -> legacy/full-access (backward compatible).
+ * - If rows exist, the key can call only listed capabilities.
+ */
+export function hasCapabilityForKey(key: string, capability: Capability): boolean {
+  const db = getDb();
+  const keyRow = db.prepare("SELECT key FROM api_keys WHERE key = ?").get(key);
+  if (!keyRow) return false;
+
+  const count = db.prepare("SELECT COUNT(*) as count FROM api_key_capabilities WHERE key = ?").get(key) as {
+    count: number;
+  };
+  if (count.count === 0) return true;
+
+  const row = db
+    .prepare("SELECT capability FROM api_key_capabilities WHERE key = ? AND capability = ?")
+    .get(key, capability);
+  return Boolean(row);
+}
+
+export function getCapabilitiesForKey(key: string): Capability[] {
+  const db = getDb();
+  const rows = db
+    .prepare("SELECT capability FROM api_key_capabilities WHERE key = ? ORDER BY capability ASC")
+    .all(key) as { capability: string }[];
+  return rows
+    .map((r) => r.capability)
+    .filter((c): c is Capability => (KNOWN_CAPABILITIES as readonly string[]).includes(c));
+}
+
+export function setCapabilitiesForKey(key: string, capabilities: Capability[]): void {
+  const db = getDb();
+  const keyRow = db.prepare("SELECT key FROM api_keys WHERE key = ?").get(key);
+  if (!keyRow) {
+    throw new Error(`API key not found: ${key}`);
+  }
+
+  const invalid = capabilities.filter(
+    (c) => !(KNOWN_CAPABILITIES as readonly string[]).includes(c)
+  );
+  if (invalid.length > 0) {
+    throw new Error(`Unknown capabilities: ${invalid.join(", ")}`);
+  }
+
+  const tx = db.transaction(() => {
+    db.prepare("DELETE FROM api_key_capabilities WHERE key = ?").run(key);
+    const insert = db.prepare("INSERT INTO api_key_capabilities (key, capability) VALUES (?, ?)");
+    for (const c of capabilities) {
+      insert.run(key, c);
+    }
+  });
+  tx();
 }
 
 export function addToWaitlist(email: string): { ok: boolean; already_exists: boolean } {
