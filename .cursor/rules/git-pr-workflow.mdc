@@ -1,13 +1,11 @@
 ---
-description: Branch protection — nikad direktan push na main; uvijek PR link
+description: Branch protection + PR link — vidi CLAUDE.md (Suradnja → Cursor agent — Git i PR)
 alwaysApply: true
 ---
 
-# Git / merge workflow (medmcp-dev/core)
+# Git / PR (skraćeno)
 
-- **`main` je zaštićen:** nemoj `git push origin main`. Nemoj commitati direktno na `main`.
-- Kad imaš izmjene u kodu: **`git checkout main && git pull origin main`**, zatim **`git checkout -b feat/<kratko-ime>`** (ili `fix/...`), **`git add` / `git commit`**, **`git push -u origin HEAD`** (ili puno ime grane).
-- Nakon pusha **uvijek** daj korisniku link za PR prema `main`:
-  - `https://github.com/medmcp-dev/core/compare/main...<branch>?expand=1`
-  - ili `https://github.com/medmcp-dev/core/pull/new/<branch>`
-- Ako `checkout main` blokira zbog lokalnih izmjena: **`git stash`** (ili commit na trenutnoj grani), pa sink, pa nova grana + **`git stash pop`** ako treba.
+**Puni workflow (obavezno):** **`CLAUDE.md`** → sekcija **„Suradnja: Claude vs Cursor“** → **„Cursor agent — Git i PR (obavezno)“**.
+
+Sažetak: nema pusha na **`main`**; rad na **`feat/...`** ili **`fix/...`**; commit + **`git push -u origin <branch>`**; u odgovoru **uvijek** puni link  
+`https://github.com/medmcp-dev/core/compare/main...<branch>?expand=1` (ili `/pull/new/<branch>`). Dirty tree → **stash**, sink, nova grana, **stash pop**.
