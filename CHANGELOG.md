@@ -10,6 +10,8 @@ for the **core** package version in the repo root (`package.json`).
 
 ### Changed
 
+- **`src/data/seed-labs.ts`:** normalised long `interpretation` / `clinical_notes` strings to **ASCII** (dashes, `>=`, `->`, `increased`/`decreased`/`low if`, `umol/L`, etc.) so JSON displays correctly in **Windows PowerShell 5** and other non-UTF-8 consoles; medical meaning preserved, wording slightly simplified in a few lipid statin lines.
+
 - **Docker / Railway:** container start runs **`node dist/db/seed.js`** before **`node dist/http/server.js`** (idempotent `INSERT OR IGNORE`) so production SQLite on the volume receives new seed rows (e.g. expanded `lab_values`) after deploy without a manual one-off seed.
 
 ### Added

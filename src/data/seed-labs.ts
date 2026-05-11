@@ -3,7 +3,7 @@ export const labValues = [
     name: "sodium",
     abbreviation: "Na+",
     unit: "mmol/L",
-    reference_range: "135–145",
+    reference_range: "135-145",
     reference_low: 135,
     reference_high: 145,
     critical_low: 120,
@@ -15,7 +15,7 @@ export const labValues = [
     female_high: null,
     category: "electrolytes",
     interpretation:
-      "Hyponatraemia (<135): mild 130-134, moderate 125-129, severe <125. Causes: SIADH (euvolaemic, ↑urine osmolality >100), hypovolaemic (vomiting, diarrhoea, diuretics — ↑urine Na if renal loss, ↓if extra-renal), hypervolaemic (HF, cirrhosis, nephrotic — ↓urine Na). Hypernatraemia (>145): almost always free water deficit; causes include DI, inadequate intake, osmotic diarrhoea. Correction: chronic hyponatraemia max 8-10 mmol/L/day (risk of osmotic demyelination if corrected too fast).",
+      "Hyponatraemia (<135): mild 130-134, moderate 125-129, severe <125. Causes: SIADH (euvolaemic, increased urine osmolality >100), hypovolaemic (vomiting, diarrhoea, diuretics - increased urine Na if renal loss, low if extra-renal), hypervolaemic (HF, cirrhosis, nephrotic - decreased urine Na). Hypernatraemia (>145): almost always free water deficit; causes include DI, inadequate intake, osmotic diarrhoea. Correction: chronic hyponatraemia max 8-10 mmol/L/day (risk of osmotic demyelination if corrected too fast).",
     clinical_notes:
       "Symptoms of hyponatraemia correlate with rate of onset more than absolute level. Acute (<48h) severe hyponatraemia with neurological symptoms: treat urgently with hypertonic saline (3% NaCl). Always calculate plasma osmolality and urine Na/osmolality to guide diagnosis.",
   },
@@ -23,7 +23,7 @@ export const labValues = [
     name: "potassium",
     abbreviation: "K+",
     unit: "mmol/L",
-    reference_range: "3.5–5.0",
+    reference_range: "3.5-5.0",
     reference_low: 3.5,
     reference_high: 5.0,
     critical_low: 2.5,
@@ -35,7 +35,7 @@ export const labValues = [
     female_high: null,
     category: "electrolytes",
     interpretation:
-      "Hypokalaemia (<3.5): mild 3.0-3.5, moderate 2.5-3.0, severe <2.5. Causes: GI loss (vomiting — secondary hyperaldosteronism; diarrhoea), renal loss (loop/thiazide diuretics, hyperaldosteronism, RTA, Bartter/Gitelman), transcellular shift (insulin, beta-agonists, alkalosis). ECG changes: U waves, flattened T waves, ST depression, prolonged QU interval, VT/VF risk. Hyperkalaemia (>5.0): causes: AKI/CKD, ACEi/ARB/spironolactone, rhabdomyolysis, haemolysis, Addison's, acidosis. ECG: peaked T waves (first sign) → widened QRS → sine wave → asystole.",
+      "Hypokalaemia (<3.5): mild 3.0-3.5, moderate 2.5-3.0, severe <2.5. Causes: GI loss (vomiting - secondary hyperaldosteronism; diarrhoea), renal loss (loop/thiazide diuretics, hyperaldosteronism, RTA, Bartter/Gitelman), transcellular shift (insulin, beta-agonists, alkalosis). ECG changes: U waves, flattened T waves, ST depression, prolonged QU interval, VT/VF risk. Hyperkalaemia (>5.0): causes: AKI/CKD, ACEi/ARB/spironolactone, rhabdomyolysis, haemolysis, Addison's, acidosis. ECG: peaked T waves (first sign) -> widened QRS -> sine wave -> asystole.",
     clinical_notes:
       "Hyperkalaemia >6.5 or ECG changes: medical emergency. Treatment: IV calcium gluconate (membrane stabilisation), insulin+dextrose (shift K+ intracellularly), salbutamol nebuliser, sodium bicarbonate (if acidotic), calcium resonium/patiromer (elimination), dialysis if refractory. Always check for pseudohyperkalaemia (haemolysed sample).",
   },
@@ -43,7 +43,7 @@ export const labValues = [
     name: "chloride",
     abbreviation: "Cl-",
     unit: "mmol/L",
-    reference_range: "98–107",
+    reference_range: "98-107",
     reference_low: 98,
     reference_high: 107,
     critical_low: 70,
@@ -55,7 +55,7 @@ export const labValues = [
     female_high: null,
     category: "electrolytes",
     interpretation:
-      "Hypochloraemia (<98): commonly accompanies metabolic alkalosis (vomiting → loss of HCl, diuretic use, Bartter syndrome). Hyperchloraemia (>107): associated with hyperchloraemic (non-anion gap) metabolic acidosis — causes: diarrhoea, renal tubular acidosis, excess normal saline infusion. Use anion gap (Na − [Cl + HCO₃], normal 8-12) to distinguish metabolic acidosis types. Low anion gap: paraproteinaemia, hypoalbuminaemia (correct AG by +2.5 for every 10g/L albumin below 40).",
+      "Hypochloraemia (<98): commonly accompanies metabolic alkalosis (vomiting -> loss of HCl, diuretic use, Bartter syndrome). Hyperchloraemia (>107): associated with hyperchloraemic (non-anion gap) metabolic acidosis - causes: diarrhoea, renal tubular acidosis, excess normal saline infusion. Use anion gap (Na - [Cl + HCO3], normal 8-12) to distinguish metabolic acidosis types. Low anion gap: paraproteinaemia, hypoalbuminaemia (correct AG by +2.5 for every 10g/L albumin below 40).",
     clinical_notes:
       "Chloride is rarely the primary diagnostic target but is essential for calculating anion gap and serum osmolality. In the context of normal saline administration, hyperchloraemic acidosis can mimic other acid-base disorders.",
   },
@@ -63,7 +63,7 @@ export const labValues = [
     name: "urea",
     abbreviation: "BUN",
     unit: "mmol/L",
-    reference_range: "2.5–7.8",
+    reference_range: "2.5-7.8",
     reference_low: 2.5,
     reference_high: 7.8,
     critical_low: null,
@@ -75,15 +75,15 @@ export const labValues = [
     female_high: null,
     category: "renal",
     interpretation:
-      "Elevated urea (uraemia >35 mmol/L critical): pre-renal (dehydration, GI bleed — blood protein broken down to urea, urea:creatinine ratio >100:1 suggests upper GI bleed or pre-renal), renal (AKI, CKD — urea and creatinine rise proportionally), post-renal (obstruction). Note: urea may be low in liver failure (impaired synthesis), malnutrition, or pregnancy (haemodilution). CURB-65 score for pneumonia uses urea >7 mmol/L as a marker of severity.",
+      "Elevated urea (uraemia >35 mmol/L critical): pre-renal (dehydration, GI bleed - blood protein broken down to urea, urea:creatinine ratio >100:1 suggests upper GI bleed or pre-renal), renal (AKI, CKD - urea and creatinine rise proportionally), post-renal (obstruction). Note: urea may be low in liver failure (impaired synthesis), malnutrition, or pregnancy (haemodilution). CURB-65 score for pneumonia uses urea >7 mmol/L as a marker of severity.",
     clinical_notes:
-      "UK labs report urea in mmol/L; US labs report BUN (blood urea nitrogen) in mg/dL. Conversion: BUN (mg/dL) × 0.357 = urea (mmol/L). Urea:creatinine ratio useful for localising cause of AKI. Symptoms of uraemia: nausea, vomiting, encephalopathy, pericarditis, pruritus — occur at very high levels or with rapid rise.",
+      "UK labs report urea in mmol/L; US labs report BUN (blood urea nitrogen) in mg/dL. Conversion: BUN (mg/dL) x 0.357 = urea (mmol/L). Urea:creatinine ratio useful for localising cause of AKI. Symptoms of uraemia: nausea, vomiting, encephalopathy, pericarditis, pruritus - occur at very high levels or with rapid rise.",
   },
   {
     name: "creatinine",
     abbreviation: "Cr",
-    unit: "µmol/L",
-    reference_range: "60–110 (male), 45–90 (female)",
+    unit: "umol/L",
+    reference_range: "60-110 (male), 45-90 (female)",
     reference_low: 60,
     reference_high: 110,
     critical_low: null,
@@ -95,15 +95,15 @@ export const labValues = [
     female_high: 90,
     category: "renal",
     interpretation:
-      "Creatinine is a breakdown product of muscle creatine phosphate; production is proportional to muscle mass (hence lower reference range in women, elderly, and those with low muscle mass). Does not rise significantly until ~50% of nephron mass lost (insensitive early marker). AKI staging (KDIGO): Stage 1 — ×1.5-1.9 baseline or ↑≥26.5 µmol/L within 48h; Stage 2 — ×2-2.9; Stage 3 — ×3 or >354 µmol/L. CKD staging uses eGFR (CKD-EPI equation). Always interpret with clinical context — a creatinine of 90 µmol/L in a frail elderly woman may represent significant AKI.",
+      "Creatinine is a breakdown product of muscle creatine phosphate; production is proportional to muscle mass (hence lower reference range in women, elderly, and those with low muscle mass). Does not rise significantly until ~50% of nephron mass lost (insensitive early marker). AKI staging (KDIGO): Stage 1 - x1.5-1.9 baseline or increased >=26.5 umol/L within 48h; Stage 2 - x2-2.9; Stage 3 - x3 or >354 umol/L. CKD staging uses eGFR (CKD-EPI equation). Always interpret with clinical context - a creatinine of 90 umol/L in a frail elderly woman may represent significant AKI.",
     clinical_notes:
-      "eGFR = estimated GFR from CKD-EPI equation (uses creatinine, age, sex). CKD stages: G1 (≥90), G2 (60-89), G3a (45-59), G3b (30-44), G4 (15-29), G5 (<15 or on dialysis). Drugs that artificially raise creatinine without true GFR reduction: trimethoprim, cimetidine (block tubular secretion). Cystatin C is an alternative marker less affected by muscle mass.",
+      "eGFR = estimated GFR from CKD-EPI equation (uses creatinine, age, sex). CKD stages: G1 (>=90), G2 (60-89), G3a (45-59), G3b (30-44), G4 (15-29), G5 (<15 or on dialysis). Drugs that artificially raise creatinine without true GFR reduction: trimethoprim, cimetidine (block tubular secretion). Cystatin C is an alternative marker less affected by muscle mass.",
   },
   {
     name: "glucose",
     abbreviation: "BG",
     unit: "mmol/L",
-    reference_range: "3.9–5.6 (fasting)",
+    reference_range: "3.9-5.6 (fasting)",
     reference_low: 3.9,
     reference_high: 5.6,
     critical_low: 3.0,
@@ -115,9 +115,9 @@ export const labValues = [
     female_high: null,
     category: "metabolic",
     interpretation:
-      "Fasting glucose: normal <5.6, impaired fasting glucose 5.6-6.9 (pre-diabetes), diabetes ≥7.0. Random glucose ≥11.1 with symptoms = diabetes. Hypoglycaemia: <3.9 (biochemical threshold), <3.0 (symptomatic — sweating, tremor, palpitations, cognitive impairment), <2.2 (severe — seizure, coma). Hyperglycaemia: DKA (T1DM predominantly, glucose usually 15-30 mmol/L + ketones + acidosis + anion gap), HHS (T2DM, glucose often >30-50, severe dehydration, osmolality >320, NO significant ketosis — mortality ~10-20%).",
+      "Fasting glucose: normal <5.6, impaired fasting glucose 5.6-6.9 (pre-diabetes), diabetes >=7.0. Random glucose >=11.1 with symptoms = diabetes. Hypoglycaemia: <3.9 (biochemical threshold), <3.0 (symptomatic - sweating, tremor, palpitations, cognitive impairment), <2.2 (severe - seizure, coma). Hyperglycaemia: DKA (T1DM predominantly, glucose usually 15-30 mmol/L + ketones + acidosis + anion gap), HHS (T2DM, glucose often >30-50, severe dehydration, osmolality >320, NO significant ketosis - mortality ~10-20%).",
     clinical_notes:
-      "HbA1c reflects average glucose over ~3 months (red cell lifespan). Target HbA1c: generally <48 mmol/mol (6.5%) for T2DM on non-hypoglycaemic agents; <53 mmol/mol (7%) if on insulin/sulfonylureas. Critical hypoglycaemia (<3.0): IV glucose 10% or 50% dextrose, or glucagon IM if IV access not possible. Note: bedside glucometers inaccurate in extreme ranges (<2.0 or >25 mmol/L) — confirm with lab sample.",
+      "HbA1c reflects average glucose over ~3 months (red cell lifespan). Target HbA1c: generally <48 mmol/mol (6.5%) for T2DM on non-hypoglycaemic agents; <53 mmol/mol (7%) if on insulin/sulfonylureas. Critical hypoglycaemia (<3.0): IV glucose 10% or 50% dextrose, or glucagon IM if IV access not possible. Note: bedside glucometers inaccurate in extreme ranges (<2.0 or >25 mmol/L) - confirm with lab sample.",
   },
   {
     name: "troponin I",
@@ -135,7 +135,7 @@ export const labValues = [
     female_high: null,
     category: "cardiac",
     interpretation:
-      "High-sensitivity troponin I (hs-TnI): >14 ng/L = above 99th percentile URL (upper reference limit). NSTEMI requires: rise and/or fall pattern with at least one value above 99th percentile URL + clinical context (symptoms, ECG, imaging). ESC 0h/1h algorithm: at 0h — if hs-TnI <5 ng/L = rule-out (high NPV); if hs-TnI >52 ng/L = rule-in. Delta criteria: absolute change ≥6 ng/L at 1h, or ≥4 ng/L at 0h with hs-TnI 5-51 = rule-in. Non-ACS causes of elevated troponin: myocarditis, PE (RV strain), HF, sepsis, stroke, renal failure, rhabdomyolysis, cardioversion.",
+      "High-sensitivity troponin I (hs-TnI): >14 ng/L = above 99th percentile URL (upper reference limit). NSTEMI requires: rise and/or fall pattern with at least one value above 99th percentile URL + clinical context (symptoms, ECG, imaging). ESC 0h/1h algorithm: at 0h - if hs-TnI <5 ng/L = rule-out (high NPV); if hs-TnI >52 ng/L = rule-in. Delta criteria: absolute change >=6 ng/L at 1h, or >=4 ng/L at 0h with hs-TnI 5-51 = rule-in. Non-ACS causes of elevated troponin: myocarditis, PE (RV strain), HF, sepsis, stroke, renal failure, rhabdomyolysis, cardioversion.",
     clinical_notes:
       "Threshold values vary by assay (hs-TnI vs hs-TnT) and manufacturer. Always interpret in clinical context. A static troponin elevation without significant delta (rise/fall pattern) suggests chronic elevation (CKD, stable HF, LBBB) rather than acute myocardial injury. Troponin T (hs-TnT) 99th percentile is typically ~19 ng/L (varies by assay). In suspected MI with diagnostic ECG: do not delay reperfusion for troponin result.",
   },
@@ -157,13 +157,13 @@ export const labValues = [
     interpretation:
       "Acute phase reactant synthesised by liver in response to IL-6 (from macrophages/adipocytes). Rises within 6-12h of stimulus, peaks at 36-50h, half-life ~19h. Mild elevation 5-50: minor infections, autoimmune flare, tissue injury. Moderate 50-200: significant bacterial infection, major trauma, active inflammatory disease. Severe >200: severe sepsis/septic shock, major tissue necrosis, severe autoimmune. Very high >400: typically severe bacterial infection or vasculitis. Normal CRP does not exclude malignancy, TB, SBE (may be only mildly elevated in viral infections and SLE).",
     clinical_notes:
-      "CRP vs ESR: CRP rises and falls more rapidly (useful for monitoring treatment response). ESR is slower, affected by fibrinogen, immunoglobulin levels. High-sensitivity CRP (hs-CRP <1/1-3/>3 mg/L) used for cardiovascular risk stratification — independent predictor of MACE. CRP used in CURB-65 (CAP severity), CDAI (Crohn's activity), DAS-28 (rheumatoid arthritis activity index).",
+      "CRP vs ESR: CRP rises and falls more rapidly (useful for monitoring treatment response). ESR is slower, affected by fibrinogen, immunoglobulin levels. High-sensitivity CRP (hs-CRP <1/1-3/>3 mg/L) used for cardiovascular risk stratification - independent predictor of MACE. CRP used in CURB-65 (CAP severity), CDAI (Crohn's activity), DAS-28 (rheumatoid arthritis activity index).",
   },
   {
     name: "haemoglobin",
     abbreviation: "Hb",
     unit: "g/L",
-    reference_range: "130–170 (male), 120–150 (female)",
+    reference_range: "130-170 (male), 120-150 (female)",
     reference_low: 130,
     reference_high: 170,
     critical_low: 70,
@@ -175,15 +175,15 @@ export const labValues = [
     female_high: 150,
     category: "haematology",
     interpretation:
-      "Anaemia (WHO): Hb <130 g/L males, <120 g/L females (non-pregnant). Severity: mild 110-129 (M) / 110-119 (F), moderate 80-109, severe <80. Classify by MCV: microcytic (MCV <80 — iron deficiency commonest, thalassaemia, anaemia of chronic disease), normocytic (MCV 80-100 — ACD, haemolysis, acute blood loss, CKD, hypothyroidism, mixed), macrocytic (MCV >100 — B12/folate deficiency, alcohol, liver disease, hypothyroidism, myelodysplasia, drugs: methotrexate, hydroxyurea). Transfusion trigger: generally Hb <70 g/L (or <80 if symptomatic or cardiac disease).",
+      "Anaemia (WHO): Hb <130 g/L males, <120 g/L females (non-pregnant). Severity: mild 110-129 (M) / 110-119 (F), moderate 80-109, severe <80. Classify by MCV: microcytic (MCV <80 - iron deficiency commonest, thalassaemia, anaemia of chronic disease), normocytic (MCV 80-100 - ACD, haemolysis, acute blood loss, CKD, hypothyroidism, mixed), macrocytic (MCV >100 - B12/folate deficiency, alcohol, liver disease, hypothyroidism, myelodysplasia, drugs: methotrexate, hydroxyurea). Transfusion trigger: generally Hb <70 g/L (or <80 if symptomatic or cardiac disease).",
     clinical_notes:
-      "Iron deficiency anaemia: ↓ferritin (<15 µg/L diagnostic), ↓iron, ↑TIBC, microcytic hypochromic. Reticulocyte count: ↑in haemolysis and haemorrhage (regenerative), ↓in bone marrow failure, B12/folate deficiency (hypo-regenerative). Hb electrophoresis for haemoglobinopathies. Anaemia of chronic disease: ↑ferritin, ↓iron, ↓TIBC, normocytic (but can be microcytic). Critical Hb <70: symptoms at rest — severe fatigue, tachycardia, angina, heart failure.",
+      "Iron deficiency anaemia: decreased ferritin (<15 ug/L diagnostic), decreased iron, increased TIBC, microcytic hypochromic. Reticulocyte count: increased in haemolysis and haemorrhage (regenerative), decreased in bone marrow failure, B12/folate deficiency (hypo-regenerative). Hb electrophoresis for haemoglobinopathies. Anaemia of chronic disease: increased ferritin, decreased iron, decreased TIBC, normocytic (but can be microcytic). Critical Hb <70: symptoms at rest - severe fatigue, tachycardia, angina, heart failure.",
   },
   {
     name: "white blood cell count",
     abbreviation: "WBC",
-    unit: "×10⁹/L",
-    reference_range: "4.0–11.0",
+    unit: "x109/L",
+    reference_range: "4.0-11.0",
     reference_low: 4.0,
     reference_high: 11.0,
     critical_low: 2.0,
@@ -197,14 +197,14 @@ export const labValues = [
     interpretation:
       "Leucocytosis (>11.0): infection (bacterial >> viral), inflammation, stress response, steroids, post-splenectomy, malignancy (leukaemia if >30 or blasts present). Leucopaenia (<4.0): viral infections (HIV, EBV, CMV), autoimmune (SLE), bone marrow suppression (chemotherapy, aplastic anaemia), drugs (carbimazole, clozapine, methotrexate). Differential white cell count: neutrophils 2.0-7.5 (bacterial infection, steroids); lymphocytes 1.5-4.0 (viral infections, CLL, ALL); eosinophils 0.04-0.4 (allergy, parasites, Churg-Strauss); monocytes 0.2-0.8; basophils 0-0.1 (CML, allergy).",
     clinical_notes:
-      "Neutropenia (<2.0 ×10⁹/L) = risk of bacterial and fungal infections. Febrile neutropenia: temp >38°C + neutrophils <0.5 — medical emergency, start IV antibiotics (Tazocin) within 1h after cultures. Critical WBC <2.0: notify clinician immediately. Reactive leucocytosis (leukaemoid reaction, >30) vs leukaemia: check differential, blood film (blasts?), LDH, uric acid. Clozapine and carbimazole require mandatory WBC monitoring due to agranulocytosis risk.",
+      "Neutropenia (<2.0 x109/L) = risk of bacterial and fungal infections. Febrile neutropenia: temp >38 degC + neutrophils <0.5 - medical emergency, start IV antibiotics (Tazocin) within 1h after cultures. Critical WBC <2.0: notify clinician immediately. Reactive leucocytosis (leukaemoid reaction, >30) vs leukaemia: check differential, blood film (blasts?), LDH, uric acid. Clozapine and carbimazole require mandatory WBC monitoring due to agranulocytosis risk.",
   },
-  // --- ELECTROLYTES (additions) — Harrison's 21e reference lab-style text ---
+  // --- ELECTROLYTES (additions) - Harrison's 21e reference lab-style text ---
   {
     name: "bicarbonate",
-    abbreviation: "HCO₃⁻",
+    abbreviation: "HCO3-",
     unit: "mmol/L",
-    reference_range: "22–29",
+    reference_range: "22-29",
     reference_low: 22,
     reference_high: 29,
     critical_low: 10,
@@ -216,15 +216,15 @@ export const labValues = [
     female_high: null,
     category: "electrolytes",
     interpretation:
-      "Primary marker of metabolic acid-base status. Metabolic acidosis (<22): high anion gap (MUDPILES — methanol, uraemia, DKA, propylene glycol, isoniazid/iron, lactic acidosis, ethylene glycol, salicylates) vs. normal anion gap/hyperchloraemic (diarrhoea, RTA, saline excess). Metabolic alkalosis (>29): causes — vomiting/NG suctioning (loss of HCl), diuretics (hypokalaemia-driven), primary hyperaldosteronism, Cushing's, exogenous base. Compensation: metabolic acidosis → hyperventilation (↓PCO₂ = Winter's formula: expected PCO₂ = 1.5×HCO₃ + 8 ±2); metabolic alkalosis → hypoventilation (expected PCO₂ = 0.7×HCO₃ + 21 ±2).",
+      "Primary marker of metabolic acid-base status. Metabolic acidosis (<22): high anion gap (MUDPILES - methanol, uraemia, DKA, propylene glycol, isoniazid/iron, lactic acidosis, ethylene glycol, salicylates) vs. normal anion gap/hyperchloraemic (diarrhoea, RTA, saline excess). Metabolic alkalosis (>29): causes - vomiting/NG suctioning (loss of HCl), diuretics (hypokalaemia-driven), primary hyperaldosteronism, Cushing's, exogenous base. Compensation: metabolic acidosis -> hyperventilation (decreased PCO2 = Winter's formula: expected PCO2 = 1.5xHCO3 + 8 +/-2); metabolic alkalosis -> hypoventilation (expected PCO2 = 0.7xHCO3 + 21 +/-2).",
     clinical_notes:
-      "In venous blood gas, venous bicarbonate is ~1-2 mmol/L higher than arterial. Always interpret with pH and PCO₂ (ABG/VBG) to determine primary disorder and adequacy of compensation. Critical HCO₃ <10: severe metabolic acidosis — calculate anion gap immediately (Na − [Cl + HCO₃], normal 8-12; correct for albumin: +2.5 per 10 g/L below 40).",
+      "In venous blood gas, venous bicarbonate is ~1-2 mmol/L higher than arterial. Always interpret with pH and PCO2 (ABG/VBG) to determine primary disorder and adequacy of compensation. Critical HCO3 <10: severe metabolic acidosis - calculate anion gap immediately (Na - [Cl + HCO3], normal 8-12; correct for albumin: +2.5 per 10 g/L below 40).",
   },
   {
     name: "calcium",
-    abbreviation: "Ca²⁺",
+    abbreviation: "Ca^2+",
     unit: "mmol/L",
-    reference_range: "2.15–2.55",
+    reference_range: "2.15-2.55",
     reference_low: 2.15,
     reference_high: 2.55,
     critical_low: 1.75,
@@ -236,15 +236,15 @@ export const labValues = [
     female_high: null,
     category: "electrolytes",
     interpretation:
-      "Total calcium includes protein-bound (~40%, mainly albumin), complexed (~10%), and ionised (~50%) fractions. Correct for albumin: corrected Ca = total Ca + 0.02 × (40 − albumin g/L). Hypocalcaemia (<2.15): hypoparathyroidism (post-thyroidectomy, autoimmune), vitamin D deficiency, CKD (↓1,25(OH)₂D, hyperphosphataemia), pancreatitis, hypomagnesaemia, alkalosis (↓ionised Ca). Symptoms: perioral tingling, Chvostek/Trousseau signs, tetany, prolonged QT, seizures. Hypercalcaemia (>2.55): primary hyperparathyroidism (commonest outpatient — PTH ↑, asymptomatic discovery) and malignancy (commonest inpatient — PTHrP, osteolysis, 1,25(OH)₂D in lymphoma) account for >90% of cases. Symptoms: 'bones, stones, groans, moans'.",
+      "Total calcium includes protein-bound (~40%, mainly albumin), complexed (~10%), and ionised (~50%) fractions. Correct for albumin: corrected Ca = total Ca + 0.02 x (40 - albumin g/L). Hypocalcaemia (<2.15): hypoparathyroidism (post-thyroidectomy, autoimmune), vitamin D deficiency, CKD (decreased 1,25(OH)2D, hyperphosphataemia), pancreatitis, hypomagnesaemia, alkalosis (decreased ionised Ca). Symptoms: perioral tingling, Chvostek/Trousseau signs, tetany, prolonged QT, seizures. Hypercalcaemia (>2.55): primary hyperparathyroidism (commonest outpatient - PTH increased , asymptomatic discovery) and malignancy (commonest inpatient - PTHrP, osteolysis, 1,25(OH)2D in lymphoma) account for >90% of cases. Symptoms: 'bones, stones, groans, moans'.",
     clinical_notes:
-      "Critical hypercalcaemia (>3.25): IV saline hydration (4-6 L/24h) first-line; IV bisphosphonate (zoledronic acid) within 24-48h; calcitonin for rapid effect; dialysis if renal failure. Critical hypocalcaemia (<1.75): IV calcium gluconate (10 mL of 10% over 10 min, then infusion); monitor ECG (prolonged QT). Always check ionised calcium (pH-dependent) in acid-base disturbance — alkalosis shifts calcium to protein-bound form reducing ionised fraction without changing total.",
+      "Critical hypercalcaemia (>3.25): IV saline hydration (4-6 L/24h) first-line; IV bisphosphonate (zoledronic acid) within 24-48h; calcitonin for rapid effect; dialysis if renal failure. Critical hypocalcaemia (<1.75): IV calcium gluconate (10 mL of 10% over 10 min, then infusion); monitor ECG (prolonged QT). Always check ionised calcium (pH-dependent) in acid-base disturbance - alkalosis shifts calcium to protein-bound form reducing ionised fraction without changing total.",
   },
   {
     name: "magnesium",
-    abbreviation: "Mg²⁺",
+    abbreviation: "Mg^2+",
     unit: "mmol/L",
-    reference_range: "0.75–1.02",
+    reference_range: "0.75-1.02",
     reference_low: 0.75,
     reference_high: 1.02,
     critical_low: 0.5,
@@ -256,15 +256,15 @@ export const labValues = [
     female_high: null,
     category: "electrolytes",
     interpretation:
-      "Second most abundant intracellular cation; essential for parathyroid hormone secretion and peripheral PTH action. Hypomagnesaemia (<0.75): GI loss (diarrhoea, malabsorption, chronic PPI use), renal loss (diuretics, aminoglycosides, cisplatin, alcohol, DKA recovery), redistribution. Clinically important because it causes refractory hypokalaemia and hypocalcaemia — always check Mg in electrolyte disturbances. Symptoms: tremor, muscle weakness, tetany, arrhythmias (Torsades de pointes). Hypermagnesaemia (>1.02): almost exclusively iatrogenic (Mg²⁺ therapy in pre-eclampsia, laxative excess in CKD). Causes neuromuscular depression, loss of reflexes (~3.5-4.5 mmol/L), respiratory arrest (>5), cardiac arrest (>7.5).",
+      "Second most abundant intracellular cation; essential for parathyroid hormone secretion and peripheral PTH action. Hypomagnesaemia (<0.75): GI loss (diarrhoea, malabsorption, chronic PPI use), renal loss (diuretics, aminoglycosides, cisplatin, alcohol, DKA recovery), redistribution. Clinically important because it causes refractory hypokalaemia and hypocalcaemia - always check Mg in electrolyte disturbances. Symptoms: tremor, muscle weakness, tetany, arrhythmias (Torsades de pointes). Hypermagnesaemia (>1.02): almost exclusively iatrogenic (Mg^2+ therapy in pre-eclampsia, laxative excess in CKD). Causes neuromuscular depression, loss of reflexes (~3.5-4.5 mmol/L), respiratory arrest (>5), cardiac arrest (>7.5).",
     clinical_notes:
-      "Serum magnesium poorly reflects total body stores — normal serum Mg does not exclude intracellular deficiency. In Torsades de pointes: IV MgSO₄ 2g over 10 min regardless of serum level. In pre-eclampsia therapy: therapeutic target 2.0-3.5 mmol/L; monitor patellar reflexes and respiratory rate. Critical hypermagnesaemia: calcium gluconate IV (antagonises Mg), IV fluids + loop diuretic, dialysis in renal failure.",
+      "Serum magnesium poorly reflects total body stores - normal serum Mg does not exclude intracellular deficiency. In Torsades de pointes: IV MgSO4 2g over 10 min regardless of serum level. In pre-eclampsia therapy: therapeutic target 2.0-3.5 mmol/L; monitor patellar reflexes and respiratory rate. Critical hypermagnesaemia: calcium gluconate IV (antagonises Mg), IV fluids + loop diuretic, dialysis in renal failure.",
   },
   {
     name: "phosphate",
-    abbreviation: "PO₄³⁻",
+    abbreviation: "PO4^3-",
     unit: "mmol/L",
-    reference_range: "0.81–1.45",
+    reference_range: "0.81-1.45",
     reference_low: 0.81,
     reference_high: 1.45,
     critical_low: 0.32,
@@ -276,16 +276,16 @@ export const labValues = [
     female_high: null,
     category: "electrolytes",
     interpretation:
-      "Critical for ATP synthesis, 2,3-DPG (oxygen delivery), and membrane phospholipids. Hypophosphataemia (<0.81): mild 0.65-0.80, moderate 0.32-0.64, severe <0.32. Causes: refeeding syndrome (insulin → cellular uptake), DKA treatment, hyperventilation (respiratory alkalosis), malabsorption, vitamin D deficiency, hyperparathyroidism, antacids. Severe deficiency (<0.32): haemolytic anaemia (↓RBC 2,3-DPG → rigid cells), muscle weakness/rhabdomyolysis, respiratory failure, encephalopathy. Hyperphosphataemia (>1.45): CKD (impaired renal excretion), hypoparathyroidism, tumour lysis syndrome, rhabdomyolysis. Causes ectopic calcification and secondary hyperparathyroidism in CKD.",
+      "Critical for ATP synthesis, 2,3-DPG (oxygen delivery), and membrane phospholipids. Hypophosphataemia (<0.81): mild 0.65-0.80, moderate 0.32-0.64, severe <0.32. Causes: refeeding syndrome (insulin -> cellular uptake), DKA treatment, hyperventilation (respiratory alkalosis), malabsorption, vitamin D deficiency, hyperparathyroidism, antacids. Severe deficiency (<0.32): haemolytic anaemia (decreased RBC 2,3-DPG -> rigid cells), muscle weakness/rhabdomyolysis, respiratory failure, encephalopathy. Hyperphosphataemia (>1.45): CKD (impaired renal excretion), hypoparathyroidism, tumour lysis syndrome, rhabdomyolysis. Causes ectopic calcification and secondary hyperparathyroidism in CKD.",
     clinical_notes:
-      "Refeeding syndrome: hypophosphataemia (<0.5 mmol/L) within 72h of refeeding after prolonged starvation — also hypokalaemia, hypomagnesaemia, thiamine deficiency. Can cause cardiac arrhythmias, respiratory failure, seizures. In CKD: phosphate binders (calcium carbonate, sevelamer) with meals. Monitor phosphate during TPN and aggressive insulin therapy.",
+      "Refeeding syndrome: hypophosphataemia (<0.5 mmol/L) within 72h of refeeding after prolonged starvation - also hypokalaemia, hypomagnesaemia, thiamine deficiency. Can cause cardiac arrhythmias, respiratory failure, seizures. In CKD: phosphate binders (calcium carbonate, sevelamer) with meals. Monitor phosphate during TPN and aggressive insulin therapy.",
   },
   // --- METABOLIC (additions) ---
   {
     name: "lactate",
     abbreviation: "Lac",
     unit: "mmol/L",
-    reference_range: "0.5–1.6",
+    reference_range: "0.5-1.6",
     reference_low: 0.5,
     reference_high: 1.6,
     critical_low: null,
@@ -297,15 +297,15 @@ export const labValues = [
     female_high: null,
     category: "metabolic",
     interpretation:
-      "End-product of anaerobic glycolysis; cleared primarily by liver (60%) and kidney (30%). Type A lactic acidosis (tissue hypoperfusion): septic shock, cardiogenic shock, haemorrhagic shock, mesenteric ischaemia, severe anaemia. Type B (no overt hypoperfusion): liver failure (↓clearance), metformin toxicity, thiamine deficiency, malignancy, mitochondrial disorders. Elevated lactate in sepsis: >2 mmol/L indicates occult hypoperfusion (triggers SOFA-based sepsis criteria); >4 mmol/L = septic shock regardless of blood pressure (Sepsis-3 definition). Serial lactate measurement guides resuscitation — clearance ≥10% over 2h is a target in septic shock (Surviving Sepsis Campaign).",
+      "End-product of anaerobic glycolysis; cleared primarily by liver (60%) and kidney (30%). Type A lactic acidosis (tissue hypoperfusion): septic shock, cardiogenic shock, haemorrhagic shock, mesenteric ischaemia, severe anaemia. Type B (no overt hypoperfusion): liver failure (decreased clearance), metformin toxicity, thiamine deficiency, malignancy, mitochondrial disorders. Elevated lactate in sepsis: >2 mmol/L indicates occult hypoperfusion (triggers SOFA-based sepsis criteria); >4 mmol/L = septic shock regardless of blood pressure (Sepsis-3 definition). Serial lactate measurement guides resuscitation - clearance >=10% over 2h is a target in septic shock (Surviving Sepsis Campaign).",
     clinical_notes:
-      "Venous lactate acceptable for screening if <2 mmol/L; arterial preferred for values >2. Tourniquet application and muscle activity during sampling artificially elevate local venous lactate — use free-flowing sample. Metformin-associated lactic acidosis: usually in AKI or contrast exposure; serum lactate often >5 mmol/L; treatment is haemodialysis. Thiamine deficiency (Wernicke's): lactate elevated due to impaired pyruvate dehydrogenase — always give thiamine before glucose in at-risk patients.",
+      "Venous lactate acceptable for screening if <2 mmol/L; arterial preferred for values >2. Tourniquet application and muscle activity during sampling artificially elevate local venous lactate - use free-flowing sample. Metformin-associated lactic acidosis: usually in AKI or contrast exposure; serum lactate often >5 mmol/L; treatment is haemodialysis. Thiamine deficiency (Wernicke's): lactate elevated due to impaired pyruvate dehydrogenase - always give thiamine before glucose in at-risk patients.",
   },
   {
     name: "HbA1c",
     abbreviation: "HbA1c",
     unit: "mmol/mol",
-    reference_range: "20–42",
+    reference_range: "20-42",
     reference_low: 20,
     reference_high: 42,
     critical_low: null,
@@ -317,15 +317,15 @@ export const labValues = [
     female_high: null,
     category: "metabolic",
     interpretation:
-      "Reflects mean plasma glucose over preceding 2-3 months (proportional to red cell lifespan ~120 days). IFCC units (mmol/mol) used in Europe; NGSP (%) in US — conversion: % = (mmol/mol / 10.929) + 2.15. Diagnostic thresholds (WHO): ≥48 mmol/mol (6.5%) = diabetes; 39-47 (5.7-6.4%) = pre-diabetes. Treatment targets (NICE): <48 for newly diagnosed T2DM on metformin alone; <53 if on insulin/sulfonylureas; relaxed <64 for frail elderly or hypoglycaemia unawareness. Very high (>97 mmol/mol, >11%): high risk of microvascular complications.",
+      "Reflects mean plasma glucose over preceding 2-3 months (proportional to red cell lifespan ~120 days). IFCC units (mmol/mol) used in Europe; NGSP (%) in US - conversion: % = (mmol/mol / 10.929) + 2.15. Diagnostic thresholds (WHO): >=48 mmol/mol (6.5%) = diabetes; 39-47 (5.7-6.4%) = pre-diabetes. Treatment targets (NICE): <48 for newly diagnosed T2DM on metformin alone; <53 if on insulin/sulfonylureas; relaxed <64 for frail elderly or hypoglycaemia unawareness. Very high (>97 mmol/mol, >11%): high risk of microvascular complications.",
     clinical_notes:
-      "Falsely low HbA1c: haemolytic anaemia (↓RBC lifespan), haemoglobinopathies (HbS, HbC — assay interference), recent blood transfusion. Falsely high: iron deficiency anaemia, B12/folate deficiency, asplenia, alcoholism (carbamylated Hb). In these settings use fructosamine (reflects 2-3 weeks) or continuous glucose monitoring instead.",
+      "Falsely low HbA1c: haemolytic anaemia (decreased RBC lifespan), haemoglobinopathies (HbS, HbC - assay interference), recent blood transfusion. Falsely high: iron deficiency anaemia, B12/folate deficiency, asplenia, alcoholism (carbamylated Hb). In these settings use fructosamine (reflects 2-3 weeks) or continuous glucose monitoring instead.",
   },
   {
     name: "uric acid",
     abbreviation: "UA",
-    unit: "µmol/L",
-    reference_range: "202–416 (male), 143–357 (female)",
+    unit: "umol/L",
+    reference_range: "202-416 (male), 143-357 (female)",
     reference_low: 143,
     reference_high: 416,
     critical_low: null,
@@ -337,16 +337,16 @@ export const labValues = [
     female_high: 357,
     category: "metabolic",
     interpretation:
-      "End-product of purine catabolism (xanthine oxidase pathway); excreted primarily by kidney. Hyperuricaemia: underexcretion (90% — CKD, diuretics, low-dose aspirin, alcohol, metabolic syndrome) or overproduction (10% — myeloproliferative disorders, haemolysis, tumour lysis syndrome). Gout: monosodium urate crystal deposition; attack threshold typically >360 µmol/L. Only ~10-20% of hyperuricaemic patients develop gout. Tumour lysis syndrome: uric acid >500 µmol/L + hyperphosphataemia + hyperkalaemia + hypocalcaemia → acute urate nephropathy.",
+      "End-product of purine catabolism (xanthine oxidase pathway); excreted primarily by kidney. Hyperuricaemia: underexcretion (90% - CKD, diuretics, low-dose aspirin, alcohol, metabolic syndrome) or overproduction (10% - myeloproliferative disorders, haemolysis, tumour lysis syndrome). Gout: monosodium urate crystal deposition; attack threshold typically >360 umol/L. Only ~10-20% of hyperuricaemic patients develop gout. Tumour lysis syndrome: uric acid >500 umol/L + hyperphosphataemia + hyperkalaemia + hypocalcaemia -> acute urate nephropathy.",
     clinical_notes:
-      "Acute gout: NSAID (indomethacin, naproxen) first-line; colchicine 0.5 mg 2-3×/day; short-course prednisolone if both contraindicated. Urate-lowering therapy (allopurinol) NOT started during acute attack — stabilise first, then target serum urate <360 µmol/L (<300 in tophaceous gout). Rasburicase for tumour lysis syndrome — contraindicated in G6PD deficiency (risk of haemolytic anaemia).",
+      "Acute gout: NSAID (indomethacin, naproxen) first-line; colchicine 0.5 mg 2-3x/day; short-course prednisolone if both contraindicated. Urate-lowering therapy (allopurinol) NOT started during acute attack - stabilise first, then target serum urate <360 umol/L (<300 in tophaceous gout). Rasburicase for tumour lysis syndrome - contraindicated in G6PD deficiency (risk of haemolytic anaemia).",
   },
   // --- HEPATIC ---
   {
     name: "alanine aminotransferase",
     abbreviation: "ALT",
     unit: "U/L",
-    reference_range: "7–56 (male), 7–45 (female)",
+    reference_range: "7-56 (male), 7-45 (female)",
     reference_low: null,
     reference_high: 56,
     critical_low: null,
@@ -358,15 +358,15 @@ export const labValues = [
     female_high: 45,
     category: "hepatic",
     interpretation:
-      "Hepatocyte-specific cytosolic enzyme; most useful marker of hepatocellular injury. Mild elevation (1-3× ULN): NAFLD, alcohol, medications, coeliac, thyroid disease. Moderate (3-10×): chronic hepatitis B/C, autoimmune hepatitis, ischaemic hepatitis (early), drug-induced (statins, paracetamol). Severe (>10×, >500 U/L): acute hepatitis (viral, toxic, ischaemic/'shock liver'), paracetamol overdose, Wilson's disease. ALT:AST ratio: ALT > AST in viral or NAFLD; AST:ALT >2:1 in alcoholic hepatitis (de Ritis ratio); AST >> ALT in ischaemic hepatitis or muscle disease.",
+      "Hepatocyte-specific cytosolic enzyme; most useful marker of hepatocellular injury. Mild elevation (1-3x ULN): NAFLD, alcohol, medications, coeliac, thyroid disease. Moderate (3-10x): chronic hepatitis B/C, autoimmune hepatitis, ischaemic hepatitis (early), drug-induced (statins, paracetamol). Severe (>10x, >500 U/L): acute hepatitis (viral, toxic, ischaemic/'shock liver'), paracetamol overdose, Wilson's disease. ALT:AST ratio: ALT > AST in viral or NAFLD; AST:ALT >2:1 in alcoholic hepatitis (de Ritis ratio); AST >> ALT in ischaemic hepatitis or muscle disease.",
     clinical_notes:
-      "ALT elevation on statins: typically <3× ULN — not associated with significant hepatotoxicity, continuing usually safe. Discontinue if >3× ULN with symptoms. In paracetamol overdose: ALT peaks 72-96h; rise >1000 U/L with rising INR = fulminant hepatic failure — refer to transplant centre. Isolated ALT elevation workup: viral serology (HBsAg, anti-HCV), anti-tTG (coeliac), TFT, ferritin (haemochromatosis), ANA/ASMA (autoimmune hepatitis), ceruloplasmin if <40 years (Wilson's).",
+      "ALT elevation on statins: typically <3x ULN - not associated with significant hepatotoxicity, continuing usually safe. Discontinue if >3x ULN with symptoms. In paracetamol overdose: ALT peaks 72-96h; rise >1000 U/L with rising INR = fulminant hepatic failure - refer to transplant centre. Isolated ALT elevation workup: viral serology (HBsAg, anti-HCV), anti-tTG (coeliac), TFT, ferritin (haemochromatosis), ANA/ASMA (autoimmune hepatitis), ceruloplasmin if <40 years (Wilson's).",
   },
   {
     name: "aspartate aminotransferase",
     abbreviation: "AST",
     unit: "U/L",
-    reference_range: "10–40",
+    reference_range: "10-40",
     reference_low: null,
     reference_high: 40,
     critical_low: null,
@@ -378,15 +378,15 @@ export const labValues = [
     female_high: null,
     category: "hepatic",
     interpretation:
-      "Present in liver, cardiac muscle, skeletal muscle, kidneys — less liver-specific than ALT. AST:ALT ratio: >2:1 (de Ritis) suggests alcoholic hepatitis (alcohol induces mitochondrial AST release, pyridoxine deficiency impairs ALT synthesis); <1 suggests viral hepatitis or NAFLD. Causes of disproportionately elevated AST vs ALT: rhabdomyolysis, haemolysis, strenuous exercise. Massive elevation (>10× both, rapidly falling): ischaemic hepatitis or fulminant hepatic failure.",
+      "Present in liver, cardiac muscle, skeletal muscle, kidneys - less liver-specific than ALT. AST:ALT ratio: >2:1 (de Ritis) suggests alcoholic hepatitis (alcohol induces mitochondrial AST release, pyridoxine deficiency impairs ALT synthesis); <1 suggests viral hepatitis or NAFLD. Causes of disproportionately elevated AST vs ALT: rhabdomyolysis, haemolysis, strenuous exercise. Massive elevation (>10x both, rapidly falling): ischaemic hepatitis or fulminant hepatic failure.",
     clinical_notes:
-      "No longer used diagnostically for MI (superseded by troponin). Useful for monitoring alcohol-related liver disease alongside GGT. AST:ALT >3:1 + elevated GGT in an anicteric patient → strongly suggests alcoholic hepatitis. In haemolytic conditions, RBC AST release may cause spurious elevation.",
+      "No longer used diagnostically for MI (superseded by troponin). Useful for monitoring alcohol-related liver disease alongside GGT. AST:ALT >3:1 + elevated GGT in an anicteric patient -> strongly suggests alcoholic hepatitis. In haemolytic conditions, RBC AST release may cause spurious elevation.",
   },
   {
     name: "alkaline phosphatase",
     abbreviation: "ALP",
     unit: "U/L",
-    reference_range: "35–115",
+    reference_range: "35-115",
     reference_low: null,
     reference_high: 115,
     critical_low: null,
@@ -398,15 +398,15 @@ export const labValues = [
     female_high: null,
     category: "hepatic",
     interpretation:
-      "Present in liver (biliary canaliculi), bone, placenta, intestine. Elevated ALP with elevated GGT → hepatobiliary origin confirmed (GGT not elevated in bone/placental ALP). Cholestatic pattern (ALP ↑↑, ALP:ALT >3:1): PBC, PSC, extrahepatic biliary obstruction (choledocholithiasis, pancreatic cancer), drug-induced cholestasis. Bone origin: Paget's disease (very high, ALP may be >10× ULN with normal GGT), osteomalacia, bone metastases, hyperparathyroidism, healing fractures. Physiological elevation: pregnancy (placental isoform, 3rd trimester), growth/adolescence.",
+      "Present in liver (biliary canaliculi), bone, placenta, intestine. Elevated ALP with elevated GGT -> hepatobiliary origin confirmed (GGT not elevated in bone/placental ALP). Cholestatic pattern (ALP increased increased , ALP:ALT >3:1): PBC, PSC, extrahepatic biliary obstruction (choledocholithiasis, pancreatic cancer), drug-induced cholestasis. Bone origin: Paget's disease (very high, ALP may be >10x ULN with normal GGT), osteomalacia, bone metastases, hyperparathyroidism, healing fractures. Physiological elevation: pregnancy (placental isoform, 3rd trimester), growth/adolescence.",
     clinical_notes:
-      "Isolated ALP elevation (other LFTs normal): order GGT — if raised, investigate biliary tree (ultrasound ± MRCP); if GGT normal, check bone isofractions, consider Paget's (X-ray, bone scan) or bone metastases. ALP in PBC: correlates with disease activity; normalisation on ursodeoxycholic acid = improved prognosis.",
+      "Isolated ALP elevation (other LFTs normal): order GGT - if raised, investigate biliary tree (ultrasound +/- MRCP); if GGT normal, check bone isofractions, consider Paget's (X-ray, bone scan) or bone metastases. ALP in PBC: correlates with disease activity; normalisation on ursodeoxycholic acid = improved prognosis.",
   },
   {
     name: "gamma-glutamyl transferase",
     abbreviation: "GGT",
     unit: "U/L",
-    reference_range: "8–61 (male), 5–36 (female)",
+    reference_range: "8-61 (male), 5-36 (female)",
     reference_low: null,
     reference_high: 61,
     critical_low: null,
@@ -418,15 +418,15 @@ export const labValues = [
     female_high: 36,
     category: "hepatic",
     interpretation:
-      "Microsomal enzyme induced by alcohol, drugs (phenytoin, carbamazepine, rifampicin, barbiturates), and biliary obstruction. Primary uses: (1) confirm hepatic origin of elevated ALP — GGT elevated in biliary/hepatic ALP, not in bone/placental; (2) marker of alcohol use — elevated in 70-80% of heavy drinkers even with normal transaminases; (3) drug-induced enzyme induction. GGT progressively declines (half-life ~14-26 days) with alcohol abstinence.",
+      "Microsomal enzyme induced by alcohol, drugs (phenytoin, carbamazepine, rifampicin, barbiturates), and biliary obstruction. Primary uses: (1) confirm hepatic origin of elevated ALP - GGT elevated in biliary/hepatic ALP, not in bone/placental; (2) marker of alcohol use - elevated in 70-80% of heavy drinkers even with normal transaminases; (3) drug-induced enzyme induction. GGT progressively declines (half-life ~14-26 days) with alcohol abstinence.",
     clinical_notes:
-      "GGT most sensitive marker of alcohol use (more sensitive than AST or MCV alone). GGT + MCV combination: high specificity for alcohol use. Not elevated in haemolysis, muscle disease, or physiologically in pregnancy/adolescence — distinguishes from ALP. Any chronic liver disease, obesity, and many medications can elevate GGT — do not interpret in isolation.",
+      "GGT most sensitive marker of alcohol use (more sensitive than AST or MCV alone). GGT + MCV combination: high specificity for alcohol use. Not elevated in haemolysis, muscle disease, or physiologically in pregnancy/adolescence - distinguishes from ALP. Any chronic liver disease, obesity, and many medications can elevate GGT - do not interpret in isolation.",
   },
   {
     name: "bilirubin",
     abbreviation: "Bili",
-    unit: "µmol/L",
-    reference_range: "5–21",
+    unit: "umol/L",
+    reference_range: "5-21",
     reference_low: null,
     reference_high: 21,
     critical_low: null,
@@ -438,15 +438,15 @@ export const labValues = [
     female_high: null,
     category: "hepatic",
     interpretation:
-      "Breakdown product of haem; unconjugated (indirect) transported to liver → conjugated (direct) by UGT1A1 → excreted in bile. Prehepatic (unconjugated): haemolysis, haematoma resorption — bilirubin rarely >85 µmol/L; dark urine absent. Gilbert's syndrome: isolated mild unconjugated hyperbilirubinaemia (17-85 µmol/L), normal LFTs — benign, fasting/illness precipitate, no treatment. Posthepatic (conjugated): obstructive — pale stools, dark urine, pruritus; causes: choledocholithiasis, pancreatic/biliary cancer, PSC, strictures.",
+      "Breakdown product of haem; unconjugated (indirect) transported to liver -> conjugated (direct) by UGT1A1 -> excreted in bile. Prehepatic (unconjugated): haemolysis, haematoma resorption - bilirubin rarely >85 umol/L; dark urine absent. Gilbert's syndrome: isolated mild unconjugated hyperbilirubinaemia (17-85 umol/L), normal LFTs - benign, fasting/illness precipitate, no treatment. Posthepatic (conjugated): obstructive - pale stools, dark urine, pruritus; causes: choledocholithiasis, pancreatic/biliary cancer, PSC, strictures.",
     clinical_notes:
-      "Critical bilirubin >340 µmol/L: in adults suggests fulminant hepatic failure or severe cholestasis. Fractionation: indirect >80% of total → prehepatic/genetic; direct >50% → hepatic or cholestatic. Urine bilirubin (only conjugated filtered): positive dipstick indicates conjugated hyperbilirubinaemia before clinical jaundice is apparent.",
+      "Critical bilirubin >340 umol/L: in adults suggests fulminant hepatic failure or severe cholestasis. Fractionation: indirect >80% of total -> prehepatic/genetic; direct >50% -> hepatic or cholestatic. Urine bilirubin (only conjugated filtered): positive dipstick indicates conjugated hyperbilirubinaemia before clinical jaundice is apparent.",
   },
   {
     name: "albumin",
     abbreviation: "Alb",
     unit: "g/L",
-    reference_range: "35–50",
+    reference_range: "35-50",
     reference_low: 35,
     reference_high: 50,
     critical_low: 20,
@@ -458,15 +458,15 @@ export const labValues = [
     female_high: null,
     category: "hepatic",
     interpretation:
-      "Main plasma protein synthesised exclusively by liver; half-life ~20 days. Functions: plasma oncotic pressure, transport (calcium, drugs, hormones), antioxidant. Hypoalbuminaemia (<35): ↓synthesis (chronic liver disease, malnutrition, sepsis — negative acute phase reactant), ↑loss (nephrotic syndrome, protein-losing enteropathy, burns), haemodilution (pregnancy, fluid overload). Child-Pugh score: albumin >35 = 1 point, 28-35 = 2, <28 = 3.",
+      "Main plasma protein synthesised exclusively by liver; half-life ~20 days. Functions: plasma oncotic pressure, transport (calcium, drugs, hormones), antioxidant. Hypoalbuminaemia (<35): decreased synthesis (chronic liver disease, malnutrition, sepsis - negative acute phase reactant), increased loss (nephrotic syndrome, protein-losing enteropathy, burns), haemodilution (pregnancy, fluid overload). Child-Pugh score: albumin >35 = 1 point, 28-35 = 2, <28 = 3.",
     clinical_notes:
-      "Affects drug pharmacokinetics — highly protein-bound drugs (phenytoin, warfarin) have higher free fractions in hypoalbuminaemia → toxicity at 'normal' total levels. Correct calcium: corrected Ca = total Ca + 0.02 × (40 − albumin). Albumin infusion: indicated in large-volume paracentesis (cirrhosis) and spontaneous bacterial peritonitis — not shown to improve outcomes in general critical illness.",
+      "Affects drug pharmacokinetics - highly protein-bound drugs (phenytoin, warfarin) have higher free fractions in hypoalbuminaemia -> toxicity at 'normal' total levels. Correct calcium: corrected Ca = total Ca + 0.02 x (40 - albumin). Albumin infusion: indicated in large-volume paracentesis (cirrhosis) and spontaneous bacterial peritonitis - not shown to improve outcomes in general critical illness.",
   },
   {
     name: "total protein",
     abbreviation: "TP",
     unit: "g/L",
-    reference_range: "63–83",
+    reference_range: "63-83",
     reference_low: 63,
     reference_high: 83,
     critical_low: null,
@@ -478,7 +478,7 @@ export const labValues = [
     female_high: null,
     category: "hepatic",
     interpretation:
-      "Sum of albumin and globulins. Elevated total protein with low albumin = elevated globulins (A:G ratio <1): chronic liver disease (↑reticuloendothelial globulins), autoimmune conditions (PBC, AIH), chronic infections (HIV, HBV/HCV, TB), myeloma (monoclonal protein). Very high total protein (>90 g/L): suspect monoclonal gammopathy — request SPEP, immunofixation, serum free light chains. Normal A:G ratio: ~1.2:1 to 1.7:1.",
+      "Sum of albumin and globulins. Elevated total protein with low albumin = elevated globulins (A:G ratio <1): chronic liver disease (increased reticuloendothelial globulins), autoimmune conditions (PBC, AIH), chronic infections (HIV, HBV/HCV, TB), myeloma (monoclonal protein). Very high total protein (>90 g/L): suspect monoclonal gammopathy - request SPEP, immunofixation, serum free light chains. Normal A:G ratio: ~1.2:1 to 1.7:1.",
     clinical_notes:
       "Total protein adds limited value when albumin is measured separately. Main uses: screening for hypergammaglobulinaemia (myeloma, autoimmune, chronic infection) and protein-calorie malnutrition. Paraprotein detected: order SPEP + immunofixation (IFE) + serum free light chains; assess for CRAB criteria (hypercalcaemia, Renal failure, Anaemia, Bone lesions).",
   },
@@ -486,8 +486,8 @@ export const labValues = [
   {
     name: "red blood cell count",
     abbreviation: "RBC",
-    unit: "×10¹²/L",
-    reference_range: "4.5–5.3 (male), 4.1–5.1 (female)",
+    unit: "x10^1^2/L",
+    reference_range: "4.5-5.3 (male), 4.1-5.1 (female)",
     reference_low: 4.1,
     reference_high: 5.3,
     critical_low: 2.0,
@@ -499,15 +499,15 @@ export const labValues = [
     female_high: 5.1,
     category: "haematology",
     interpretation:
-      "Total erythrocyte count. Polycythaemia (↑RBC): primary (polycythaemia vera — JAK2 mutation, ↑RBC + WBC + platelets) vs. secondary (hypoxia-driven ↑EPO — COPD, sleep apnoea, altitude, renal cell carcinoma). Anaemia classification by RBC indices: microcytic hypochromic (↓RBC, ↓MCV, ↓MCH — iron deficiency, thalassaemia), macrocytic (↓RBC, ↑MCV — B12/folate). Reticulocyte count: ↑in haemolysis and haemorrhage; ↓in hypoproliferative anaemia.",
+      "Total erythrocyte count. Polycythaemia (increased RBC): primary (polycythaemia vera - JAK2 mutation, increased RBC + WBC + platelets) vs. secondary (hypoxia-driven increased EPO - COPD, sleep apnoea, altitude, renal cell carcinoma). Anaemia classification by RBC indices: microcytic hypochromic (decreased RBC, decreased MCV, decreased MCH - iron deficiency, thalassaemia), macrocytic (decreased RBC, increased MCV - B12/folate). Reticulocyte count: increased in haemolysis and haemorrhage; decreased in hypoproliferative anaemia.",
     clinical_notes:
-      "RBC count rarely used in isolation — always interpret with Hb, Hct, and indices (MCV, MCH, MCHC). Blood film essential: spherocytes (hereditary spherocytosis, AIHA), target cells (iron deficiency, thalassaemia, liver disease), schistocytes (microangiopathic haemolytic anaemia — TTP, HUS, DIC), hypersegmented neutrophils (B12/folate deficiency).",
+      "RBC count rarely used in isolation - always interpret with Hb, Hct, and indices (MCV, MCH, MCHC). Blood film essential: spherocytes (hereditary spherocytosis, AIHA), target cells (iron deficiency, thalassaemia, liver disease), schistocytes (microangiopathic haemolytic anaemia - TTP, HUS, DIC), hypersegmented neutrophils (B12/folate deficiency).",
   },
   {
     name: "platelets",
     abbreviation: "PLT",
-    unit: "×10⁹/L",
-    reference_range: "150–400",
+    unit: "x109/L",
+    reference_range: "150-400",
     reference_low: 150,
     reference_high: 400,
     critical_low: 50,
@@ -519,15 +519,15 @@ export const labValues = [
     female_high: null,
     category: "haematology",
     interpretation:
-      "Thrombocytopaenia (<150): mild 100-150 (usually no clinical significance), moderate 50-100 (↑bruising, epistaxis), severe <50 (significant haemorrhage risk), critical <10-20 (spontaneous intracranial haemorrhage risk). Causes: ↓production (bone marrow failure, chemotherapy, viral — HIV/EBV/CMV, B12/folate); ↑destruction (ITP — autoantibody; HIT — heparin-induced, thrombotic emergency; TTP/HUS; DIC; hypersplenism). Thrombocytosis (>400): reactive (infection, inflammation, iron deficiency, post-splenectomy) vs. primary (essential thrombocythaemia — JAK2/CALR/MPL).",
+      "Thrombocytopaenia (<150): mild 100-150 (usually no clinical significance), moderate 50-100 (increased bruising, epistaxis), severe <50 (significant haemorrhage risk), critical <10-20 (spontaneous intracranial haemorrhage risk). Causes: decreased production (bone marrow failure, chemotherapy, viral - HIV/EBV/CMV, B12/folate); increased destruction (ITP - autoantibody; HIT - heparin-induced, thrombotic emergency; TTP/HUS; DIC; hypersplenism). Thrombocytosis (>400): reactive (infection, inflammation, iron deficiency, post-splenectomy) vs. primary (essential thrombocythaemia - JAK2/CALR/MPL).",
     clinical_notes:
-      "HIT: fall >50% from baseline 5-14 days after heparin → 4T score — if intermediate/high: STOP all heparin, start non-heparin anticoagulant (argatroban, danaparoid, fondaparinux). Transfusion thresholds: PLT <10 → prophylactic; PLT <50 → before invasive procedure; PLT <100 → before neurosurgery. DDAVP improves platelet function (not count) in uraemia or aspirin therapy.",
+      "HIT: fall >50% from baseline 5-14 days after heparin -> 4T score - if intermediate/high: STOP all heparin, start non-heparin anticoagulant (argatroban, danaparoid, fondaparinux). Transfusion thresholds: PLT <10 -> prophylactic; PLT <50 -> before invasive procedure; PLT <100 -> before neurosurgery. DDAVP improves platelet function (not count) in uraemia or aspirin therapy.",
   },
   {
     name: "haematocrit",
     abbreviation: "Hct",
     unit: "L/L",
-    reference_range: "0.40–0.52 (male), 0.36–0.46 (female)",
+    reference_range: "0.40-0.52 (male), 0.36-0.46 (female)",
     reference_low: 0.36,
     reference_high: 0.52,
     critical_low: 0.20,
@@ -539,15 +539,15 @@ export const labValues = [
     female_high: 0.46,
     category: "haematology",
     interpretation:
-      "Fraction of blood volume occupied by erythrocytes. Polycythaemia vera (WHO): Hct >0.49 male or >0.48 female + JAK2 mutation + BM biopsy findings. Secondary polycythaemia: ↑Hct with ↑EPO; treat underlying cause. Haemoconcentration (pseudopolycythaemia): normal RBC mass, ↓plasma volume — dehydration, diuretics. In pregnancy: physiological ↓Hct due to plasma expansion > RBC mass increase (dilutional 'anaemia of pregnancy', nadir ~28 weeks).",
+      "Fraction of blood volume occupied by erythrocytes. Polycythaemia vera (WHO): Hct >0.49 male or >0.48 female + JAK2 mutation + BM biopsy findings. Secondary polycythaemia: increased Hct with increased EPO; treat underlying cause. Haemoconcentration (pseudopolycythaemia): normal RBC mass, decreased plasma volume - dehydration, diuretics. In pregnancy: physiological decreased Hct due to plasma expansion > RBC mass increase (dilutional 'anaemia of pregnancy', nadir ~28 weeks).",
     clinical_notes:
-      "Hct used to calculate haemoconcentration in perioperative and fluid management settings. In DKA: admission Hct often elevated due to dehydration — reassess after fluid resuscitation. Approximate relationship: Hb (g/L) ≈ Hct × 340. Sickle cell disease: target Hct for exchange transfusion — aim to reduce HbS% below 30% perioperatively.",
+      "Hct used to calculate haemoconcentration in perioperative and fluid management settings. In DKA: admission Hct often elevated due to dehydration - reassess after fluid resuscitation. Approximate relationship: Hb (g/L) ~ Hct x 340. Sickle cell disease: target Hct for exchange transfusion - aim to reduce HbS% below 30% perioperatively.",
   },
   {
     name: "mean corpuscular volume",
     abbreviation: "MCV",
     unit: "fL",
-    reference_range: "80–100",
+    reference_range: "80-100",
     reference_low: 80,
     reference_high: 100,
     critical_low: null,
@@ -559,15 +559,15 @@ export const labValues = [
     female_high: null,
     category: "haematology",
     interpretation:
-      "Mean volume of individual red cells; primary morphological classifier for anaemia. Microcytic (<80 fL): iron deficiency (commonest — ↓ferritin, ↓iron, ↑TIBC, hypochromic film), thalassaemia trait (normal ferritin, ↑RBC count, ↑HbA2 on electrophoresis), anaemia of chronic disease (ACD), sideroblastic anaemia. Normocytic (80-100): ACD, acute blood loss, early haematinic deficiency, CKD (↓EPO), haemolysis. Macrocytic (>100): B12 deficiency (subacute combined degeneration of cord if severe), folate deficiency, alcohol, liver disease, hypothyroidism, myelodysplastic syndrome, drugs (methotrexate, hydroxyurea, zidovudine).",
+      "Mean volume of individual red cells; primary morphological classifier for anaemia. Microcytic (<80 fL): iron deficiency (commonest - decreased ferritin, decreased iron, increased TIBC, hypochromic film), thalassaemia trait (normal ferritin, increased RBC count, increased HbA2 on electrophoresis), anaemia of chronic disease (ACD), sideroblastic anaemia. Normocytic (80-100): ACD, acute blood loss, early haematinic deficiency, CKD (decreased EPO), haemolysis. Macrocytic (>100): B12 deficiency (subacute combined degeneration of cord if severe), folate deficiency, alcohol, liver disease, hypothyroidism, myelodysplastic syndrome, drugs (methotrexate, hydroxyurea, zidovudine).",
     clinical_notes:
-      "RDW (red cell distribution width) measures anisocytosis — ↑RDW with low MCV suggests iron deficiency; ↑RDW with normal MCV suggests mixed deficiency (iron + B12/folate). Blood film essential to confirm morphology — MCV is a population average and can be falsely normal if microcytic and macrocytic cells coexist (dimorphic picture in combined deficiency or transfused patient).",
+      "RDW (red cell distribution width) measures anisocytosis - increased RDW with low MCV suggests iron deficiency; increased RDW with normal MCV suggests mixed deficiency (iron + B12/folate). Blood film essential to confirm morphology - MCV is a population average and can be falsely normal if microcytic and macrocytic cells coexist (dimorphic picture in combined deficiency or transfused patient).",
   },
   {
     name: "mean corpuscular haemoglobin",
     abbreviation: "MCH",
     unit: "pg",
-    reference_range: "26–34",
+    reference_range: "26-34",
     reference_low: 26,
     reference_high: 34,
     critical_low: null,
@@ -579,7 +579,7 @@ export const labValues = [
     female_high: null,
     category: "haematology",
     interpretation:
-      "Average mass of Hb per erythrocyte; calculated as Hb ÷ RBC × 10. Broadly parallels MCV in clinical interpretation. Hypochromia (↓MCH, usually with ↓MCV): iron deficiency, thalassaemia, sideroblastic anaemia. In iron deficiency: MCH falls relatively early (after ferritin depletion) before MCV decreases significantly — can detect early iron deficiency.",
+      "Average mass of Hb per erythrocyte; calculated as Hb / RBC x 10. Broadly parallels MCV in clinical interpretation. Hypochromia (decreased MCH, usually with decreased MCV): iron deficiency, thalassaemia, sideroblastic anaemia. In iron deficiency: MCH falls relatively early (after ferritin depletion) before MCV decreases significantly - can detect early iron deficiency.",
     clinical_notes:
       "MCH rarely used in isolation; interpreted alongside MCV and MCHC as a triad. MCHC is a more sensitive measure of haemoglobin concentration per cell. Most automated FBC analysers report all three indices; clinical decision-making primarily uses MCV + context (ferritin, B12, folate).",
   },
@@ -587,7 +587,7 @@ export const labValues = [
     name: "mean corpuscular haemoglobin concentration",
     abbreviation: "MCHC",
     unit: "g/L",
-    reference_range: "310–370",
+    reference_range: "310-370",
     reference_low: 310,
     reference_high: 370,
     critical_low: null,
@@ -599,15 +599,15 @@ export const labValues = [
     female_high: null,
     category: "haematology",
     interpretation:
-      "Concentration of Hb within a given volume of RBCs (Hb ÷ Hct). Elevated MCHC (>370 g/L): hereditary spherocytosis (spherocytes have ↑Hb density in small volume — MCHC >360 common), HbSC disease. Machine MCHC >370 can also reflect cold agglutinins, lipaemia, or hyperglycaemia — artefactual. Low MCHC (<310): iron deficiency (hypochromic cells), thalassaemia major, sideroblastic anaemia. MCHC >380: laboratory should confirm by repeat sample (likely artefact or hereditary spherocytosis).",
+      "Concentration of Hb within a given volume of RBCs (Hb / Hct). Elevated MCHC (>370 g/L): hereditary spherocytosis (spherocytes have increased Hb density in small volume - MCHC >360 common), HbSC disease. Machine MCHC >370 can also reflect cold agglutinins, lipaemia, or hyperglycaemia - artefactual. Low MCHC (<310): iron deficiency (hypochromic cells), thalassaemia major, sideroblastic anaemia. MCHC >380: laboratory should confirm by repeat sample (likely artefact or hereditary spherocytosis).",
     clinical_notes:
-      "In hereditary spherocytosis: EMA (eosin-5-maleimide) binding flow cytometry confirms diagnosis — more specific than osmotic fragility test. MCHC >370 + negative Coombs + spherocytes on film + family history = hereditary spherocytosis until proven otherwise.",
+      "In hereditary spherocytosis: EMA (eosin-5-maleimide) binding flow cytometry confirms diagnosis - more specific than osmotic fragility test. MCHC >370 + negative Coombs + spherocytes on film + family history = hereditary spherocytosis until proven otherwise.",
   },
   {
     name: "neutrophils",
     abbreviation: "Neut",
-    unit: "×10⁹/L",
-    reference_range: "1.8–7.7",
+    unit: "x109/L",
+    reference_range: "1.8-7.7",
     reference_low: 1.8,
     reference_high: 7.7,
     critical_low: 0.5,
@@ -619,15 +619,15 @@ export const labValues = [
     female_high: null,
     category: "haematology",
     interpretation:
-      "Primary defence against bacterial and fungal infections. Neutrophilia (>7.7): bacterial infection, physiological stress (exercise, pain), corticosteroids (↑marginated pool release), tissue necrosis, malignancy. Left shift (↑band forms, metamyelocytes): active bacterial infection, severe sepsis. Leukaemoid reaction (>30 ×10⁹/L): distinguish from CML by BCR-ABL and LAP score (↑in leukaemoid, ↓in CML). Neutropaenia (<1.8): viral infections (HIV, EBV, CMV), drugs (carbimazole, clozapine, methotrexate), autoimmune (SLE, Felty's), bone marrow failure, ethnic benign neutropaenia.",
+      "Primary defence against bacterial and fungal infections. Neutrophilia (>7.7): bacterial infection, physiological stress (exercise, pain), corticosteroids (increased marginated pool release), tissue necrosis, malignancy. Left shift (increased band forms, metamyelocytes): active bacterial infection, severe sepsis. Leukaemoid reaction (>30 x109/L): distinguish from CML by BCR-ABL and LAP score (increased in leukaemoid, decreased in CML). Neutropaenia (<1.8): viral infections (HIV, EBV, CMV), drugs (carbimazole, clozapine, methotrexate), autoimmune (SLE, Felty's), bone marrow failure, ethnic benign neutropaenia.",
     clinical_notes:
-      "Febrile neutropaenia: temp ≥38°C + neutrophils <0.5 ×10⁹/L — medical emergency; blood cultures × 2 then IV piperacillin/tazobactam within 1 HOUR (NICE/ASCO). GCSF prophylaxis for chemotherapy regimens with >20% febrile neutropaenia risk. Clozapine: mandatory WBC monitoring — stop permanently if neutrophils <0.5 (agranulocytosis risk 0.8%).",
+      "Febrile neutropaenia: temp >=38 degC + neutrophils <0.5 x109/L - medical emergency; blood cultures x 2 then IV piperacillin/tazobactam within 1 HOUR (NICE/ASCO). GCSF prophylaxis for chemotherapy regimens with >20% febrile neutropaenia risk. Clozapine: mandatory WBC monitoring - stop permanently if neutrophils <0.5 (agranulocytosis risk 0.8%).",
   },
   {
     name: "lymphocytes",
     abbreviation: "Lymph",
-    unit: "×10⁹/L",
-    reference_range: "1.0–4.0",
+    unit: "x109/L",
+    reference_range: "1.0-4.0",
     reference_low: 1.0,
     reference_high: 4.0,
     critical_low: 0.5,
@@ -639,9 +639,9 @@ export const labValues = [
     female_high: null,
     category: "haematology",
     interpretation:
-      "T cells (~75%), B cells (~15%), NK cells (~10%). Lymphocytosis (>4.0): viral infections (EBV — atypical lymphocytes; CMV; HIV seroconversion), CLL (CD5+CD19+CD23+, progressive, often incidental in >60), ALL, pertussis. Lymphopaenia (<1.0): HIV (CD4 measures T-cell subset), corticosteroids (commonest iatrogenic), chemotherapy, SLE, sarcoidosis. CD4 <200 cells/µL → AIDS-defining; start PCP prophylaxis (co-trimoxazole). CD4 <50 → MAC prophylaxis.",
+      "T cells (~75%), B cells (~15%), NK cells (~10%). Lymphocytosis (>4.0): viral infections (EBV - atypical lymphocytes; CMV; HIV seroconversion), CLL (CD5+CD19+CD23+, progressive, often incidental in >60), ALL, pertussis. Lymphopaenia (<1.0): HIV (CD4 measures T-cell subset), corticosteroids (commonest iatrogenic), chemotherapy, SLE, sarcoidosis. CD4 <200 cells/uL -> AIDS-defining; start PCP prophylaxis (co-trimoxazole). CD4 <50 -> MAC prophylaxis.",
     clinical_notes:
-      "CLL vs reactive lymphocytosis: CLL has monoclonal B-cell lymphocytosis >5 ×10⁹/L, CD5+/CD23+, confirmed by flow cytometry. Rai/Binet staging guides treatment initiation. Lymphopaenia in COVID-19: <1.0 ×10⁹/L on admission correlates with severe disease and ICU admission risk.",
+      "CLL vs reactive lymphocytosis: CLL has monoclonal B-cell lymphocytosis >5 x109/L, CD5+/CD23+, confirmed by flow cytometry. Rai/Binet staging guides treatment initiation. Lymphopaenia in COVID-19: <1.0 x109/L on admission correlates with severe disease and ICU admission risk.",
   },
   // --- CARDIAC (additions) ---
   {
@@ -660,9 +660,9 @@ export const labValues = [
     female_high: null,
     category: "cardiac",
     interpretation:
-      "Secreted by ventricular cardiomyocytes in response to volume overload and wall stress. High NPV for ruling out HF: BNP <100 ng/L makes HF very unlikely (NPV >95%) in acute dyspnoea. ESC 2021 thresholds (acute): <100 rules out, >500 rules in, 100-500 = grey zone. Elevated BNP without HF: PE (RV strain), AF/flutter, ACS, sepsis, renal failure (↓clearance), severe anaemia. NT-proBNP: longer half-life, age-adjusted cut-offs (>450 for <50 years, >900 for 50-75, >1800 for >75 in acute setting).",
+      "Secreted by ventricular cardiomyocytes in response to volume overload and wall stress. High NPV for ruling out HF: BNP <100 ng/L makes HF very unlikely (NPV >95%) in acute dyspnoea. ESC 2021 thresholds (acute): <100 rules out, >500 rules in, 100-500 = grey zone. Elevated BNP without HF: PE (RV strain), AF/flutter, ACS, sepsis, renal failure (decreased clearance), severe anaemia. NT-proBNP: longer half-life, age-adjusted cut-offs (>450 for <50 years, >900 for 50-75, >1800 for >75 in acute setting).",
     clinical_notes:
-      "BNP vs NT-proBNP: not interchangeable — different units and thresholds. In obesity: lower BNP for equivalent HF severity (adipose tissue clears BNP). Serial BNP-guided therapy in stable HF: target-directed uptitration if persistently >125 ng/L after optimisation. Acute decompensated HF with BNP >900: consider ICU-level monitoring, inotropic support.",
+      "BNP vs NT-proBNP: not interchangeable - different units and thresholds. In obesity: lower BNP for equivalent HF severity (adipose tissue clears BNP). Serial BNP-guided therapy in stable HF: target-directed uptitration if persistently >125 ng/L after optimisation. Acute decompensated HF with BNP >900: consider ICU-level monitoring, inotropic support.",
   },
   {
     name: "D-dimer",
@@ -680,15 +680,15 @@ export const labValues = [
     female_high: null,
     category: "cardiac",
     interpretation:
-      "Fibrin degradation product generated when plasmin cleaves cross-linked fibrin. High sensitivity, low specificity for VTE — used as rule-OUT test in low-to-intermediate pre-test probability. Wells score + D-dimer: if Wells low + D-dimer <0.5 mg/L → PE/DVT excluded (NICE/ESC algorithm). Age-adjusted cut-off (>50 years): use age × 0.01 mg/L FEU — increases specificity (validated in ADJUST-PE trial). Causes of false positive: pregnancy, recent surgery, malignancy, sepsis, liver disease, AF, advanced age, RA. Clinically important elevation: DVT, PE, DIC, aortic dissection, sickle cell crisis.",
+      "Fibrin degradation product generated when plasmin cleaves cross-linked fibrin. High sensitivity, low specificity for VTE - used as rule-OUT test in low-to-intermediate pre-test probability. Wells score + D-dimer: if Wells low + D-dimer <0.5 mg/L -> PE/DVT excluded (NICE/ESC algorithm). Age-adjusted cut-off (>50 years): use age x 0.01 mg/L FEU - increases specificity (validated in ADJUST-PE trial). Causes of false positive: pregnancy, recent surgery, malignancy, sepsis, liver disease, AF, advanced age, RA. Clinically important elevation: DVT, PE, DIC, aortic dissection, sickle cell crisis.",
     clinical_notes:
-      "DIC: D-dimer markedly elevated + ↓fibrinogen + ↓platelets + ↑PT/aPTT → ISTH score ≥5 = overt DIC. Aortic dissection: D-dimer >0.5 adds to clinical suspicion (sensitivity ~97% for type A) — not a rule-out test alone. In pregnancy: D-dimer always elevated; CTPA or V/Q preferred for suspected PE. Unit caution: some labs use µg/mL DDU — 1 mg/L FEU = 0.5 mg/L DDU (factor of 2 difference).",
+      "DIC: D-dimer markedly elevated + decreased fibrinogen + decreased platelets + increased PT/aPTT -> ISTH score >=5 = overt DIC. Aortic dissection: D-dimer >0.5 adds to clinical suspicion (sensitivity ~97% for type A) - not a rule-out test alone. In pregnancy: D-dimer always elevated; CTPA or V/Q preferred for suspected PE. Unit caution: some labs use ug/mL DDU - 1 mg/L FEU = 0.5 mg/L DDU (factor of 2 difference).",
   },
   {
     name: "creatine kinase",
     abbreviation: "CK",
     unit: "U/L",
-    reference_range: "38–174 (male), 26–140 (female)",
+    reference_range: "38-174 (male), 26-140 (female)",
     reference_low: null,
     reference_high: 174,
     critical_low: null,
@@ -700,14 +700,14 @@ export const labValues = [
     female_high: 140,
     category: "cardiac",
     interpretation:
-      "Enzyme in skeletal muscle (CK-MM, ~96%), cardiac muscle (CK-MB, ~3%), and brain (CK-BB). Total CK elevation: skeletal muscle injury (rhabdomyolysis, vigorous exercise, IM injection, hypothyroidism, inflammatory myopathy — PM/DM), cardiac injury (now superseded by troponin). Rhabdomyolysis: CK >10× ULN with myoglobinuria ('tea-coloured urine'), AKI risk (pigment nephropathy). Causes: trauma/crush, extreme exertion, prolonged immobility, statin myopathy, hypokalaemia, hypo/hyperthermia, cocaine/MDMA. Hypothyroidism: CK often 2-5× ULN — always check TFT in elevated CK without clear cause.",
+      "Enzyme in skeletal muscle (CK-MM, ~96%), cardiac muscle (CK-MB, ~3%), and brain (CK-BB). Total CK elevation: skeletal muscle injury (rhabdomyolysis, vigorous exercise, IM injection, hypothyroidism, inflammatory myopathy - PM/DM), cardiac injury (now superseded by troponin). Rhabdomyolysis: CK >10x ULN with myoglobinuria ('tea-coloured urine'), AKI risk (pigment nephropathy). Causes: trauma/crush, extreme exertion, prolonged immobility, statin myopathy, hypokalaemia, hypo/hyperthermia, cocaine/MDMA. Hypothyroidism: CK often 2-5x ULN - always check TFT in elevated CK without clear cause.",
     clinical_notes:
-      "Rhabdomyolysis: aggressive IV fluid resuscitation (target urine output 200-300 mL/h) until CK trending down; urinary alkalinisation (NaHCO₃ to urine pH >6.5). CK peaks 24-72h after insult and halves every ~36h. Statin myopathy: CK >10× ULN or symptomatic → stop statin; monitor recovery. CK not elevated in pure neuropathy — helps distinguish myopathy from neuropathy.",
+      "Rhabdomyolysis: aggressive IV fluid resuscitation (target urine output 200-300 mL/h) until CK trending down; urinary alkalinisation (NaHCO3 to urine pH >6.5). CK peaks 24-72h after insult and halves every ~36h. Statin myopathy: CK >10x ULN or symptomatic -> stop statin; monitor recovery. CK not elevated in pure neuropathy - helps distinguish myopathy from neuropathy.",
   },
   {
     name: "CK-MB",
     abbreviation: "CK-MB",
-    unit: "µg/L",
+    unit: "ug/L",
     reference_range: "<6.3",
     reference_low: null,
     reference_high: 6.3,
@@ -720,15 +720,15 @@ export const labValues = [
     female_high: null,
     category: "cardiac",
     interpretation:
-      "Cardiac-specific CK isoform. Largely superseded by hs-troponin for initial AMI diagnosis. Remains useful for: (1) detecting reinfarction after MI (troponin remains elevated 7-14 days; CK-MB normalises in 48-72h, so re-elevation indicates new event); (2) post-cardiac surgery (CK-MB >70 µg/L at 24h = periprocedural MI by ESC definition); (3) labs without hs-troponin. CK-MB mass (µg/L) preferred over activity. Relative index (CK-MB/total CK × 100): >5-6% suggests cardiac origin.",
+      "Cardiac-specific CK isoform. Largely superseded by hs-troponin for initial AMI diagnosis. Remains useful for: (1) detecting reinfarction after MI (troponin remains elevated 7-14 days; CK-MB normalises in 48-72h, so re-elevation indicates new event); (2) post-cardiac surgery (CK-MB >70 ug/L at 24h = periprocedural MI by ESC definition); (3) labs without hs-troponin. CK-MB mass (ug/L) preferred over activity. Relative index (CK-MB/total CK x 100): >5-6% suggests cardiac origin.",
     clinical_notes:
-      "CK-MB can be elevated in skeletal muscle disease — use relative index to confirm cardiac origin. In TIMI/GRACE/ESC algorithms for NSTEMI, hs-troponin is the preferred biomarker. Do not delay reperfusion therapy in STEMI waiting for CK-MB results.",
+      "CK-MB can be elevated in skeletal muscle disease - use relative index to confirm cardiac origin. In TIMI/GRACE/ESC algorithms for NSTEMI, hs-troponin is the preferred biomarker. Do not delay reperfusion therapy in STEMI waiting for CK-MB results.",
   },
   {
     name: "lactate dehydrogenase",
     abbreviation: "LDH",
     unit: "U/L",
-    reference_range: "125–220",
+    reference_range: "125-220",
     reference_low: null,
     reference_high: 220,
     critical_low: null,
@@ -740,16 +740,16 @@ export const labValues = [
     female_high: null,
     category: "cardiac",
     interpretation:
-      "Ubiquitous cytoplasmic enzyme released by injured cells. Clinical contexts: haemolysis (↑LDH + ↑indirect bilirubin + ↓haptoglobin + ↑reticulocytes), lymphoma/haematological malignancy (prognostic marker in NHL, DLBCL — part of IPI score), PE (moderately elevated, insensitive), megaloblastic anaemia (intramedullary haemolysis), PCP pneumonia (LDH >500 predicts worse outcomes). In multiple myeloma: elevated LDH = poor prognosis (R-ISS stage III).",
+      "Ubiquitous cytoplasmic enzyme released by injured cells. Clinical contexts: haemolysis (increased LDH + increased indirect bilirubin + decreased haptoglobin + increased reticulocytes), lymphoma/haematological malignancy (prognostic marker in NHL, DLBCL - part of IPI score), PE (moderately elevated, insensitive), megaloblastic anaemia (intramedullary haemolysis), PCP pneumonia (LDH >500 predicts worse outcomes). In multiple myeloma: elevated LDH = poor prognosis (R-ISS stage III).",
     clinical_notes:
-      "Haemolysis workup: LDH ↑ + ↑indirect bilirubin + ↓haptoglobin + ↑reticulocytes → haemolysis confirmed; then direct antiglobulin test (DAT/Coombs) to distinguish immune (AIHA) from non-immune (G6PD, hereditary spherocytosis, microangiopathic). LDH routinely monitors treatment response in lymphoma. LDH >10× ULN with lymphadenopathy/B symptoms: lymphoma until proven otherwise.",
+      "Haemolysis workup: LDH increased  + increased indirect bilirubin + decreased haptoglobin + increased reticulocytes -> haemolysis confirmed; then direct antiglobulin test (DAT/Coombs) to distinguish immune (AIHA) from non-immune (G6PD, hereditary spherocytosis, microangiopathic). LDH routinely monitors treatment response in lymphoma. LDH >10x ULN with lymphadenopathy/B symptoms: lymphoma until proven otherwise.",
   },
   // --- THYROID ---
   {
     name: "thyroid-stimulating hormone",
     abbreviation: "TSH",
     unit: "mIU/L",
-    reference_range: "0.4–4.0",
+    reference_range: "0.4-4.0",
     reference_low: 0.4,
     reference_high: 4.0,
     critical_low: 0.01,
@@ -761,15 +761,15 @@ export const labValues = [
     female_high: null,
     category: "thyroid",
     interpretation:
-      "Pituitary hormone; most sensitive screening test for thyroid dysfunction (log-linear relationship with fT4). Suppressed TSH (<0.4): hyperthyroidism (Graves', toxic nodular goitre, toxic adenoma) or exogenous thyroid hormone. Critically suppressed (<0.01): overt hyperthyroidism or thyroid storm risk. Subclinical hyperthyroidism (↓TSH, normal fT4/fT3): ↑AF risk, ↑bone loss — treat if persistent. Elevated TSH (>4.0): hypothyroidism (Hashimoto's — TPO antibodies; post-radioiodine/thyroidectomy; drugs: amiodarone, lithium). Subclinical hypothyroidism: treat if TSH >10, or >4 with symptoms/pregnancy/positive TPO antibodies. Pregnancy: trimester-specific ranges (1st: 0.1-2.5; 2nd: 0.2-3.0; 3rd: 0.3-3.0 mIU/L).",
+      "Pituitary hormone; most sensitive screening test for thyroid dysfunction (log-linear relationship with fT4). Suppressed TSH (<0.4): hyperthyroidism (Graves', toxic nodular goitre, toxic adenoma) or exogenous thyroid hormone. Critically suppressed (<0.01): overt hyperthyroidism or thyroid storm risk. Subclinical hyperthyroidism (decreased TSH, normal fT4/fT3): increased AF risk, increased bone loss - treat if persistent. Elevated TSH (>4.0): hypothyroidism (Hashimoto's - TPO antibodies; post-radioiodine/thyroidectomy; drugs: amiodarone, lithium). Subclinical hypothyroidism: treat if TSH >10, or >4 with symptoms/pregnancy/positive TPO antibodies. Pregnancy: trimester-specific ranges (1st: 0.1-2.5; 2nd: 0.2-3.0; 3rd: 0.3-3.0 mIU/L).",
     clinical_notes:
-      "Amiodarone: iodine-rich → hypothyroidism in 5-10% (Wolff-Chaikoff); iodine-induced thyrotoxicosis (Jod-Basedow) in pre-existing nodular goitre 2-3%. Type 1 AIT (↑synthesis) vs type 2 AIT (destructive — distinguish with thyroid ultrasound + Doppler). Thyroid storm: TSH <0.01 + Burch-Wartofsky score — treatment: PTU, Lugol's iodine, propranolol, glucocorticoids. Sick euthyroid syndrome: TSH may be low-normal in acute illness — do not treat; reassess when recovered.",
+      "Amiodarone: iodine-rich -> hypothyroidism in 5-10% (Wolff-Chaikoff); iodine-induced thyrotoxicosis (Jod-Basedow) in pre-existing nodular goitre 2-3%. Type 1 AIT (increased synthesis) vs type 2 AIT (destructive - distinguish with thyroid ultrasound + Doppler). Thyroid storm: TSH <0.01 + Burch-Wartofsky score - treatment: PTU, Lugol's iodine, propranolol, glucocorticoids. Sick euthyroid syndrome: TSH may be low-normal in acute illness - do not treat; reassess when recovered.",
   },
   {
     name: "free thyroxine",
     abbreviation: "fT4",
     unit: "pmol/L",
-    reference_range: "10–26",
+    reference_range: "10-26",
     reference_low: 10,
     reference_high: 26,
     critical_low: null,
@@ -781,15 +781,15 @@ export const labValues = [
     female_high: null,
     category: "thyroid",
     interpretation:
-      "Active unbound fraction of thyroxine (T4); not affected by TBG changes (pregnancy, OCP, liver disease) which affect total T4. First-line: check TSH; if abnormal → add fT4. Raised fT4 + suppressed TSH: overt hyperthyroidism. Raised fT4 + elevated TSH: TSH-secreting pituitary adenoma (rare) or thyroid hormone resistance. Low fT4 + elevated TSH: primary hypothyroidism — treat with levothyroxine. Low fT4 + low/normal TSH: secondary/central hypothyroidism (pituitary failure — check other pituitary axes) or sick euthyroid. Levothyroxine targets: TSH 0.4-2.5 mIU/L; avoid suppression (↑AF, osteoporosis) unless treating differentiated thyroid cancer.",
+      "Active unbound fraction of thyroxine (T4); not affected by TBG changes (pregnancy, OCP, liver disease) which affect total T4. First-line: check TSH; if abnormal -> add fT4. Raised fT4 + suppressed TSH: overt hyperthyroidism. Raised fT4 + elevated TSH: TSH-secreting pituitary adenoma (rare) or thyroid hormone resistance. Low fT4 + elevated TSH: primary hypothyroidism - treat with levothyroxine. Low fT4 + low/normal TSH: secondary/central hypothyroidism (pituitary failure - check other pituitary axes) or sick euthyroid. Levothyroxine targets: TSH 0.4-2.5 mIU/L; avoid suppression (increased AF, osteoporosis) unless treating differentiated thyroid cancer.",
     clinical_notes:
-      "Assay interference: biotin supplements falsely elevate fT4 — stop biotin 48h before thyroid tests. Drugs affecting thyroid tests: oestrogens ↑TBG → ↑total T4 (fT4 normal); phenytoin/carbamazepine ↓fT4 (may need ↑levothyroxine dose). Amiodarone: ↑fT4 due to ↓T4-to-T3 conversion — may see ↑fT4 with normal/↑TSH in euthyroid patient.",
+      "Assay interference: biotin supplements falsely elevate fT4 - stop biotin 48h before thyroid tests. Drugs affecting thyroid tests: oestrogens increased TBG -> increased total T4 (fT4 normal); phenytoin/carbamazepine decreased fT4 (may need increased levothyroxine dose). Amiodarone: increased fT4 due to decreased T4-to-T3 conversion - may see increased fT4 with normal/increased TSH in euthyroid patient.",
   },
   {
     name: "free triiodothyronine",
     abbreviation: "fT3",
     unit: "pmol/L",
-    reference_range: "3.5–6.5",
+    reference_range: "3.5-6.5",
     reference_low: 3.5,
     reference_high: 6.5,
     critical_low: null,
@@ -801,16 +801,16 @@ export const labValues = [
     female_high: null,
     category: "thyroid",
     interpretation:
-      "Biologically active form (3-4× more potent than T4); 80% derived from peripheral T4 deiodination. Measure when: (1) hyperthyroidism suspected with normal fT4 (T3 toxicosis — elevated fT3, suppressed TSH, normal fT4; early Graves', toxic nodule); (2) monitoring amiodarone; (3) assessing severity of thyrotoxicosis. Sick euthyroid syndrome: low fT3 (reduced peripheral T4→T3 conversion, reverse T3 rises) — do not supplement.",
+      "Biologically active form (3-4x more potent than T4); 80% derived from peripheral T4 deiodination. Measure when: (1) hyperthyroidism suspected with normal fT4 (T3 toxicosis - elevated fT3, suppressed TSH, normal fT4; early Graves', toxic nodule); (2) monitoring amiodarone; (3) assessing severity of thyrotoxicosis. Sick euthyroid syndrome: low fT3 (reduced peripheral T4->T3 conversion, reverse T3 rises) - do not supplement.",
     clinical_notes:
-      "T3 toxicosis: suppressed TSH + elevated fT3 + normal fT4 — seen in early Graves', toxic adenoma, iodine-induced. In thyroid storm: both fT3 and fT4 markedly elevated. Liothyronine (T3) supplementation in hypothyroidism: controversial; if used, monitor fT3 carefully (narrow therapeutic window, short half-life 1 day vs 7 days for T4).",
+      "T3 toxicosis: suppressed TSH + elevated fT3 + normal fT4 - seen in early Graves', toxic adenoma, iodine-induced. In thyroid storm: both fT3 and fT4 markedly elevated. Liothyronine (T3) supplementation in hypothyroidism: controversial; if used, monitor fT3 carefully (narrow therapeutic window, short half-life 1 day vs 7 days for T4).",
   },
   // --- COAGULATION ---
   {
     name: "INR",
     abbreviation: "INR",
     unit: "ratio",
-    reference_range: "0.9–1.2",
+    reference_range: "0.9-1.2",
     reference_low: 0.9,
     reference_high: 1.2,
     critical_low: null,
@@ -822,15 +822,15 @@ export const labValues = [
     female_high: null,
     category: "coagulation",
     interpretation:
-      "Standardised ratio of patient PT to mean normal PT (ISI-corrected). Measures extrinsic and common pathway (factors VII, X, V, II, I — all vitamin K dependent except V and I). Therapeutic ranges: standard anticoagulation (DVT/PE, AF stroke prevention) = INR 2.0-3.0; mechanical mitral or high-risk aortic valve = 2.5-3.5. Elevated INR in non-anticoagulated patient: warfarin (check interacting drugs — amiodarone, clarithromycin, fluconazole, omeprazole ↑INR); liver disease (↓factor synthesis — INR prognostic in cirrhosis/ALF); vitamin K deficiency; DIC.",
+      "Standardised ratio of patient PT to mean normal PT (ISI-corrected). Measures extrinsic and common pathway (factors VII, X, V, II, I - all vitamin K dependent except V and I). Therapeutic ranges: standard anticoagulation (DVT/PE, AF stroke prevention) = INR 2.0-3.0; mechanical mitral or high-risk aortic valve = 2.5-3.5. Elevated INR in non-anticoagulated patient: warfarin (check interacting drugs - amiodarone, clarithromycin, fluconazole, omeprazole increased INR); liver disease (decreased factor synthesis - INR prognostic in cirrhosis/ALF); vitamin K deficiency; DIC.",
     clinical_notes:
-      "Warfarin reversal: INR 4.5-10 no/minor bleeding → hold warfarin ± oral vitamin K 1-2.5 mg; INR >10 without bleeding → vitamin K 2.5-5 mg orally; major/life-threatening bleeding → 4-factor PCC (Beriplex) + IV vitamin K 10 mg. Warfarin in liver disease: INR may overestimate bleeding risk (anticoagulant proteins C and S also reduced → rebalanced haemostasis). DOAC patients: INR unreliable — do not use to monitor DOACs.",
+      "Warfarin reversal: INR 4.5-10 no/minor bleeding -> hold warfarin +/- oral vitamin K 1-2.5 mg; INR >10 without bleeding -> vitamin K 2.5-5 mg orally; major/life-threatening bleeding -> 4-factor PCC (Beriplex) + IV vitamin K 10 mg. Warfarin in liver disease: INR may overestimate bleeding risk (anticoagulant proteins C and S also reduced -> rebalanced haemostasis). DOAC patients: INR unreliable - do not use to monitor DOACs.",
   },
   {
     name: "activated partial thromboplastin time",
     abbreviation: "aPTT",
     unit: "seconds",
-    reference_range: "25–39",
+    reference_range: "25-39",
     reference_low: 25,
     reference_high: 39,
     critical_low: null,
@@ -842,15 +842,15 @@ export const labValues = [
     female_high: null,
     category: "coagulation",
     interpretation:
-      "Measures intrinsic and common pathway (factors XII, XI, IX, VIII, X, V, II, I). Therapeutic unfractionated heparin monitoring: target aPTT 1.5-2.5× control (~60-100 seconds, laboratory-specific). Causes of isolated aPTT prolongation (normal INR): haemophilia A (↓FVIII) or B (↓FIX); lupus anticoagulant (paradoxically causes thrombosis — prolonged aPTT in vitro but hypercoagulable in vivo); factor XI deficiency. Combined prolonged aPTT + INR: liver disease, massive transfusion, DIC, unfractionated heparin.",
+      "Measures intrinsic and common pathway (factors XII, XI, IX, VIII, X, V, II, I). Therapeutic unfractionated heparin monitoring: target aPTT 1.5-2.5x control (~60-100 seconds, laboratory-specific). Causes of isolated aPTT prolongation (normal INR): haemophilia A (decreased FVIII) or B (decreased FIX); lupus anticoagulant (paradoxically causes thrombosis - prolonged aPTT in vitro but hypercoagulable in vivo); factor XI deficiency. Combined prolonged aPTT + INR: liver disease, massive transfusion, DIC, unfractionated heparin.",
     clinical_notes:
-      "Lupus anticoagulant (LA): prolonged aPTT does not correct on 1:1 mixing study. Confirm with dRVVT. LA + positive anticardiolipin or anti-β2GP1 = antiphospholipid syndrome — lifelong anticoagulation if thrombotic event. aPTT check 6h after any heparin dose change. Dabigatran elongates aPTT — for quantification use diluted thrombin time (Hemoclot), not aPTT.",
+      "Lupus anticoagulant (LA): prolonged aPTT does not correct on 1:1 mixing study. Confirm with dRVVT. LA + positive anticardiolipin or anti-beta2GP1 = antiphospholipid syndrome - lifelong anticoagulation if thrombotic event. aPTT check 6h after any heparin dose change. Dabigatran elongates aPTT - for quantification use diluted thrombin time (Hemoclot), not aPTT.",
   },
   {
     name: "fibrinogen",
     abbreviation: "Fib",
     unit: "g/L",
-    reference_range: "1.5–4.0",
+    reference_range: "1.5-4.0",
     reference_low: 1.5,
     reference_high: 4.0,
     critical_low: 1.0,
@@ -862,9 +862,9 @@ export const labValues = [
     female_high: null,
     category: "coagulation",
     interpretation:
-      "Soluble plasma glycoprotein (factor I); converted to insoluble fibrin by thrombin. Positive acute phase reactant — rises in inflammation, infection, pregnancy, malignancy. Hypofibrinogenaemia (<1.5): DIC (consumptive — ↑D-dimer, ↓platelets, ↑PT/aPTT), severe liver failure (↓synthesis), thrombolytic therapy, massive haemorrhage with dilution. Critical <1.0: significant haemorrhage risk — impaired fibrin clot formation. Obstetric: fibrinogen <2.0 g/L in PPH associated with severe haemorrhage requiring surgical intervention — target >2.0 in active PPH.",
+      "Soluble plasma glycoprotein (factor I); converted to insoluble fibrin by thrombin. Positive acute phase reactant - rises in inflammation, infection, pregnancy, malignancy. Hypofibrinogenaemia (<1.5): DIC (consumptive - increased D-dimer, decreased platelets, increased PT/aPTT), severe liver failure (decreased synthesis), thrombolytic therapy, massive haemorrhage with dilution. Critical <1.0: significant haemorrhage risk - impaired fibrin clot formation. Obstetric: fibrinogen <2.0 g/L in PPH associated with severe haemorrhage requiring surgical intervention - target >2.0 in active PPH.",
     clinical_notes:
-      "DIC: replace with cryoprecipitate (rich in fibrinogen, factor VIII, vWF, factor XIII) if fibrinogen <1.5 and bleeding. Fibrinogen concentrate (RiaSTAP): 3g IV raises fibrinogen ~1 g/L. ISTH DIC score ≥5 = overt DIC — treat underlying cause. In PPH: early fibrinogen replacement (<2 g/L threshold) improves outcomes (ESC/RCOG guidelines).",
+      "DIC: replace with cryoprecipitate (rich in fibrinogen, factor VIII, vWF, factor XIII) if fibrinogen <1.5 and bleeding. Fibrinogen concentrate (RiaSTAP): 3g IV raises fibrinogen ~1 g/L. ISTH DIC score >=5 = overt DIC - treat underlying cause. In PPH: early fibrinogen replacement (<2 g/L threshold) improves outcomes (ESC/RCOG guidelines).",
   },
   // --- LIPIDS ---
   {
@@ -883,9 +883,9 @@ export const labValues = [
     female_high: null,
     category: "lipids",
     interpretation:
-      "Not a diagnostic target in itself — risk calculated using LDL, non-HDL, and cardiovascular risk scores (SCORE2, Framingham, QRISK3). Desirable <5.0 mmol/L; borderline high 5.0-6.2; high >6.2. Interpretation depends on overall CV risk: in a 60-year-old with diabetes, TC 5.2 may warrant statin therapy; in a 30-year-old with no risk factors, TC 5.5 may not. Very high (>7.8 mmol/L, especially if LDL >4.9): suspect familial hypercholesterolaemia (FH) — autosomal dominant LDLR/APOB/PCSK9 mutations; Simon Broome or Dutch Lipid Clinic criteria for diagnosis; treat aggressively (high-intensity statin ± ezetimibe ± PCSK9 inhibitor; target LDL-C reduction ≥50% from baseline).",
+      "Not a diagnostic target in itself - risk calculated using LDL, non-HDL, and cardiovascular risk scores (SCORE2, Framingham, QRISK3). Desirable <5.0 mmol/L; borderline high 5.0-6.2; high >6.2. Interpretation depends on overall CV risk: in a 60-year-old with diabetes, TC 5.2 may warrant statin therapy; in a 30-year-old with no risk factors, TC 5.5 may not. Very high (>7.8 mmol/L, especially if LDL >4.9): suspect familial hypercholesterolaemia (FH) - autosomal dominant LDLR/APOB/PCSK9 mutations; Simon Broome or Dutch Lipid Clinic criteria for diagnosis; treat aggressively (high-intensity statin +/- ezetimibe +/- PCSK9 inhibitor; target LDL-C reduction >=50% from baseline).",
     clinical_notes:
-      "Fasting vs non-fasting: non-fasting acceptable for TC, HDL, non-HDL screening; fasting required for TG and calculated LDL (Friedewald: LDL = TC − HDL − TG/2.2). Secondary causes: hypothyroidism (check TSH in all new hypercholesterolaemia), nephrotic syndrome, cholestatic liver disease, obesity. Statins reduce CV events by ~20-25% per mmol/L LDL reduction independent of baseline level.",
+      "Fasting vs non-fasting: non-fasting acceptable for TC, HDL, non-HDL screening; fasting required for TG and calculated LDL (Friedewald: LDL = TC - HDL - TG/2.2). Secondary causes: hypothyroidism (check TSH in all new hypercholesterolaemia), nephrotic syndrome, cholestatic liver disease, obesity. Statins reduce CV events by ~20-25% per mmol/L LDL reduction independent of baseline level.",
   },
   {
     name: "LDL cholesterol",
@@ -903,15 +903,15 @@ export const labValues = [
     female_high: null,
     category: "lipids",
     interpretation:
-      "Primary atherogenic lipoprotein; main target of lipid-lowering therapy. Calculated (Friedewald): LDL = TC − HDL − TG/2.2 — inaccurate if TG >4.5 mmol/L (use direct LDL assay). ESC 2021 targets by CV risk: very high risk (established CVD, T2DM + organ damage, eGFR <30) → LDL <1.4 mmol/L and ≥50% reduction; high risk (T2DM without organ damage, CKD G3-4, SCORE2 ≥10%) → LDL <1.8 and ≥50% reduction; moderate risk → LDL <2.6; low risk → LDL <3.0. Familial hypercholesterolaemia: LDL >4.9 in adult — screen first-degree relatives (cascade screening).",
+      "Primary atherogenic lipoprotein; main target of lipid-lowering therapy. Calculated (Friedewald): LDL = TC - HDL - TG/2.2 - inaccurate if TG >4.5 mmol/L (use direct LDL assay). ESC 2021 targets by CV risk: very high risk (established CVD, T2DM + organ damage, eGFR <30) -> LDL <1.4 mmol/L and >=50% reduction; high risk (T2DM without organ damage, CKD G3-4, SCORE2 >=10%) -> LDL <1.8 and >=50% reduction; moderate risk -> LDL <2.6; low risk -> LDL <3.0. Familial hypercholesterolaemia: LDL >4.9 in adult - screen first-degree relatives (cascade screening).",
     clinical_notes:
-      "Statin potency: rosuvastatin 40 mg or atorvastatin 40-80 mg = high-intensity (↓LDL ~50%). Add ezetimibe 10 mg if target not met (↓LDL additional ~15-20%). PCSK9 inhibitors (evolocumab, alirocumab): ↓LDL 50-60% on top of statin — for very high-risk patients not at target. LDL monitoring: 8 weeks after statin initiation, then annually once at target.",
+      "Statin potency: rosuvastatin 40 mg or atorvastatin 40-80 mg = high-intensity (~50% LDL reduction). Add ezetimibe 10 mg if target not met (additional ~15-20% LDL reduction). PCSK9 inhibitors (evolocumab, alirocumab): further 50-60% LDL reduction on top of statin - for very high-risk patients not at target. LDL monitoring: 8 weeks after statin initiation, then annually once at target.",
   },
   {
     name: "HDL cholesterol",
     abbreviation: "HDL-C",
     unit: "mmol/L",
-    reference_range: "≥1.0 (male), ≥1.3 (female)",
+    reference_range: ">=1.0 (male), >=1.3 (female)",
     reference_low: 1.0,
     reference_high: null,
     critical_low: null,
@@ -923,15 +923,15 @@ export const labValues = [
     female_high: null,
     category: "lipids",
     interpretation:
-      "Atheroprotective lipoprotein mediating reverse cholesterol transport. Low HDL: male <1.0, female <1.3 mmol/L — independent CV risk factor and component of metabolic syndrome. Causes of low HDL: physical inactivity, obesity, T2DM, metabolic syndrome, hypertriglyceridaemia (inverse relationship with HDL), smoking, anabolic steroids, beta-blockers. Paradoxically very high HDL (>3.0) may not confer additional benefit and some studies suggest ↑risk — likely dysfunctional HDL. Lifestyle: exercise ↑HDL ~5-10%; smoking cessation ↑HDL.",
+      "Atheroprotective lipoprotein mediating reverse cholesterol transport. Low HDL: male <1.0, female <1.3 mmol/L - independent CV risk factor and component of metabolic syndrome. Causes of low HDL: physical inactivity, obesity, T2DM, metabolic syndrome, hypertriglyceridaemia (inverse relationship with HDL), smoking, anabolic steroids, beta-blockers. Paradoxically very high HDL (>3.0) may not confer additional benefit and some studies suggest increased risk - likely dysfunctional HDL. Lifestyle: exercise increased HDL ~5-10%; smoking cessation increased HDL.",
     clinical_notes:
-      "Non-HDL cholesterol (TC − HDL) captures all atherogenic lipoproteins including VLDL and IDL — preferred over LDL in hypertriglyceridaemia or non-fasting samples. Non-HDL targets = LDL target + 0.8 mmol/L (e.g., very high risk: non-HDL <2.2 mmol/L). HDL-raising drugs (niacin, fibrates): ↑HDL in trials but CV outcomes not improved — treat low HDL by addressing secondary causes.",
+      "Non-HDL cholesterol (TC - HDL) captures all atherogenic lipoproteins including VLDL and IDL - preferred over LDL in hypertriglyceridaemia or non-fasting samples. Non-HDL targets = LDL target + 0.8 mmol/L (e.g., very high risk: non-HDL <2.2 mmol/L). HDL-raising drugs (niacin, fibrates): increased HDL in trials but CV outcomes not improved - treat low HDL by addressing secondary causes.",
   },
   {
     name: "triglycerides",
     abbreviation: "TG",
     unit: "mmol/L",
-    reference_range: "0.45–1.7",
+    reference_range: "0.45-1.7",
     reference_low: 0.45,
     reference_high: 1.7,
     critical_low: null,
@@ -943,16 +943,16 @@ export const labValues = [
     female_high: null,
     category: "lipids",
     interpretation:
-      "Reflect VLDL and chylomicron levels; measure fasting for accurate result (non-fasting ↑by ~1-2 mmol/L). Classification: normal <1.7; borderline high 1.7-2.3; high 2.3-5.6; very high >5.6 (significant pancreatitis risk above 11.3 mmol/L). Causes: T2DM/insulin resistance (commonest), alcohol (↑hepatic VLDL synthesis), hypothyroidism, CKD, nephrotic syndrome, obesity, high refined carbohydrate diet. Drugs: oestrogens, glucocorticoids, antipsychotics (olanzapine, clozapine), older antiretrovirals. Acute pancreatitis risk: TG >11.3 mmol/L (>1000 mg/dL) — hypertriglyceridaemia-induced pancreatitis accounts for 1-4% of all acute pancreatitis.",
+      "Reflect VLDL and chylomicron levels; measure fasting for accurate result (non-fasting increased by ~1-2 mmol/L). Classification: normal <1.7; borderline high 1.7-2.3; high 2.3-5.6; very high >5.6 (significant pancreatitis risk above 11.3 mmol/L). Causes: T2DM/insulin resistance (commonest), alcohol (increased hepatic VLDL synthesis), hypothyroidism, CKD, nephrotic syndrome, obesity, high refined carbohydrate diet. Drugs: oestrogens, glucocorticoids, antipsychotics (olanzapine, clozapine), older antiretrovirals. Acute pancreatitis risk: TG >11.3 mmol/L (>1000 mg/dL) - hypertriglyceridaemia-induced pancreatitis accounts for 1-4% of all acute pancreatitis.",
     clinical_notes:
-      "Hypertriglyceridaemia-induced pancreatitis: acutely lower TG with insulin infusion (activates LPL, clears VLDL); long-term: fenofibrate + omega-3 fatty acid (4g/day reduces TG ~30-45%) + treat secondary causes. Target TG <5.6 mmol/L to prevent recurrent pancreatitis. Milky/lipaemic serum (TG >11): can interfere with other biochemistry assays — pseudohyponatraemia. Fenofibrate + statin: approved for mixed dyslipidaemia; unlike gemfibrozil, fenofibrate does not significantly inhibit statin metabolism.",
+      "Hypertriglyceridaemia-induced pancreatitis: acutely lower TG with insulin infusion (activates LPL, clears VLDL); long-term: fenofibrate + omega-3 fatty acid (4g/day reduces TG ~30-45%) + treat secondary causes. Target TG <5.6 mmol/L to prevent recurrent pancreatitis. Milky/lipaemic serum (TG >11): can interfere with other biochemistry assays - pseudohyponatraemia. Fenofibrate + statin: approved for mixed dyslipidaemia; unlike gemfibrozil, fenofibrate does not significantly inhibit statin metabolism.",
   },
   // --- INFLAMMATORY (additions) ---
   {
     name: "erythrocyte sedimentation rate",
     abbreviation: "ESR",
     unit: "mm/h",
-    reference_range: "0–15 (male), 0–20 (female)",
+    reference_range: "0-15 (male), 0-20 (female)",
     reference_low: null,
     reference_high: 20,
     critical_low: null,
@@ -964,14 +964,14 @@ export const labValues = [
     female_high: 20,
     category: "inflammatory",
     interpretation:
-      "Rate at which RBCs settle in anticoagulated blood over 1 hour (Westergren method). Non-specific marker of inflammation or altered plasma proteins. Age-adjusted upper limits: male = age/2; female = (age + 10)/2. Mild–moderate elevation (20-50 mm/h): non-specific — infection, autoimmune, malignancy, anaemia, pregnancy. Markedly elevated (>50): significant systemic disease — suspect myeloma, vasculitis (GCA, Takayasu), connective tissue disease (SLE, RA), chronic infection (TB, endocarditis, osteomyelitis), lymphoma. Very high (>100): strongly associated with myeloma, GCA, severe infection, or metastatic malignancy — warrants urgent investigation. Falsely low: polycythaemia, sickle cell disease, spherocytosis, heart failure, hypofibrinogenaemia. Falsely high: anaemia, hypergammaglobulinaemia, pregnancy.",
+      "Rate at which RBCs settle in anticoagulated blood over 1 hour (Westergren method). Non-specific marker of inflammation or altered plasma proteins. Age-adjusted upper limits: male = age/2; female = (age + 10)/2. Mild-moderate elevation (20-50 mm/h): non-specific - infection, autoimmune, malignancy, anaemia, pregnancy. Markedly elevated (>50): significant systemic disease - suspect myeloma, vasculitis (GCA, Takayasu), connective tissue disease (SLE, RA), chronic infection (TB, endocarditis, osteomyelitis), lymphoma. Very high (>100): strongly associated with myeloma, GCA, severe infection, or metastatic malignancy - warrants urgent investigation. Falsely low: polycythaemia, sickle cell disease, spherocytosis, heart failure, hypofibrinogenaemia. Falsely high: anaemia, hypergammaglobulinaemia, pregnancy.",
     clinical_notes:
-      "ESR vs CRP: CRP rises faster (6-12h vs 24-48h for ESR) and falls faster on treatment — CRP better for acute monitoring; ESR better for certain diagnoses (myeloma, GCA). In GCA: ESR >50 typical, >100 in active disease — do not delay prednisolone pending temporal artery biopsy. In myeloma: very high ESR + ↑total protein + ↑globulins → request SPEP, IFE, serum free light chains, skeletal survey. ESR unreliable in pregnancy, anaemia, extreme age — use CRP preferentially.",
+      "ESR vs CRP: CRP rises faster (6-12h vs 24-48h for ESR) and falls faster on treatment - CRP better for acute monitoring; ESR better for certain diagnoses (myeloma, GCA). In GCA: ESR >50 typical, >100 in active disease - do not delay prednisolone pending temporal artery biopsy. In myeloma: very high ESR + increased total protein + increased globulins -> request SPEP, IFE, serum free light chains, skeletal survey. ESR unreliable in pregnancy, anaemia, extreme age - use CRP preferentially.",
   },
   {
     name: "procalcitonin",
     abbreviation: "PCT",
-    unit: "µg/L",
+    unit: "ug/L",
     reference_range: "<0.10",
     reference_low: null,
     reference_high: 0.10,
@@ -984,8 +984,8 @@ export const labValues = [
     female_high: null,
     category: "inflammatory",
     interpretation:
-      "Pro-hormone of calcitonin; rises within 3-6h of bacterial stimulus, peaks at 24h, half-life ~24h. Antibiotic stewardship thresholds (PRORATA trial): <0.25 µg/L — bacterial infection unlikely, antibiotics strongly discouraged; 0.25-0.5 — grey zone; >0.5 — bacterial aetiology likely, consider antibiotics; >2.0 — strongly suggests bacterial infection/sepsis. Serial PCT-guided antibiotic discontinuation reduces duration without worsening outcomes (PRORATA, ProHOSP trials). Critical >10 µg/L: associated with bacteraemia, severe sepsis, septic shock — high mortality risk.",
+      "Pro-hormone of calcitonin; rises within 3-6h of bacterial stimulus, peaks at 24h, half-life ~24h. Antibiotic stewardship thresholds (PRORATA trial): <0.25 ug/L - bacterial infection unlikely, antibiotics strongly discouraged; 0.25-0.5 - grey zone; >0.5 - bacterial aetiology likely, consider antibiotics; >2.0 - strongly suggests bacterial infection/sepsis. Serial PCT-guided antibiotic discontinuation reduces duration without worsening outcomes (PRORATA, ProHOSP trials). Critical >10 ug/L: associated with bacteraemia, severe sepsis, septic shock - high mortality risk.",
     clinical_notes:
-      "PCT NOT elevated in: viral infections (COVID-19 may cause mild elevation — >0.5 suggests bacterial co-infection), localised infections (abscess, sinusitis — PCT may be normal), autoimmune disease. False positive elevation: major surgery, severe burns, cardiogenic shock, pancreatitis. Cannot replace clinical judgement — use as adjunct to CRP, WBC, cultures, and imaging. PCT-guided protocols reduce antibiotic exposure by 2-3 days in community-acquired pneumonia without increase in mortality.",
+      "PCT NOT elevated in: viral infections (COVID-19 may cause mild elevation - >0.5 suggests bacterial co-infection), localised infections (abscess, sinusitis - PCT may be normal), autoimmune disease. False positive elevation: major surgery, severe burns, cardiogenic shock, pancreatitis. Cannot replace clinical judgement - use as adjunct to CRP, WBC, cultures, and imaging. PCT-guided protocols reduce antibiotic exposure by 2-3 days in community-acquired pneumonia without increase in mortality.",
   },
 ];
