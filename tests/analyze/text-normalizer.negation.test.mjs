@@ -27,3 +27,13 @@ test("negation scope ends at contrast term", () => {
   assert.ok(out.includes("tachycardia"));
 });
 
+test("term boundaries: do not match substring inside larger word", () => {
+  const out = normalizeText("the patient mentions trash bins and no respiratory concerns");
+  assert.ok(!out.includes("rash"));
+});
+
+test("term boundaries: still match proper symptom phrase", () => {
+  const out = normalizeText("developed a skin rash today");
+  assert.ok(out.includes("rash"));
+});
+

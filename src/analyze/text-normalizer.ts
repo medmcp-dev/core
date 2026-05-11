@@ -276,11 +276,12 @@ function hasAffirmedMention(lowerText: string, synonym: string): boolean {
     const hit = lowerText.indexOf(synonym, fromIndex);
     if (hit === -1) return false;
 
-    if (!isNegatedAt(lowerText, hit)) {
+    const end = hit + synonym.length;
+    if (isTermBoundaryMatch(lowerText, hit, end) && !isNegatedAt(lowerText, hit)) {
       return true;
     }
 
-    fromIndex = hit + synonym.length;
+    fromIndex = hit + 1;
   }
 
   return false;
@@ -326,4 +327,14 @@ function lastRegexMatchBefore(regex: RegExp, text: string, endExclusive: number)
   }
   regex.lastIndex = 0;
   return last;
+}
+
+function isTermBoundaryMatch(text: string, start: number, end: number): boolean {
+  const before = start > 0 ? text[start - 1] : " ";
+  const after = end < text.length ? text[end] : " ";
+  return !isWordish(before) && !isWordish(after);
+}
+
+function isWordish(ch: string): boolean {
+  return /[a-z0-9]/i.test(ch);
 }
