@@ -89,6 +89,8 @@ async function initializeDataLayer(): Promise<void> {
     const { seed } = await import("../db/seed.js");
     seed();
     await seedFirstApiKey();
+    const db = await import("../db/database.js");
+    db.ensureEnvApiKeyRegistered();
     console.log("Initialization complete.");
   } catch (err) {
     console.error("Initialization error (non-fatal):", err);
@@ -100,7 +102,8 @@ async function seedFirstApiKey(): Promise<void> {
   const { hasApiKeys, createApiKey } = db;
   if (hasApiKeys()) return;
 
-  const key = process.env.MEDDATA_API_KEY ?? `mk_${randomUUID().replace(/-/g, "")}`;
+  const key =
+    process.env.MEDDATA_API_KEY?.trim() ?? `mk_${randomUUID().replace(/-/g, "")}`;
   createApiKey("default", key);
 
   if (!process.env.MEDDATA_API_KEY) {

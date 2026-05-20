@@ -1,4 +1,5 @@
 import type { Context, Next } from "hono";
+import { normalizeApiKeyHeader } from "../api-key-normalize.js";
 import type { Capability } from "../capabilities.js";
 
 type ValidateApiKeyFn = (key: string) => boolean;
@@ -16,7 +17,7 @@ async function getValidateApiKey(): Promise<ValidateApiKeyFn> {
 }
 
 export async function authMiddleware(c: Context, next: Next): Promise<Response | void> {
-  const key = c.req.header("X-API-Key");
+  const key = normalizeApiKeyHeader(c.req.header("X-API-Key"));
 
   if (!key) {
     return c.json({ error: "Missing X-API-Key header" }, 401);
@@ -38,7 +39,9 @@ export async function authMiddleware(c: Context, next: Next): Promise<Response |
 
 export function requireCapability(capability: Capability) {
   return async (c: Context, next: Next): Promise<Response | void> => {
-    const key = (c.get("apiKey") as string | undefined) ?? c.req.header("X-API-Key");
+    const key =
+      (c.get("apiKey") as string | undefined) ??
+      normalizeApiKeyHeader(c.req.header("X-API-Key"));
     if (!key) return c.json({ error: "Missing X-API-Key header" }, 401);
 
     try {

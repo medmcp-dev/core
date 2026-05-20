@@ -10,6 +10,16 @@ for the **core** package version in the repo root (`package.json`).
 
 ### Added
 
+- **`ensureEnvApiKeyRegistered()`** — on HTTP startup, inserts `MEDDATA_API_KEY` into `api_keys` when set and missing (Railway env + volume).
+- **`docs/ops-production-api-keys.md`**, **`scripts/railway-create-professor-key.{sh,ps1}`** — create keys on production `DB_PATH`, curl verify steps.
+
+### Fixed
+
+- **`X-API-Key`** header trimmed before validation (copy/paste whitespace).
+- Documented **`403 Invalid API key`** vs health-without-key for professor/pilot onboarding (`docs/profesor-quickstart.md`).
+
+### Added
+
 - **`api_keys.plan`** (`default` \| `full` \| `custom`) with additive migration: legacy keys without `api_key_capabilities` rows stay **`full`** (unchanged access); keys that already had explicit capability rows become **`custom`**; **`createApiKey`** (including first bootstrapped dev key) uses **`default`** = `symptoms` + `labs` + `schema` only (`DEFAULT_PLAN_CAPABILITIES` in `src/http/capabilities.ts`).
 - Admin CLI **`set-plan <key> default|full|custom`** (`src/scripts/api-keys-admin.ts`).
 - **`GET /v1/schema`:** `default_plan_capabilities`, `capability_descriptions`, and when authenticated `key_plan` plus effective `key_capabilities`.
