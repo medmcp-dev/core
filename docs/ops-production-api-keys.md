@@ -10,7 +10,9 @@ HTTP auth checks the **`api_keys`** table in SQLite at **`DB_PATH`** (production
 
 ## Fix (recommended): create key on Railway volume
 
-From repo root, with [Railway CLI](https://docs.railway.app/develop/cli) logged in and linked to the **core** service:
+From repo root, with [Railway CLI](https://docs.railway.app/develop/cli) logged in and linked to the **core** service.
+
+**SSH key (once per machine):** `railway ssh` needs a local key. If you see `No SSH keys found in ~/.ssh/`, run `ssh-keygen -t ed25519` (Enter through prompts), then run the create script again (Railway registers the key on first connect).
 
 ```bash
 ./scripts/railway-create-professor-key.sh professor-demo
