@@ -81,10 +81,10 @@ curl -sS \
 Ispiše se `mk_…` **jednom** → pošalji privatno, testiraj s curl prije slanja profesoru. Revoke:
 
 ```bash
-railway run -- sh -c "DB_PATH=/data/meddata.db npm run api-keys -- revoke mk_xxxxxxxx"
+railway ssh -- sh -c "cd /app && DB_PATH=/data/meddata.db npm run api-keys -- revoke mk_xxxxxxxx"
 ```
 
-Lokalni `npm run api-keys -- create …` **bez** `railway run` + `/data/meddata.db` kreira ključ u **laptop bazi** → profesor na produkciji dobije **`403 Invalid API key`**.
+**Ne koristi** `railway run` za ključeve — to je lokalno na laptopu. Lokalni `npm run api-keys -- create …` piše u **laptop** `meddata.db` → profesor na produkciji dobije **`403 Invalid API key`**.
 
 ### Ako lokalno `npm run api-keys` padne na `better-sqlite3` / NODE_MODULE_VERSION
 

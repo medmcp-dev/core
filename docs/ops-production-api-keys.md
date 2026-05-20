@@ -22,11 +22,11 @@ Windows PowerShell:
 .\scripts\railway-create-professor-key.ps1 -Name professor-demo
 ```
 
-Manual equivalent:
+Manual equivalent (use **`railway ssh`**, not `railway run` — `run` executes on your laptop and cannot reach the volume DB; on Windows `sh` also fails locally):
 
 ```bash
-railway run -- sh -c "npm run build && DB_PATH=/data/meddata.db npm run api-keys -- create professor-demo"
-railway run -- sh -c "DB_PATH=/data/meddata.db npm run api-keys -- list"
+railway ssh -- sh -c "cd /app && npm run build && DB_PATH=/data/meddata.db npm run api-keys -- create professor-demo"
+railway ssh -- sh -c "cd /app && DB_PATH=/data/meddata.db npm run api-keys -- list"
 ```
 
 Copy the printed `mk_…` key **once**, send privately, then verify with curl (see `docs/profesor-quickstart.md`).

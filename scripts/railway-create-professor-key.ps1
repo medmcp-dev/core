@@ -4,8 +4,10 @@ param(
   [string]$Name = "professor-demo"
 )
 
-Write-Host "Creating API key named: $Name (DB_PATH=/data/meddata.db)"
-railway run -- sh -c "npm run build && DB_PATH=/data/meddata.db npm run api-keys -- create $Name"
+# railway run = local Windows + env vars (cannot write /data/meddata.db on the volume).
+# railway ssh = command inside the deployed Linux container (correct for production keys).
+Write-Host "Creating API key named: $Name (inside Railway service, DB_PATH from service env)"
+railway ssh -- sh -c "cd /app && npm run build && DB_PATH=/data/meddata.db npm run api-keys -- create $Name"
 
 Write-Host ""
 Write-Host "Test with curl.exe (replace API_KEY from output above):"
