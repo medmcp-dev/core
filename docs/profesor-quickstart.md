@@ -13,8 +13,26 @@ Nikad ne kopirati API ključ u javni kod, gist, prezentacijski PDF ili javni Sla
 
 ## Zamijeni ove vrijednosti
 
-- **`BASE_URL`** — tvoj host, npr. `https://…up.railway.app` (bez kose crte na kraju).
-- **`API_KEY`** — ključ koji ti Bruno pošalje (format tipično `mk_…`).
+- **`BASE_URL`** — produkcija: `https://core-production-389e.up.railway.app` (bez kose crte na kraju).
+- **`API_KEY`** — ključ koji ti Bruno pošalje **nakon** što ga kreira na produkcijskoj bazi (format `mk_…`, bez razmaka pri kopiranju).
+
+### Ako dobiješ `403` i `"Invalid API key"`
+
+Servis radi, ali **ključ nije upisan u produkcijsku bazu** (nije problem curla). Javi Brunu — treba **novi ključ** kreiran na Railwayu (vidi [`docs/ops-production-api-keys.md`](./ops-production-api-keys.md)).  
+`403` s `"capability_not_enabled"` je druga stvar (ključ postoji, ali ruta nije u planu).
+
+### Brza provjera da ključ radi (curl, macOS)
+
+```bash
+BASE_URL="https://core-production-389e.up.railway.app"
+API_KEY="mk_TVOJ_KLJUC_OVDJE"
+
+curl -sS -w "\nHTTP:%{http_code}\n" \
+  -H "X-API-Key: $API_KEY" \
+  "$BASE_URL/v1/schema"
+```
+
+Očekuješ **HTTP:200** i JSON s `version`. Zatim `POST /v1/analyze` (primjer ispod).
 
 ---
 
@@ -23,7 +41,7 @@ Nikad ne kopirati API ključ u javni kod, gist, prezentacijski PDF ili javni Sla
 Copy/paste cijelog bloka:
 
 ```powershell
-$BASE_URL = "https://PRIMjer.up.railway.app"
+$BASE_URL = "https://core-production-389e.up.railway.app"
 $key      = "mk_TVOJ_KLJUC_OVDJE"
 
 Invoke-RestMethod `
@@ -40,7 +58,7 @@ Ako dobije **`401`** i **`Missing X-API-Key header`**, znači da header nije sti
 ## curl (macOS / Linux / Git Bash)
 
 ```bash
-BASE_URL="https://PRIMjer.up.railway.app"
+BASE_URL="https://core-production-389e.up.railway.app"
 API_KEY="mk_TVOJ_KLJUC_OVDJE"
 
 curl -sS \
@@ -54,23 +72,19 @@ curl -sS \
 
 ## Kako Bruno dodaje poseban ključ za nekoga drugog
 
-Na stroju gdje imaš **isti** SQLite kao HTTP server (isti `DB_PATH` kao na deployu ako radiš ključ za produkciju):
+**Produkcija (obavezno):** ključ mora ući u SQLite na Railway volumeu (`DB_PATH=/data/meddata.db`). Puni postupak: **[`docs/ops-production-api-keys.md`](./ops-production-api-keys.md)**.
 
 ```bash
-npm run build
-npm run api-keys -- create ime-primatelja-demo
+./scripts/railway-create-professor-key.sh professor-demo
 ```
 
-Ispiše se ključ **jednom** → pošalji ga privatnim kanalom. Za uklanjanje nakon ispada ili kraja ispita:
+Ispiše se `mk_…` **jednom** → pošalji privatno, testiraj s curl prije slanja profesoru. Revoke:
 
 ```bash
-npm run api-keys -- revoke mk_xxxxxxxx...
-npm run api-keys -- list
+railway run -- sh -c "DB_PATH=/data/meddata.db npm run api-keys -- revoke mk_xxxxxxxx"
 ```
 
-Više pojedinosti o skripti: kao i drugi tooling, kompilirani ulaz je `src/scripts/api-keys-admin.ts`.
-
-**Produkcija (Railway):** pokretanje mora koristiti **isti volume / `DB_PATH`** kao servis koji sluša promet (npr. `railway run …` ili jednokratni kontejnerski exec), inače kreiraš ključ u „drugoj“ bazi i **401 će i dalje** dolaziti.
+Lokalni `npm run api-keys -- create …` **bez** `railway run` + `/data/meddata.db` kreira ključ u **laptop bazi** → profesor na produkciji dobije **`403 Invalid API key`**.
 
 ### Ako lokalno `npm run api-keys` padne na `better-sqlite3` / NODE_MODULE_VERSION
 

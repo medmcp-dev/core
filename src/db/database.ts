@@ -169,11 +169,30 @@ function migrateApiKeysPlanColumn(db: Database.Database): void {
 }
 
 export function validateApiKey(key: string): boolean {
+  const normalized = key.trim();
+  if (!normalized) return false;
+  const db = getDb();
+  const row = db.prepare("SELECT key FROM api_keys WHERE key = ?").get(normalized);
+  if (!row) return false;
+  db.prepare("UPDATE api_keys SET last_used_at = datetime('now') WHERE key = ?").run(normalized);
+  return true;
+}
+
+/**
+ * If `MEDDATA_API_KEY` is set (e.g. Railway env), ensure that exact key exists in
+ * `api_keys` on this `DB_PATH`. Fixes 403 when the env key was shared but never
+ * inserted into the production volume DB (e.g. key created only on a laptop).
+ */
+export function ensureEnvApiKeyRegistered(): void {
+  const key = process.env.MEDDATA_API_KEY?.trim();
+  if (!key) return;
+
   const db = getDb();
   const row = db.prepare("SELECT key FROM api_keys WHERE key = ?").get(key);
-  if (!row) return false;
-  db.prepare("UPDATE api_keys SET last_used_at = datetime('now') WHERE key = ?").run(key);
-  return true;
+  if (row) return;
+
+  createApiKey("env-MEDDATA_API_KEY", key);
+  console.log("[api-keys] Registered MEDDATA_API_KEY from environment into api_keys");
 }
 
 export function hasApiKeys(): boolean {
